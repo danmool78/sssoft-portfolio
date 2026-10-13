@@ -1,0 +1,42 @@
+{
+ "hosting": [
+  {
+   "site": "sssoft-portfolio",
+   "public": "public",
+   "ignore": [
+    "firebase.json",
+    "**/.*"
+   ],
+   "headers": [
+    {
+     "source": "**/*.@(html|js|png|jpg|svg)",
+     "headers": [
+      {
+       "key": "Cache-Control",
+       "value": "no-cache"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "site": "sssoft-idea",
+   "public": "public",
+   "ignore": [
+    "firebase.json",
+    "**/.*"
+   ],
+   "headers": [
+    {
+     "source": "**/*.@(html|js|png|jpg|svg)",
+     "headers": [
+      {
+       "key": "Cache-Control",
+       "value": "no-cache"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SSSOFT Portfolio</title>
+<meta name="description" content="SSSOFT가 만들고 운영하는 앱들: 캠프마스터, STARFARER, 다락방 기도앱, 다정 리딩북, 케미몰, 보캐브스캔, 워드드롭, 큐티레이스.">
+<link rel="icon" href="logo-mark.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f5f4ef;--surface:#fff;--sunk:#ecebe5;--text:#15161a;--muted:#5d6068;--line:#e1dfd7;--accent:#3d5afe;--shadow:0 20px 50px rgba(20,20,40,.10)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d0e12;--surface:#16181e;--sunk:#1d2028;--text:#eceef3;--muted:#9a9eaa;--line:#272a33;--accent:#8c9eff;--shadow:0 20px 50px rgba(0,0,0,.45)}}
+:root[data-theme="dark"]{--bg:#0d0e12;--surface:#16181e;--sunk:#1d2028;--text:#eceef3;--muted:#9a9eaa;--line:#272a33;--accent:#8c9eff;--shadow:0 20px 50px rgba(0,0,0,.45)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:"Noto Sans KR",system-ui,sans-serif;line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+header.top{display:flex;justify-content:space-between;align-items:center;padding:22px 0}
+.logo{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:22px;letter-spacing:.05em;text-decoration:none}
+.logo{display:flex;align-items:center;gap:10px}
+.logo img{display:block;border-radius:9px}
+.logo .lw b{background:linear-gradient(90deg,#3d5afe,#a855f7 50%,#ff7a59);-webkit-background-clip:text;background-clip:text;color:transparent}
+nav a{margin-left:22px;text-decoration:none;color:var(--muted);font-size:15px}
+nav a:hover{color:var(--text)}
+.eyebrow{font-family:"Space Grotesk",sans-serif;color:var(--accent);font-weight:700;letter-spacing:.14em;font-size:13px;text-transform:uppercase}
+.hero{padding:80px 0 64px}
+.hero h1{font-size:clamp(36px,6.4vw,72px);line-height:1.12;font-weight:900;margin:16px 0 22px;letter-spacing:-.025em}
+.hero h1 em{font-style:normal;background:linear-gradient(90deg,#3d5afe,#a855f7 50%,#ff7a59);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:var(--muted);font-size:18px;max-width:52ch}
+.marquee{display:flex;gap:10px;flex-wrap:wrap;margin-top:34px}
+.marquee button{font:inherit;font-size:14px;font-weight:500;border:1px solid var(--line);background:var(--surface);color:var(--text);padding:8px 14px;border-radius:999px;cursor:pointer;display:flex;align-items:center;gap:8px}
+.marquee button i{width:8px;height:8px;border-radius:50%;display:inline-block}
+.marquee button:hover{border-color:var(--text)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden;margin-top:56px}
+.stats div{background:var(--surface);padding:22px 24px}
+.stats b{display:block;font-family:"Space Grotesk",sans-serif;font-size:34px;line-height:1.1}
+.stats small{color:var(--muted);font-size:14px}
+section{padding:72px 0}
+.sec-head{display:flex;justify-content:space-between;align-items:end;gap:16px;margin-bottom:32px;flex-wrap:wrap}
+.sec-head h2{font-size:32px;font-weight:900;letter-spacing:-.01em}
+.filters button{font:inherit;font-size:14px;border:1px solid var(--line);background:var(--surface);color:var(--muted);padding:6px 14px;border-radius:999px;cursor:pointer;margin-left:6px}
+.filters button.on{background:var(--text);color:var(--bg);border-color:var(--text)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:26px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;cursor:pointer;transition:transform .25s,box-shadow .25s;text-align:left;font:inherit;color:inherit}
+.card:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+.card:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.stage{height:260px;position:relative;overflow:hidden;display:flex;justify-content:center;align-items:flex-start;padding-top:28px}
+.stage .tag{position:absolute;top:14px;left:14px;font-size:12px;font-weight:700;background:rgba(255,255,255,.92);color:#15161a;padding:3px 10px;border-radius:999px;z-index:2}
+.phone{width:150px;border-radius:24px;border:6px solid #111;background:#111;overflow:hidden;box-shadow:0 18px 40px rgba(0,0,0,.35);transform:rotate(-4deg) translateY(6px);transition:transform .35s}
+.phone img{display:block;width:100%}
+.card:hover .phone{transform:rotate(0) translateY(-4px)}
+.browser{width:86%;border-radius:10px;overflow:hidden;background:#222;box-shadow:0 18px 40px rgba(0,0,0,.35);transition:transform .35s}
+.browser::before{content:"";display:block;height:14px;background:#2b2d33 radial-gradient(circle at 10px 7px,#ff5f57 3px,transparent 3.5px),#2b2d33}
+.browser img{display:block;width:100%}
+.card:hover .browser{transform:translateY(-6px)}
+.stage svg{width:88%;height:auto}
+.body{padding:22px 24px 24px;display:flex;flex-direction:column;flex:1}
+.en{font-family:"Space Grotesk",sans-serif;font-size:12px;letter-spacing:.12em;color:var(--muted)}
+.body h3{font-size:23px;font-weight:900;margin:2px 0 6px}
+.tl{font-size:15px;color:var(--text);margin-bottom:14px}
+.mini{list-style:none;font-size:14px;color:var(--muted);margin-bottom:18px}
+.mini li{padding:4px 0 4px 20px;position:relative}
+.mini li::before{content:"✦";position:absolute;left:0;color:var(--c)}
+.more{margin-top:auto;font-weight:700;font-size:14px;color:var(--c)}
+.about2{border-top:1px solid var(--line)}
+.sss{font-family:"Space Grotesk","Noto Sans KR",sans-serif;font-size:clamp(34px,6vw,64px);font-weight:700;letter-spacing:-.02em;margin:12px 0 18px;line-height:1.1}
+.sss span{background:linear-gradient(90deg,#3d5afe,#a855f7 50%,#ff7a59);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead2{color:var(--muted);font-size:17px;max-width:60ch;margin-bottom:34px}
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:48px}
+.trio article{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:26px 26px 22px;display:flex;flex-direction:column}
+.trio i{font-style:normal;font-size:30px}
+.trio em{font-style:normal;font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:13px;letter-spacing:.14em;color:var(--accent);margin-top:10px}
+.trio h3{font-size:21px;font-weight:900;margin:4px 0 10px}
+.trio p{color:var(--muted);font-size:15px;flex:1}
+.trio small{margin-top:14px;font-size:13px;color:var(--text);border-top:1px dashed var(--line);padding-top:10px}
+.tagline2{font-family:"Space Grotesk",sans-serif;font-size:30px;font-weight:700;margin-bottom:12px}
+.foot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.foot b{color:var(--text)}
+@media (max-width:820px){.trio{grid-template-columns:1fr}.about2 .about{grid-template-columns:1fr;gap:20px}}
+.about2 .about{display:grid;grid-template-columns:1fr 1.2fr;gap:48px}
+.about h2{font-size:32px;font-weight:900;margin-top:10px;line-height:1.3}
+.about p{color:var(--muted);margin-bottom:14px}
+.svc{list-style:none}
+.svc li{padding:14px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:12px}
+.svc li span{color:var(--muted);font-size:14px;text-align:right}
+.process{border-top:1px solid var(--line)}
+.process h2{font-size:32px;font-weight:900}
+.cbtns{display:flex;gap:8px;flex-wrap:wrap}
+.btn.alt{background:transparent;color:var(--text);border:1px solid var(--line)}
+.steps{list-style:none;counter-reset:s;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.steps li{counter-increment:s;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px 22px}
+.steps li::before{content:counter(s,decimal-leading-zero);font-family:"Space Grotesk",sans-serif;font-weight:700;color:var(--accent);font-size:14px}
+.steps b{display:block;font-size:17px;margin:4px 0 4px}
+.steps span{color:var(--muted);font-size:14.5px}
+@media (max-width:820px){.steps{grid-template-columns:1fr}}
+.reelsec{display:grid;grid-template-columns:1fr 360px;gap:48px;align-items:center;padding:72px 24px;border-top:1px solid var(--line)}
+.reeltxt h2{font-size:32px;font-weight:900;margin:8px 0 12px}
+.reeltxt p{color:var(--muted);margin-bottom:22px;max-width:46ch}
+.reelbox video{display:block;width:100%;aspect-ratio:9/16;border-radius:28px;background:#000;box-shadow:var(--shadow)}
+@media (max-width:820px){.reelsec{grid-template-columns:1fr;padding:52px 16px}.reelbox{max-width:340px;margin:0 auto}}
+.contact{background:var(--text);color:var(--bg);border-radius:24px;padding:56px;text-align:center;margin-bottom:72px}
+.contact h2{font-size:30px;font-weight:900;margin-bottom:10px}
+.contact p{opacity:.7;margin-bottom:24px}
+.btn{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;font-weight:700;padding:13px 26px;border-radius:999px}
+footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-size:14px}
+/* detail */
+dialog{border:none;padding:0;background:transparent;max-width:min(1040px,calc(100vw - 32px));width:100%;max-height:calc(100vh - 40px);margin:auto;color:var(--text)}
+dialog::backdrop{background:rgba(8,9,14,.62);backdrop-filter:blur(4px)}
+.sheet{background:var(--surface);border-radius:24px;overflow:auto;max-height:calc(100vh - 40px);position:relative}
+.x{position:sticky;top:14px;float:right;margin:14px 14px 0 0;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--text);font-size:20px;cursor:pointer;z-index:3}
+.dhead{display:grid;grid-template-columns:1fr 300px;gap:32px;padding:40px 44px 32px;background:linear-gradient(160deg,color-mix(in srgb,var(--c) 16%,var(--surface)),var(--surface) 70%)}
+.dhead h2{font-size:clamp(30px,4vw,44px);font-weight:900;line-height:1.15;margin:4px 0 12px}
+.dhead .tl{font-size:18px;font-weight:500}
+.dhead .ov{color:var(--muted);font-size:15.5px;margin:14px 0 22px}
+.dshot{display:flex;justify-content:center;align-items:flex-start}
+.dshot .phone{width:220px;transform:none}
+.dshot .browser{width:100%}
+.dshot svg{width:100%}
+.dbody{padding:32px 44px 44px}
+.dbody h4{font-size:13px;letter-spacing:.12em;color:var(--muted);font-family:"Space Grotesk",sans-serif;margin-bottom:16px}
+.feats{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:34px}
+.feat{background:var(--sunk);border-radius:14px;padding:18px 20px;border-left:4px solid var(--c)}
+.feat b{display:block;font-size:16px;margin-bottom:4px}
+.feat span{color:var(--muted);font-size:14.5px}
+.btn.play{background:#15161a;color:#fff;margin-left:8px;border:1px solid rgba(255,255,255,.2)}
+.stage .tag.gp{left:auto;right:14px;background:#15161a;color:#fff}
+@media (max-width:820px){.btn.play{margin:10px 0 0}}
+.vid{position:relative;aspect-ratio:16/9;border-radius:16px;overflow:hidden;background:#000;margin-bottom:34px}
+.vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;margin-bottom:34px;align-items:start}
+.gal.wide{grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
+.gal.tall{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.gal figure{min-width:0}
+.gal img{display:block;width:100%;border-radius:14px;border:1px solid var(--line);background:var(--sunk)}
+.gal figcaption{font-size:13px;color:var(--muted);margin-top:6px;text-align:center}
+@media (max-width:820px){.gal{grid-template-columns:repeat(2,1fr)}.gal.wide,.gal.tall{grid-template-columns:1fr}}
+.demo{display:inline-block;margin:-4px 0 14px;font-size:14px;font-weight:700;color:#fff;background:var(--c);padding:7px 14px;border-radius:999px;text-decoration:none;align-self:flex-start}
+.sup{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 14px}
+.sup span{font-size:13px;font-weight:700;color:var(--c);border:1.5px solid var(--c);border-radius:999px;padding:2px 10px}
+.nums{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:30px}
+.nums div{border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.nums b{display:block;font-family:"Space Grotesk","Noto Sans KR",sans-serif;font-size:28px;color:var(--c);line-height:1.2}
+.nums small{color:var(--muted);font-size:13px}
+.flag{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-bottom:36px}
+.flag div{background:linear-gradient(150deg,color-mix(in srgb,var(--c) 18%,var(--sunk)),var(--sunk));border-radius:16px;padding:22px}
+.flag em{font-style:normal;font-family:"Space Grotesk",sans-serif;font-weight:700;color:var(--c);font-size:14px}
+.flag b{display:block;font-size:18px;margin:4px 0 6px}
+.flag span{color:var(--muted);font-size:14.5px}
+.stages{margin-bottom:36px;border-top:1px solid var(--line)}
+.stg{border-bottom:1px solid var(--line)}
+.stg summary{list-style:none;display:flex;align-items:center;gap:14px;padding:16px 4px;cursor:pointer}
+.stg summary::-webkit-details-marker{display:none}
+.stg summary i{font-style:normal;flex:none;width:32px;height:32px;border-radius:50%;background:var(--c);color:#fff;display:grid;place-items:center;font-weight:700;font-size:14px}
+.stg summary div{flex:1}
+.stg summary b{display:block;font-size:17px}
+.stg summary span{color:var(--muted);font-size:14px}
+.stg summary small{color:var(--muted);font-size:13px;border:1px solid var(--line);border-radius:999px;padding:1px 10px}
+.stg[open] summary small{background:var(--c);color:#fff;border-color:var(--c)}
+.stg .feats{margin:0 0 20px 46px}
+.roles{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-bottom:34px}
+.roles div{border:1px dashed var(--c);border-radius:14px;padding:16px 18px}
+.roles b{display:block;margin-bottom:4px}
+.roles span{color:var(--muted);font-size:14px}
+.meta2{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.meta2 p{color:var(--muted);font-size:15px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips span{font-size:13px;border:1px solid var(--line);padding:4px 10px;border-radius:8px}
+.wide{margin-top:26px}
+.wide .browser{width:100%}
+@media (max-width:820px){
+  .wrap{padding:0 16px}
+  nav a{margin-left:12px;font-size:14px}
+  .hero{padding:48px 0 40px}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  section{padding:52px 0}
+  .grid{grid-template-columns:1fr}
+  .about{grid-template-columns:1fr;gap:20px}
+  .contact{padding:40px 20px}
+  .filters button{margin:0 6px 6px 0}
+  .dhead{grid-template-columns:1fr;padding:56px 22px 24px}
+  .dshot .phone{width:180px}
+  .dbody{padding:24px 22px 32px}
+  .feats,.meta2{grid-template-columns:1fr}
+  .stg .feats{margin-left:0}
+}
+
+/* typography: friendly headings + readable body */
+@font-face{font-family:GmarketSans;font-weight:500;font-display:swap;src:url(https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff) format("woff")}
+@font-face{font-family:GmarketSans;font-weight:700;font-display:swap;src:url(https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff) format("woff")}
+body{font-family:Pretendard,"Noto Sans KR",system-ui,sans-serif}
+h1,h2,h3,.hero h1,.sec-head h2,.about h2,.process h2,.reeltxt h2,.contact h2,.body h3,.dhead h2,.dhead .tl,.flag b,.steps b,.trio h3,.tagline2,.sss,.stats b,.nums b,.stg summary b,.feat b,.roles b,.tl{font-family:GmarketSans,Pretendard,sans-serif;font-weight:700;letter-spacing:-.01em}
+.hero h1{line-height:1.2}
+.body h3{font-size:24px}
+.tl{font-weight:500}
+.body .tl{font-family:Pretendard,sans-serif;font-weight:600;letter-spacing:0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="logo" href="#"><img src="logo-mark.svg" alt="" width="34" height="34"><span class="lw"><b>SSS</b>OFT</span></a>
+    <nav><a href="#work">프로젝트</a><a href="#about">회사소개</a><a href="#process">의뢰·계약</a><a href="#contact">문의</a></nav>
+  </header>
+
+  <div class="hero">
+    <div class="eyebrow">Spark it · Shape it · Ship it</div>
+    <h1>기발한 아이디어를,<br><em>매일 쓰이는 서비스로.</em></h1>
+    <p>SSSOFT는 현장의 불편을 직접 겪고 해결하는 소프트웨어 스튜디오입니다. 수련회 운영부터 우주 MMO, AI 오디오북까지 모든 서비스를 직접 기획하고 개발해 실제로 운영하고 있습니다.</p>
+    <div class="marquee" id="quick"></div>
+    <div class="stats">
+      <div><b>10</b><small>출시·운영 중인 서비스</small></div>
+      <div><b>250+</b><small>서비스에 담긴 기능</small></div>
+      <div><b>17+</b><small>지원 언어 (보캐브스캔)</small></div>
+      <div><b>100%</b><small>자체 기획·개발·운영</small></div>
+    </div>
+  </div>
+
+  <section id="work">
+    <div class="sec-head">
+      <h2>프로젝트</h2>
+      <div class="filters" id="filters">
+        <button class="on" data-f="all">전체</button>
+        <button data-f="church">캠프·교회</button>
+        <button data-f="ai">AI·교육</button>
+        <button data-f="game">게임</button>
+        <button data-f="biz">독립몰</button>
+        <button data-f="life">생활·금융</button>
+      </div>
+    </div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section id="about" class="about2">
+    <div class="eyebrow">About SSSOFT</div>
+    <h2 class="sss"><span>S</span>park it. <span>S</span>hape it. <span>S</span>hip it.</h2>
+    <p class="lead2">SSSOFT의 세 개의 S는 우리가 일하는 세 단계입니다. 아이디어에 불을 붙이고, 손에 잡히는 모양으로 빚고, 실제로 세상에 내보냅니다. 그리고 내보낸 뒤에도 끝까지 운영하며 다듬습니다.</p>
+    <div class="trio">
+      <article>
+        <i>⚡</i><em>01 · SPARK</em><h3>불꽃을 알아봅니다</h3>
+        <p>모든 서비스는 현장에서 느낀 진짜 불편에서 시작했습니다. 엑셀과 단톡방으로 버티던 수련회 준비, 오디오북이 없는 책, 언제 받아야 할지 모르는 연금. 남들이 "원래 그런 거지" 하고 넘기는 순간을 아이디어로 바꿉니다.</p>
+        <small>캠프마스터 · 다정 리딩북 · 노후자금 시뮬레이터</small>
+      </article>
+      <article>
+        <i>✏️</i><em>02 · SHAPE</em><h3>써 보며 모양을 빚습니다</h3>
+        <p>기획서보다 동작하는 화면을 먼저 만듭니다. 직접 써 보고, 사용자의 손에 쥐여 주고, 불편한 곳을 고쳐 가며 다듬습니다. 접는 양면 명찰이나 타이핑 없는 등록 같은 디테일은 그렇게 탄생했습니다.</p>
+        <small>접는 명찰 · 자동 카풀 매칭 · AI 연상 이미지</small>
+      </article>
+      <article>
+        <i>🚀</i><em>03 · SHIP</em><h3>내보내고, 끝까지 운영합니다</h3>
+        <p>만들고 끝나는 프로젝트는 없습니다. 10개의 서비스가 지금도 웹, PWA, Google Play에서 실제 사용자를 만나고 있고, SSSOFT는 그 서비스들을 직접 운영하며 계속 키워 갑니다.</p>
+        <small>웹 · PWA · Google Play · 실시간 운영</small>
+      </article>
+    </div>
+    <div class="about">
+      <div>
+        <div class="tagline2">Seriously fun software.</div>
+        <p>진지하게 만들지만, 쓰는 사람은 즐거워야 한다고 믿습니다. 그래서 SSSOFT의 앱에는 직접 써 본 사람만 넣을 수 있는 편의성과, 한 번쯤 웃게 만드는 재미가 함께 들어 있습니다.</p>
+      </div>
+      <ul class="svc">
+        <li>캠프·행사 운영 시스템 <span>교회·학교·회사 캠프 · 소그룹 · 큐티 캠페인</span></li>
+        <li>생성형 AI 서비스 <span>OCR · TTS · 이미지 생성 · 문제 생성</span></li>
+        <li>웹 게임 <span>3D MMO · 캐주얼 · 학습 게임</span></li>
+        <li>생활·금융 도구 <span>노후자금 시뮬레이션 · 리포트</span></li>
+        <li>나만의 독립몰 구축 <span>업종 무관 · 아이디어 맞춤 · 지속 개발</span></li>
+        <li>클라우드 운영 <span>Firebase · PWA · 푸시 알림</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="process" class="process">
+    <div class="sec-head"><div><div class="eyebrow">How we work</div><h2 style="margin-top:8px">의뢰는 이렇게 진행됩니다</h2></div>
+      <div class="cbtns"><a class="btn" href="contract.html" target="_blank" rel="noopener">📄 개발 표준계약서</a><a class="btn alt" href="maintenance.html" target="_blank" rel="noopener">🛠 유지보수 계약서</a></div></div>
+    <ol class="steps">
+      <li><b>아이디어 상담</b><span>무엇을, 누구를 위해 만들지 이야기합니다. 재미있는 아이디어라면 일단 들어 봅니다.</span></li>
+      <li><b>과업 정리·견적</b><span>꼭 필요한 기능을 과업내용서로 정리하고 일정과 비용을 제안합니다.</span></li>
+      <li><b>표준계약 체결</b><span>SSSOFT 표준계약서로 계약합니다. 착수금 30% · 중도금 40% · 잔금 30%.</span></li>
+      <li><b>빠른 시연·반복 개발</b><span>동작하는 버전을 먼저 보여 드리고, 직접 써 보며 함께 다듬습니다.</span></li>
+      <li><b>납품·운영 교육·검수</b><span>고객 명의 계정에 올려 납품하고, 직접 운영할 수 있도록 운영 교육을 한 뒤 14일 동안 검수합니다.</span></li>
+      <li><b>3개월 무상 하자보수 → 유지보수</b><span>이후에는 <b style="display:inline;font-size:inherit">연간 계약</b> 또는 <b style="display:inline;font-size:inherit">건당 계약</b> 중에 골라 별도 유지보수 계약으로 계속 함께합니다.</span></li>
+    </ol>
+  </section>
+
+  <div id="contact" class="contact">
+    <h2>함께 만들 거, 있으세요?<br>단, 재미있어야 합니다. 😎</h2>
+    <p>규모나 예산보다 "이거 진짜 재밌겠다!"가 먼저입니다.<br>엉뚱해도 좋으니, 가슴 뛰는 아이디어를 던져 주세요.</p>
+    <a class="btn" href="mailto:sssoft1004@gmail.com?subject=%5BSSSOFT%5D%20%EC%9D%B4%EA%B1%B0%20%EC%9E%AC%EB%B0%8C%EC%9D%84%20%EA%B1%B0%EC%98%88%EC%9A%94">재밌는 아이디어 던지기 →</a>
+  </div>
+</div>
+<section class="wrap reelsec" id="reel">
+  <div class="reeltxt">
+    <div class="eyebrow">SSSOFT in 26 seconds</div>
+    <h2>26초 만에 보는 SSSOFT</h2>
+    <p>캠프마스터부터 STARFARER, 노후자금 시뮬레이터까지. 아이디어가 서비스가 되는 순간들을 짧게 모았습니다. 배경음악은 STARFARER 메인 테마 〈Terminal Velocity〉입니다. 🔊</p>
+    <a class="btn" href="sssoft-reel-720.mp4" download>⬇ 영상 내려받기</a>
+  </div>
+  <div class="reelbox"><video src="sssoft-reel-720.mp4" poster="sssoft-reel-poster.jpg" controls playsinline preload="none" loop></video></div>
+</section>
+<footer><div class="wrap foot"><span><b>SSSOFT</b> = <b>S</b>park · <b>S</b>hape · <b>S</b>hip — Seriously fun software.</span><span>© 2026 SSSOFT. All rights reserved.</span></div></footer>
+
+<dialog id="dlg"><div class="sheet" id="sheet"></div></dialog>
+
+<script src="data.js"></script>
+<script>
+const P = window.PROJECTS || [];
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+function qtSvg(c){
+  const teams=[["1반",.86,"#ff6b6b"],["2반",.68,"#ffb648"],["3반",.94,"#4f8cff"],["4반",.55,"#2ec4a6"]];
+  return `<svg viewBox="0 0 320 210" role="img" aria-label="반별 큐티 레이스 일러스트">
+  <rect x="0" y="0" width="320" height="210" rx="16" fill="#fff"/>
+  <text x="18" y="30" font-size="14" font-weight="900" fill="#15161a">QT RACE · 3주차</text>
+  <text x="302" y="30" font-size="11" text-anchor="end" fill="#888">오늘 큐티 87명 ✓</text>
+  ${teams.map(([n,v,col],i)=>{const y=52+i*36;const w=210*v;return `
+   <text x="18" y="${y+15}" font-size="12" font-weight="700" fill="#333">${n}</text>
+   <rect x="54" y="${y+2}" width="230" height="18" rx="9" fill="#f0eee8"/>
+   <rect x="54" y="${y+2}" width="${w}" height="18" rx="9" fill="${col}"/>
+   <text x="${54+w+6}" y="${y+16}" font-size="14">${i===2?"🏆":"🏃"}</text>`}).join("")}
+  <rect x="18" y="182" width="120" height="18" rx="9" fill="${c}" opacity=".15"/>
+  <text x="78" y="195" font-size="10.5" text-anchor="middle" fill="${c}" font-weight="700">❤ 응원 1,284개</text>
+  <line x1="284" y1="48" x2="284" y2="196" stroke="#15161a" stroke-dasharray="4 4"/>
+  <text x="284" y="44" font-size="9" text-anchor="middle" fill="#15161a">FINISH</text>
+ </svg>`;
+}
+function visual(p, big){
+  if (p.frame==="svg") return qtSvg(p.color);
+  const src = `shots/${p.shot}-${p.frame==="phone"?"m":"d"}.png`;
+  return p.frame==="phone"
+    ? `<div class="phone"><img src="${src}" alt="${esc(p.title)} 앱 화면" loading="lazy"></div>`
+    : `<div class="browser"><img src="${src}" alt="${esc(p.title)} 웹 화면" loading="lazy"></div>`;
+}
+function stageBg(c){ return `background:radial-gradient(120% 90% at 50% 0%, color-mix(in srgb, ${c} 38%, transparent), color-mix(in srgb, ${c} 8%, var(--sunk)) 70%)`; }
+
+const grid = document.getElementById("grid");
+function render(f){
+  grid.innerHTML = P.filter(p => f==="all" || p.cat===f).map(p => `
+  <button class="card" style="--c:${p.color}" data-id="${p.id}" aria-label="${esc(p.title)} 상세 보기">
+    <div class="stage" style="${stageBg(p.color)}"><span class="tag">${esc(p.tag)}</span>${p.play?`<span class="tag gp">▶ Google Play</span>`:""}${visual(p)}</div>
+    <div class="body">
+      <div class="en">${esc(p.en)}</div>
+      <h3>${esc(p.title)}</h3>
+      <div class="tl">${esc(p.tagline)}</div>
+      ${p.supports?`<div class="sup">${p.supports.map(x=>`<span>✓ ${esc(x)}</span>`).join("")}</div>`:""}
+      <ul class="mini">${(p.flagship||p.features).slice(0,4).map(f=>`<li>${esc(f.title)}</li>`).join("")}</ul>
+      ${p.demo?`<a class="demo" href="${p.demo}" target="_blank" rel="noopener" onclick="event.stopPropagation()">▶ 샘플 페이지 바로가기</a>`:""}<span class="more">${p.stages?`전체 기능 ${p.stages.reduce((n,s)=>n+s.items.length,0)}가지 자세히 보기 →`:`자세히 보기 →`}</span>
+    </div>
+  </button>`).join("");
+}
+render("all");
+document.getElementById("quick").innerHTML = P.map(p=>`<button data-id="${p.id}"><i style="background:${p.color}"></i>${esc(p.title)}</button>`).join("");
+document.getElementById("filters").addEventListener("click", e => {
+  const b = e.target.closest("button"); if (!b) return;
+  document.querySelectorAll("#filters button").forEach(x => x.classList.toggle("on", x===b));
+  render(b.dataset.f);
+});
+
+const dlg = document.getElementById("dlg"), sheet = document.getElementById("sheet");
+function open(id){
+  const p = P.find(x=>x.id===id); if(!p) return;
+  sheet.style.setProperty("--c", p.color);
+  sheet.innerHTML = `
+   <button class="x" aria-label="닫기" onclick="dlg.close()">×</button>
+   <div class="dhead">
+     <div>
+       <div class="eyebrow" style="color:${p.color}">${esc(p.tag)} · ${esc(p.en)}</div>
+       <h2>${esc(p.title)}</h2>
+       <div class="tl">${esc(p.tagline)}</div>
+       ${p.supports?`<div class="sup">${p.supports.map(x=>`<span>✓ ${esc(x)}</span>`).join("")}</div>`:""}
+       <p class="ov">${esc(p.overview)}</p>
+       ${p.url?`<a class="btn" style="background:${p.color}" href="${p.url}" target="_blank" rel="noopener">${p.play?"웹에서 열기 →":"서비스 바로가기 →"}</a>`:""}
+       ${p.demo?`<a class="btn play" href="${p.demo}" target="_blank" rel="noopener">▶ 샘플 페이지 바로가기</a>`:""}
+       ${p.play?`<a class="btn play" href="${p.play}" target="_blank" rel="noopener">▶ Google Play에서 받기</a>`:""}
+     </div>
+     <div class="dshot">${p.frame==="browser"?`<div class="phone"><img src="shots/${p.shot}-m.png" alt="${esc(p.title)} 모바일 화면"></div>`:visual(p,true)}</div>
+   </div>
+   <div class="dbody">
+     ${p.numbers&&p.numbers.length?`<div class="nums">${p.numbers.map(n=>`<div><b>${esc(n.value)}</b><small>${esc(n.label)}</small></div>`).join("")}</div>`:""}
+     <h4>★ 대표 기능</h4>
+     <div class="flag">${(p.flagship||p.features).map((f,i)=>`<div><em>${String(i+1).padStart(2,"0")}</em><b>${esc(f.title)}</b><span>${esc(f.desc)}</span></div>`).join("")}</div>
+     ${p.video?`<h4>▶ 플레이 영상</h4><div class="vid"><iframe src="${p.video}" title="${esc(p.title)} 플레이 영상" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>`:""}
+     ${p.gallery?`<h4>▣ 미리보기</h4><div class="gal ${p.galleryWide?"wide":""} ${p.galleryTall?"tall":""}">${p.gallery.map(g=>`<figure class="${g.paper?"paper":""}"><a href="${g.src}" target="_blank" rel="noopener"><img src="${g.src}" alt="${esc(p.title)} ${esc(g.cap||"화면")}" loading="lazy"></a>${g.cap?`<figcaption>${esc(g.cap)}</figcaption>`:""}</figure>`).join("")}</div>`:""}
+     ${p.stages?`<h4>◆ 처음부터 끝까지, 빠짐없는 구성</h4>
+     <div class="stages">${p.stages.map((s,i)=>`<details class="stg" ${i<2?"open":""}>
+       <summary><i>${i+1}</i><div><b>${esc(s.stage)}</b>${s.summary?`<span>${esc(s.summary)}</span>`:""}</div><small>${s.items.length}</small></summary>
+       <div class="feats">${s.items.map(f=>`<div class="feat"><b>${esc(f.title)}</b><span>${esc(f.desc)}</span></div>`).join("")}</div>
+     </details>`).join("")}</div>`:""}
+     ${p.roles&&p.roles.length?`<h4>● ${esc(p.rolesTitle||"사용자별 전용 도구")}</h4><div class="roles">${p.roles.map(r=>`<div><b>${esc(r.role)}</b><span>${esc(r.desc)}</span></div>`).join("")}</div>`:""}
+     <div class="meta2">
+       <div><h4>이런 분들을 위해</h4><p>${esc(p.audience)}</p></div>
+       <div><h4>기술 스택</h4><div class="chips">${(p.tech||[]).map(t=>`<span>${esc(t)}</span>`).join("")}</div></div>
+     </div>
+     ${p.frame==="browser"?`<div class="wide"><h4>데스크톱 화면</h4>${visual(p)}</div>`:""}
+   </div>`;
+  dlg.showModal(); sheet.scrollTop = 0;
+}
+document.addEventListener("click", e => {
+  const t = e.target.closest("[data-id]"); if (t) open(t.dataset.id);
+});
+dlg.addEventListener("click", e => { if (e.target===dlg) dlg.close(); });
+dlg.addEventListener("close", () => { sheet.innerHTML = ""; });
+</script>
+</body>
+</html>

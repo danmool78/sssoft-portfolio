@@ -1,0 +1,14 @@
+{
+  "name": "sssoft-portfolio",
+  "private": true,
+  "description": "SSSOFT portfolio site (static, Firebase Hosting) and promo reel",
+  "scripts": {
+    "deploy": "firebase deploy --only hosting",
+    "reel:render": "node reel/render.cjs",
+    "reel:mux": "node reel/mux.cjs"
+  },
+  "devDependencies": {
+    "ffmpeg-static": "^5.2.0",
+    "puppeteer": "^23.11.1"
+  }
+}

@@ -1,0 +1,7 @@
+node_modules/
+.firebase/
+*.log
+
+# reel intermediates (the song is a copy from the space-racing repo)
+reel/tv.mp3
+reel/sssoft-reel-nomusic.mp4
