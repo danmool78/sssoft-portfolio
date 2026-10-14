@@ -56,6 +56,10 @@ section{padding:72px 0}
 .browser img{display:block;width:100%}
 .card:hover .browser{transform:translateY(-6px)}
 .stage svg{width:88%;height:auto}
+.stage.scn{justify-content:flex-end;padding-right:26px}
+.scene{margin:0 0 34px}
+.scene img{display:block;width:100%;border-radius:16px;border:1px solid var(--line)}
+.scene figcaption{font-size:13px;color:var(--muted);margin-top:8px;text-align:center}
 .body{padding:22px 24px 24px;display:flex;flex-direction:column;flex:1}
 .en{font-family:"Space Grotesk",sans-serif;font-size:12px;letter-spacing:.12em;color:var(--muted)}
 .body h3{font-size:23px;font-weight:900;margin:2px 0 6px}
@@ -336,7 +340,7 @@ const grid = document.getElementById("grid");
 function render(f){
   grid.innerHTML = P.filter(p => f==="all" || p.cat===f).map(p => `
   <button class="card" style="--c:${p.color}" data-id="${p.id}" aria-label="${esc(p.title)} 상세 보기">
-    <div class="stage" style="${stageBg(p.color)}"><span class="tag">${esc(p.tag)}</span>${p.play?`<span class="tag gp">▶ Google Play</span>`:""}${visual(p)}</div>
+    <div class="stage${p.scene?" scn":""}" style="${p.scene?`background:url(${p.scene.src}) center/cover`:stageBg(p.color)}"><span class="tag">${esc(p.tag)}</span>${p.play?`<span class="tag gp">▶ Google Play</span>`:""}${visual(p)}</div>
     <div class="body">
       <div class="en">${esc(p.en)}</div>
       <h3>${esc(p.title)}</h3>
@@ -375,6 +379,7 @@ function open(id){
      <div class="dshot">${p.frame==="browser"?`<div class="phone"><img src="shots/${p.shot}-m.png" alt="${esc(p.title)} 모바일 화면"></div>`:visual(p,true)}</div>
    </div>
    <div class="dbody">
+     ${p.scene?`<figure class="scene"><img src="${p.scene.src}" alt="${esc(p.title)} ${esc(p.scene.cap||"사용 장면")}" loading="lazy">${p.scene.cap?`<figcaption>${esc(p.scene.cap)}</figcaption>`:""}</figure>`:""}
      ${p.numbers&&p.numbers.length?`<div class="nums">${p.numbers.map(n=>`<div><b>${esc(n.value)}</b><small>${esc(n.label)}</small></div>`).join("")}</div>`:""}
      <h4>★ 대표 기능</h4>
      <div class="flag">${(p.flagship||p.features).map((f,i)=>`<div><em>${String(i+1).padStart(2,"0")}</em><b>${esc(f.title)}</b><span>${esc(f.desc)}</span></div>`).join("")}</div>
