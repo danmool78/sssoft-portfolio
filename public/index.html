@@ -124,6 +124,9 @@ section{padding:72px 0}
 .contact h2{font-size:30px;font-weight:900;margin-bottom:10px}
 .contact p{opacity:.7;margin-bottom:24px}
 #copyMail{border:0;cursor:pointer;font:inherit;font-weight:700;color:var(--bg)}
+.cta2{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.btn.kakao{background:#fee500;color:#191919}
+.btn[hidden]{display:none}
 .contact .mail-line{margin:16px 0 0;font-size:15px;opacity:.75}
 .contact .mail-line a{color:inherit}
 .contact .copy-msg{margin:10px 0 0;min-height:1.5em;font-weight:700;opacity:1}
@@ -311,7 +314,10 @@ h1,h2,h3,.hero h1,.sec-head h2,.about h2,.process h2,.reeltxt h2,.contact h2,.bo
   <div id="contact" class="contact">
     <h2>함께 만들 거, 있으세요?<br>단, 재미있어야 합니다. 😎</h2>
     <p>규모나 예산보다 "이거 진짜 재밌겠다!"가 먼저입니다.<br>엉뚱해도 좋으니, 가슴 뛰는 아이디어를 던져 주세요.</p>
-    <button class="btn" id="copyMail" type="button">재밌는 아이디어 던지기 →</button>
+    <div class="cta2">
+      <button class="btn" id="copyMail" type="button">📮 메일로 던지기</button>
+      <a class="btn kakao" id="kakaoBtn" href="" target="_blank" rel="noopener" hidden>💬 카톡으로 던지기</a>
+    </div>
     <p class="mail-line">sssoft1004@gmail.com · <a href="mailto:sssoft1004@gmail.com?subject=%5BSSSOFT%5D%20%EC%9D%B4%EA%B1%B0%20%EC%9E%AC%EB%B0%8C%EC%9D%84%20%EA%B1%B0%EC%98%88%EC%9A%94">메일 앱으로 열기</a></p>
     <p class="copy-msg" id="copyMsg" role="status" aria-live="polite"></p>
   </div>
@@ -431,6 +437,11 @@ document.addEventListener("click", e => {
 dlg.addEventListener("click", e => { if (e.target===dlg) dlg.close(); });
 dlg.addEventListener("close", () => { sheet.innerHTML = ""; });
 
+// 카톡으로 던지기: 오픈채팅방 링크를 넣으면 버튼이 나타난다.
+(function(){
+  const KAKAO_OPENCHAT="";
+  const k=document.getElementById("kakaoBtn"); if(k&&KAKAO_OPENCHAT){k.href=KAKAO_OPENCHAT;k.hidden=false;}
+})();
 // 아이디어 던지기: 메일 주소를 복사하고 안내한다 (메일 프로그램이 없어도 쓸 수 있게).
 (function(){
   const btn=document.getElementById("copyMail"), msg=document.getElementById("copyMsg"); if(!btn) return;
