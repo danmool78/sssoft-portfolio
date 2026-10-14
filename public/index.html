@@ -394,7 +394,7 @@ function open(id){
        ${p.demo?`<a class="btn play" href="${p.demo}" target="_blank" rel="noopener">▶ 샘플 페이지 바로가기</a>`:""}
        ${p.play?`<a class="btn play" href="${p.play}" target="_blank" rel="noopener">▶ Google Play에서 받기</a>`:""}
      </div>
-     <div class="dshot">${p.frame==="browser"?`<div class="phone"><img src="shots/${p.shot}-m.png" alt="${esc(p.title)} 모바일 화면"></div>`:visual(p,true)}</div>
+     <div class="dshot">${p.frame==="browser"?`<div class="phone"><img src="shots/${p.shot}-m.png" alt="${esc(p.title)} 모바일 화면" onerror="this.parentNode.remove()"></div>`:visual(p,true)}</div>
    </div>
    <div class="dbody">
      ${p.scene?`<figure class="scene"><img src="${p.scene.src}" alt="${esc(p.title)} ${esc(p.scene.cap||"사용 장면")}" loading="lazy">${p.scene.cap?`<figcaption>${esc(p.scene.cap)}</figcaption>`:""}</figure>`:""}
