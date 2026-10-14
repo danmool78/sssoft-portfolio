@@ -741,12 +741,16 @@ window.PROJECTS=[
   "video": "https://player.vimeo.com/video/1223998768?dnt=1&title=0&byline=0&portrait=0",
   "gallery": [
    {
-    "src": "gallery/starfarer-play.jpg",
-    "cap": "외부 시점 비행 · 무역 항로 HUD"
+    "src": "gallery/starfarer-signal.jpg",
+    "cap": "성운 구역 · 거대 질량 신호 감지"
    },
    {
-    "src": "gallery/starfarer-cockpit.jpg",
-    "cap": "조종석 시점 · 보급소 접근"
+    "src": "gallery/starfarer-combat.jpg",
+    "cap": "조종석 시점 · 상대 파일럿과 교전"
+   },
+   {
+    "src": "gallery/starfarer-outside.jpg",
+    "cap": "외부 시점 비행"
    }
   ],
   "galleryWide": true
