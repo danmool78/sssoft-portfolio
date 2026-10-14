@@ -123,6 +123,20 @@ section{padding:72px 0}
 .contact{background:var(--text);color:var(--bg);border-radius:24px;padding:56px;text-align:center;margin-bottom:72px}
 .contact h2{font-size:30px;font-weight:900;margin-bottom:10px}
 .contact p{opacity:.7;margin-bottom:24px}
+.idea{max-width:640px;margin:0 auto;text-align:left;display:grid;gap:14px}
+.idea .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.idea label{display:grid;gap:6px;font-size:14px;font-weight:700}
+.idea label i{font-style:normal;font-weight:400;opacity:.6}
+.idea input,.idea textarea{font:inherit;font-size:15px;color:var(--bg);background:color-mix(in srgb,var(--bg) 10%,transparent);border:1px solid color-mix(in srgb,var(--bg) 25%,transparent);border-radius:12px;padding:12px 14px;width:100%;resize:vertical}
+.idea input::placeholder,.idea textarea::placeholder{color:var(--bg);opacity:.45}
+.idea input:focus,.idea textarea:focus{outline:2px solid var(--accent);outline-offset:1px}
+.idea .btn{justify-self:center;border:0;cursor:pointer;font:inherit;font-weight:700;color:var(--bg)}
+.idea .btn[disabled]{opacity:.6;cursor:wait}
+.idea .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.contact .idea-msg{margin:0;text-align:center;font-weight:700;opacity:1;min-height:1.4em}
+.idea-note{text-align:center;font-size:13px;opacity:.6}
+.idea-note a{color:inherit}
+@media (max-width:820px){.idea .row2{grid-template-columns:1fr}}
 .btn{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;font-weight:700;padding:13px 26px;border-radius:999px}
 footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-size:14px}
 /* detail */
@@ -307,7 +321,17 @@ h1,h2,h3,.hero h1,.sec-head h2,.about h2,.process h2,.reeltxt h2,.contact h2,.bo
   <div id="contact" class="contact">
     <h2>함께 만들 거, 있으세요?<br>단, 재미있어야 합니다. 😎</h2>
     <p>규모나 예산보다 "이거 진짜 재밌겠다!"가 먼저입니다.<br>엉뚱해도 좋으니, 가슴 뛰는 아이디어를 던져 주세요.</p>
-    <a class="btn" href="mailto:sssoft1004@gmail.com?subject=%5BSSSOFT%5D%20%EC%9D%B4%EA%B1%B0%20%EC%9E%AC%EB%B0%8C%EC%9D%84%20%EA%B1%B0%EC%98%88%EC%9A%94">재밌는 아이디어 던지기 →</a>
+    <form id="idea" class="idea" novalidate>
+      <div class="row2">
+        <label><span>이름 또는 닉네임 <i>(선택)</i></span><input name="name" maxlength="50" autocomplete="name"></label>
+        <label><span>답장 받을 연락처</span><input name="contact" maxlength="100" required placeholder="이메일, 전화번호, 카톡 ID 중 편한 것"></label>
+      </div>
+      <label><span>아이디어</span><textarea name="idea" maxlength="3000" rows="5" required placeholder="어떤 불편을, 어떤 재미로 풀고 싶으세요? 한 줄이어도 좋아요."></textarea></label>
+      <label class="hp" aria-hidden="true">웹사이트<input name="website" tabindex="-1" autocomplete="off"></label>
+      <button class="btn" type="submit">재밌는 아이디어 던지기 →</button>
+      <p class="idea-msg" role="status" aria-live="polite"></p>
+      <small class="idea-note">보내 주신 연락처는 답장에만 씁니다. 메일이 편하면 <a href="mailto:sssoft1004@gmail.com?subject=%5BSSSOFT%5D%20%EC%9D%B4%EA%B1%B0%20%EC%9E%AC%EB%B0%8C%EC%9D%84%20%EA%B1%B0%EC%98%88%EC%9A%94">sssoft1004@gmail.com</a>으로 보내 주세요.</small>
+    </form>
   </div>
 </div>
 <section class="wrap reelsec" id="reel">
@@ -424,6 +448,38 @@ document.addEventListener("click", e => {
 });
 dlg.addEventListener("click", e => { if (e.target===dlg) dlg.close(); });
 dlg.addEventListener("close", () => { sheet.innerHTML = ""; });
+
+// 아이디어 접수: Firestore ideas 컬렉션에 저장 (읽기는 콘솔에서만). Firebase 설정은 Hosting의 /__/firebase/init.json에서 받는다.
+(function(){
+  const form=document.getElementById("idea"); if(!form) return;
+  const msg=form.querySelector(".idea-msg"), btn=form.querySelector("button");
+  const SDK="https://www.gstatic.com/firebasejs/10.12.2/";
+  let dbP=null;
+  function db(){
+    return dbP||(dbP=(async()=>{
+      const cfg=await (await fetch("/__/firebase/init.json")).json();
+      const {initializeApp}=await import(SDK+"firebase-app.js");
+      const fs=await import(SDK+"firebase-firestore.js");
+      return {fs, db:fs.getFirestore(initializeApp(cfg))};
+    })().catch(e=>{dbP=null;throw e;}));
+  }
+  form.addEventListener("focusin",()=>{db().catch(()=>{});},{once:true});
+  form.addEventListener("input",()=>{if(!btn.disabled)msg.textContent="";});
+  form.addEventListener("submit",async e=>{
+    e.preventDefault();
+    const f=new FormData(form), v=k=>String(f.get(k)||"").trim();
+    if(v("website")){form.reset();msg.textContent="고마워요! 아이디어가 잘 도착했어요. 곧 연락드릴게요.";return;}
+    if(!v("contact")||!v("idea")){msg.textContent="연락처와 아이디어를 적어 주세요.";return;}
+    btn.disabled=true; msg.textContent="보내는 중…";
+    try{
+      const {fs,db:d}=await db();
+      await fs.addDoc(fs.collection(d,"ideas"),{name:v("name").slice(0,50),contact:v("contact").slice(0,100),idea:v("idea").slice(0,3000),page:location.hostname,createdAt:fs.serverTimestamp()});
+      form.reset(); msg.textContent="고마워요! 아이디어가 잘 도착했어요. 곧 연락드릴게요.";
+    }catch(err){
+      console.error(err); msg.innerHTML='지금은 보내지 못했어요. <a href="mailto:sssoft1004@gmail.com" style="color:inherit">sssoft1004@gmail.com</a>으로 보내 주세요.';
+    }finally{btn.disabled=false;}
+  });
+})();
 </script>
 </body>
 </html>
