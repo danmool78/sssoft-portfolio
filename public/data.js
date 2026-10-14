@@ -1028,6 +1028,14 @@ window.PROJECTS=[
   "color": "#5b7a62",
   "url": "https://dajeong-audiobook-2026.web.app",
   "shot": "readingbook",
+  "video": "readingbook-demo.mp4",
+  "videoPoster": "readingbook-demo-poster.jpg",
+  "videoLabel": "실제 낭독 화면",
+  "scene": {
+   "src": "shots/readingbook-scene.jpg",
+   "card": "shots/readingbook-scene-card.jpg",
+   "cap": "전체화면으로 들으면 장면 삽화가 화면을 가득 채우고, 지금 읽는 문장이 자막으로 따라 나옵니다"
+  },
   "frame": "phone",
   "tagline": "영어 원서도 한글로 바꿔 읽어 주고, 장면마다 삽화까지 그려 주는 나만의 AI 오디오북",
   "overview": "종이책 몇 장을 사진으로 찍으면 다정 리딩북이 글을 옮겨 적고, 장면의 분위기를 읽어 AI 성우가 감정을 담아 낭독합니다. 영어 원서처럼 다른 언어로 쓰인 책도 사진에서 언어를 알아내 한국어로 번역해 읽어 주고, 원문은 아래에서 함께 볼 수 있습니다. 듣는 동안에는 수채 애니메, 모던 일러스트, 실사 사진, 코믹북 중 고른 스타일로 장면 삽화를 그려 주어 그림책처럼 즐길 수 있습니다.",
