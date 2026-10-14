@@ -40,7 +40,8 @@ firebase deploy --only hosting
 
 각 프로젝트 필드: `id, title, en, cat(church|ai|game|biz|life), tag, color, url, play?, demo?,
 shot, frame(phone|browser|svg), tagline, overview, flagship[], stages[{stage,summary,items[]}],
-roles[], rolesTitle?, numbers[{value,label}], gallery?[{src,cap}], galleryWide?, video?, supports?, audience, tech[]`
+roles[], rolesTitle?, numbers[{value,label}], gallery?[{src,cap}], galleryWide?, video?, supports?, audience, tech[],
+scene?{src,cap}`  (scene: 실제 사용 장면 사진. 있으면 카드 배경과 상세 화면 맨 위에 나온다)
 
 순서: 캠프마스터, STARFARER, 다락방 기도앱, 다정 리딩북, 케미몰(독립몰), 보캐브스캔, 워드드롭,
 노후자금 시뮬레이터, 중심잡기, 큐티레이스.
