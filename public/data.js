@@ -1064,6 +1064,10 @@ window.PROJECTS=[
    {
     "src": "gallery/readingbook-korean.jpg",
     "cap": "한국 고전 · 이상의 『봉별기』를 원문 그대로 AI 성우가 낭독하고, 장면마다 삽화를 그립니다"
+   },
+   {
+    "src": "gallery/readingbook-korean-list.jpg",
+    "cap": "고전 도서관 · 책이 정말 많습니다. 한국 고전의 단편·장편·시·희곡·동화가 작가와 분량, 쪽수와 함께 줄줄이 이어지고, 이만큼 보고도 '더 보기'에 38,692권이 남습니다"
    }
   ],
   "galleryWide": true,
