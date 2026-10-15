@@ -1056,10 +1056,6 @@ window.PROJECTS=[
    {
     "src": "gallery/readingbook-korean.jpg",
     "cap": "한국 고전 · 이상의 『봉별기』를 원문 그대로 AI 성우가 낭독하고, 장면마다 삽화를 그립니다"
-   },
-   {
-    "src": "gallery/readingbook-wide.jpg",
-    "cap": "PC·태블릿 화면 · 고전 도서관의 『허클베리 핀의 모험』을 한국어로 번역해 읽고 들으며, 본문 옆에서 장면 삽화를 함께 봅니다"
    }
   ],
   "galleryWide": true,
