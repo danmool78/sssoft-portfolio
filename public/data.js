@@ -1051,7 +1051,7 @@ window.PROJECTS=[
    },
    {
     "src": "gallery/readingbook-popular.jpg",
-    "cap": "고전 도서관 '지금 인기 100' · 한국·영미·일본·중국·독일 고전이 한 목록에 함께 나오고, 누르면 바로 내 책장에 담깁니다"
+    "cap": "고전 도서관 '지금 인기 100' · 한국·영미·일본·중국·독일 고전이 한 목록에 함께 나옵니다"
    },
    {
     "src": "gallery/readingbook-wide-light.jpg",
