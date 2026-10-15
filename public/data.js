@@ -1046,6 +1046,10 @@ window.PROJECTS=[
   ],
   "gallery": [
    {
+    "src": "gallery/readingbook-shelf.jpg",
+    "cap": "나의 서재 · 책마다 처음 그린 장면 삽화가 표지가 되고, 외국어 원서에는 한국어 번역 표시가 붙습니다"
+   },
+   {
     "src": "gallery/readingbook-wide-light.jpg",
     "cap": "밝은 화면 · 본문이 책 한 쪽처럼 놓이고, 지금 읽는 구간이 진하게 표시되며 낭독을 따라 페이지가 넘어갑니다"
    },
