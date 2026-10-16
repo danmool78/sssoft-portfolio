@@ -1,0 +1,55 @@
+name: Update readingbook classics count
+
+# 다정 리딩북 앱의 고전 목록(classics/index.json)을 매일 읽어 홈페이지의 권수를 맞춘다.
+# 바뀌었을 때만 public/live/readingbook-classics.json을 커밋하고 바로 배포한다
+# (GITHUB_TOKEN으로 한 push는 deploy.yml을 깨우지 않으므로 여기서 직접 배포).
+on:
+  schedule:
+    - cron: "17 18 * * *"   # 매일 03:17 KST
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: readingbook-count
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Fetch the app's classics count
+        id: count
+        run: |
+          set -euo pipefail
+          curl -fsSL --retry 3 https://dajeong-audiobook-2026.web.app/classics/index.json -o /tmp/index.json
+          # 언어 5개가 모두 0 이상 정수이고 합계가 1,000권 이상일 때만 쓴다.
+          jq -e '.languages | [.ko, .en, .ja, .de, ."zh-TW"] | (all(type == "number" and . >= 0 and . == floor)) and (add >= 1000)' /tmp/index.json
+          jq -c '{updated: .updated, languages: {ko: .languages.ko, en: .languages.en, de: .languages.de, "zh-TW": .languages["zh-TW"], ja: .languages.ja}}' /tmp/index.json > public/live/readingbook-classics.json
+          echo "total=$(jq '[.languages[]] | add' public/live/readingbook-classics.json)" >> "$GITHUB_OUTPUT"
+          if git diff --quiet -- public/live/readingbook-classics.json; then echo "changed=false" >> "$GITHUB_OUTPUT"; else echo "changed=true" >> "$GITHUB_OUTPUT"; fi
+      - name: Commit
+        if: steps.count.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/live/readingbook-classics.json
+          git commit -m "다정 리딩북 고전 권수 갱신: ${{ steps.count.outputs.total }}권"
+          git push origin HEAD:main
+      - name: Check secret
+        id: secret
+        if: steps.count.outputs.changed == 'true'
+        run: |
+          if [ -z "${{ secrets.FIREBASE_SERVICE_ACCOUNT_SSSOFT_PORTFOLIO }}" ]; then echo "ok=false" >> "$GITHUB_OUTPUT"; else echo "ok=true" >> "$GITHUB_OUTPUT"; fi
+      - name: Deploy
+        if: steps.count.outputs.changed == 'true' && steps.secret.outputs.ok == 'true'
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_SSSOFT_PORTFOLIO }}
+          projectId: sssoft-portfolio
+          channelId: live

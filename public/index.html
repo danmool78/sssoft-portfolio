@@ -402,6 +402,30 @@ function fitText(root){
   });
 }
 render("all");
+// 다정 리딩북 고전 권수를 실시간으로: live/readingbook-classics.json(앱의 classics/index.json을 GitHub Actions가
+// 매일 받아 옴)을 읽어 data.js에 적힌 기준 숫자(원어 판본 38,812권 · 5개 언어 194,060가지 · 언어별 권수)를 바꾼다.
+// 못 읽으면 data.js 숫자가 그대로 보인다.
+const BOOK_BASE = { ko: 470, en: 25465, ja: 11206, de: 1500, "zh-TW": 171 };
+const BOOK_LABELS = { en: "영어", ja: "일본어", de: "독일어", ko: "한국어", "zh-TW": "중국어 번체" };
+function applyBookCounts(langs){
+  const p = P.find(x => x.id === "readingbook"); if (!p || !langs) return false;
+  const keys = Object.keys(BOOK_BASE);
+  if (!keys.every(k => Number.isInteger(langs[k]) && langs[k] >= 0)) return false;
+  const fmt = n => n.toLocaleString("en-US");
+  const sum = o => keys.reduce((t, k) => t + o[k], 0);
+  const total = sum(langs), base = sum(BOOK_BASE);
+  if (total === base && keys.every(k => langs[k] === BOOK_BASE[k])) return false;
+  if (total < base / 2) return false; // 비정상적으로 줄어든 값은 쓰지 않는다
+  let text = JSON.stringify(p)
+    .split(fmt(base * 5)).join(fmt(total * 5))
+    .split(fmt(base)).join(fmt(total));
+  for (const k of keys) text = text.split(`${BOOK_LABELS[k]} ${fmt(BOOK_BASE[k])}`).join(`${BOOK_LABELS[k]} ${fmt(langs[k])}`);
+  Object.assign(p, JSON.parse(text));
+  return true;
+}
+fetch("live/readingbook-classics.json", { cache: "no-cache" }).then(r => r.ok ? r.json() : null)
+  .then(d => { if (d && applyBookCounts(d.languages)) { render(document.querySelector("#filters .on")?.dataset.f || "all"); fitText(grid); } })
+  .catch(() => {});
 fitText();
 document.fonts&&document.fonts.ready.then(()=>fitText());
 let fitT; addEventListener("resize",()=>{clearTimeout(fitT);fitT=setTimeout(()=>fitText(),120);});
