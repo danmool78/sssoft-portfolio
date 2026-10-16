@@ -83,6 +83,7 @@ section{padding:72px 0}
 .mini{list-style:none;font-size:14px;color:var(--muted);margin-bottom:18px}
 .mini li{padding:4px 0 4px 20px;position:relative}
 .mini li::before{content:"✦";position:absolute;left:0;color:var(--c)}
+.mini li.hot{color:var(--text);font-weight:700}
 .more{margin-top:auto;font-weight:700;font-size:14px;color:var(--c)}
 .about2{border-top:1px solid var(--line)}
 .sss{font-family:"Space Grotesk","Noto Sans KR",sans-serif;font-size:clamp(34px,6vw,64px);font-weight:700;letter-spacing:-.02em;margin:12px 0 18px;line-height:1.1}
@@ -387,7 +388,7 @@ function render(f){
       <h3>${esc(p.title)}</h3>
       <div class="tl">${esc(p.tagline)}</div>
       ${p.supports?`<div class="sup">${p.supports.map(x=>`<span>✓ ${esc(x)}</span>`).join("")}</div>`:""}
-      <ul class="mini">${(p.flagship||p.features).slice(0,4).map(f=>`<li>${esc(f.title)}</li>`).join("")}</ul>
+      <ul class="mini">${(p.flagship||p.features).slice(0,4).map(f=>`<li${f.hot?' class="hot"':""}>${esc(f.title)}</li>`).join("")}</ul>
       ${p.demo?`<a class="demo" href="${p.demo}" target="_blank" rel="noopener" onclick="event.stopPropagation()">▶ 샘플 페이지 바로가기</a>`:""}<span class="more">${p.stages?`전체 기능 ${p.stages.reduce((n,s)=>n+s.items.length,0)}가지 자세히 보기 →`:`자세히 보기 →`}</span>
     </div>
   </button>`).join("");
