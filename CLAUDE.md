@@ -44,7 +44,7 @@ roles[], rolesTitle?, numbers[{value,label}], gallery?[{src,cap}], galleryWide?,
 scene?{src,cap,card?}, video?(.mp4면 세로 영상 플레이어), videoPoster?, videoLabel?`
 (scene: 실제 사용 장면 사진. 카드 배경(card가 있으면 그 이미지)과 상세 화면 맨 위에 나온다)
 
-순서: 캠프마스터, STARFARER, 다락방 기도앱, 다정 리딩북, 케미몰(독립몰), 보캐브스캔, 워드드롭,
+순서: 캠프마스터, STARFARER, 다락방 기도앱, 교구 레크리에이션, 다정 리딩북, 케미몰(독립몰), 보캐브스캔, 워드드롭,
 노후자금 시뮬레이터, 중심잡기, 큐티레이스.
 
 ## 글쓰기 원칙 (사용자 피드백)
