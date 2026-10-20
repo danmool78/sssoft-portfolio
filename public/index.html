@@ -26,9 +26,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f5f4ef;--surface:#fff;--sunk:#ecebe5;--text:#15161a;--muted:#5d6068;--line:#e1dfd7;--accent:#3d5afe;--shadow:0 20px 50px rgba(20,20,40,.10)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d0e12;--surface:#16181e;--sunk:#1d2028;--text:#eceef3;--muted:#9a9eaa;--line:#272a33;--accent:#8c9eff;--shadow:0 20px 50px rgba(0,0,0,.45)}}
-:root[data-theme="dark"]{--bg:#0d0e12;--surface:#16181e;--sunk:#1d2028;--text:#eceef3;--muted:#9a9eaa;--line:#272a33;--accent:#8c9eff;--shadow:0 20px 50px rgba(0,0,0,.45)}
+:root{--bg:#f5f4ef;--surface:#fff;--sunk:#ecebe5;--text:#15161a;--muted:#5d6068;--line:#e1dfd7;--accent:#3d5afe;--green:#16a34a;--shadow:0 20px 50px rgba(20,20,40,.10)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d0e12;--surface:#16181e;--sunk:#1d2028;--text:#eceef3;--muted:#9a9eaa;--line:#272a33;--accent:#8c9eff;--green:#4ade80;--shadow:0 20px 50px rgba(0,0,0,.45)}}
+:root[data-theme="dark"]{--bg:#0d0e12;--surface:#16181e;--sunk:#1d2028;--text:#eceef3;--muted:#9a9eaa;--line:#272a33;--accent:#8c9eff;--green:#4ade80;--shadow:0 20px 50px rgba(0,0,0,.45)}
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--text);font-family:"Noto Sans KR",system-ui,sans-serif;line-height:1.65;-webkit-font-smoothing:antialiased}
 a{color:inherit}
@@ -84,6 +84,7 @@ section{padding:72px 0}
 .mini li{padding:4px 0 4px 20px;position:relative}
 .mini li::before{content:"✦";position:absolute;left:0;color:var(--c)}
 .mini li.hot{color:var(--text);font-weight:700}
+.plus{color:var(--green);font-weight:700;white-space:nowrap}
 .more{margin-top:auto;font-weight:700;font-size:14px;color:var(--c)}
 .about2{border-top:1px solid var(--line)}
 .sss{font-family:"Space Grotesk","Noto Sans KR",sans-serif;font-size:clamp(34px,6vw,64px);font-weight:700;letter-spacing:-.02em;margin:12px 0 18px;line-height:1.1}
@@ -388,7 +389,7 @@ function render(f){
       <h3>${esc(p.title)}</h3>
       <div class="tl">${esc(p.tagline)}</div>
       ${p.supports?`<div class="sup">${p.supports.map(x=>`<span>✓ ${esc(x)}</span>`).join("")}</div>`:""}
-      <ul class="mini">${(p.flagship||p.features).slice(0,4).map(f=>`<li${f.hot?' class="hot"':""}>${esc(f.title)}</li>`).join("")}</ul>
+      <ul class="mini">${(p.flagship||p.features).slice(0,4).map(f=>`<li${f.hot?' class="hot"':""}>${esc(f.title)}${f.plus?` <span class="plus">${esc(f.plus)}</span>`:""}</li>`).join("")}</ul>
       ${p.demo?`<a class="demo" href="${p.demo}" target="_blank" rel="noopener" onclick="event.stopPropagation()">▶ 샘플 페이지 바로가기</a>`:""}<span class="more">${p.stages?`전체 기능 ${p.stages.reduce((n,s)=>n+s.items.length,0)}가지 자세히 보기 →`:`자세히 보기 →`}</span>
     </div>
   </button>`).join("");
