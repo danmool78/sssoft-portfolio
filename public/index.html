@@ -405,38 +405,23 @@ function fitText(root){
 }
 render("all");
 // 다정 리딩북 고전 권수를 실시간으로: live/readingbook-classics.json(앱의 classics/index.json을 GitHub Actions가
-// 매일 받아 옴)을 읽어 data.js에 적힌 기준 숫자(원어 판본 34,987권 · 5개 언어 174,935가지 · 언어별 권수)를 바꾼다.
+// 매일 받아 옴)을 읽어 data.js에 적힌 기준 숫자(원어 판본 36,884권 · 6개 언어 221,304가지 · 언어별 권수)를 바꾼다.
 // 못 읽으면 data.js 숫자가 그대로 보인다.
-// 앱에 프랑스어 고전(fr)이 올라오면 5개 언어 문구를 6개 언어로 바꾸고 언어 목록에 프랑스어를 붙인다.
-const BOOK_BASE = { ko: 527, en: 22648, ja: 10319, de: 1335, "zh-TW": 158 };
-const BOOK_LABELS = { en: "영어", ja: "일본어", de: "독일어", ko: "한국어", "zh-TW": "중국어 번체" };
+const BOOK_BASE = { ko: 527, en: 22653, ja: 10319, fr: 1891, de: 1336, "zh-TW": 158 };
+const BOOK_LABELS = { en: "영어", ja: "일본어", fr: "프랑스어", de: "독일어", ko: "한국어", "zh-TW": "중국어 번체" };
 function applyBookCounts(langs){
   const p = P.find(x => x.id === "readingbook"); if (!p || !langs) return false;
-  const keys = Object.keys(BOOK_BASE);
+  const keys = Object.keys(BOOK_BASE), n = keys.length;
   if (!keys.every(k => Number.isInteger(langs[k]) && langs[k] >= 0)) return false;
-  const fr = Number.isInteger(langs.fr) && langs.fr > 0 ? langs.fr : 0;
   const fmt = n => n.toLocaleString("en-US");
   const sum = o => keys.reduce((t, k) => t + o[k], 0);
-  const total = sum(langs) + fr, base = sum(BOOK_BASE), n = fr ? 6 : 5;
-  if (!fr && total === base && keys.every(k => langs[k] === BOOK_BASE[k])) return false;
+  const total = sum(langs), base = sum(BOOK_BASE);
+  if (total === base && keys.every(k => langs[k] === BOOK_BASE[k])) return false;
   if (total < base / 2) return false; // 비정상적으로 줄어든 값은 쓰지 않는다
   let text = JSON.stringify(p)
-    .split(fmt(base * 5)).join(fmt(total * n))
+    .split(fmt(base * n)).join(fmt(total * n))
     .split(fmt(base)).join(fmt(total));
   for (const k of keys) text = text.split(`${BOOK_LABELS[k]} ${fmt(BOOK_BASE[k])}`).join(`${BOOK_LABELS[k]} ${fmt(langs[k])}`);
-  if (fr) {
-    const zh = `중국어 번체 ${fmt(langs["zh-TW"])}`, f = fmt(fr);
-    for (const [a, b] of [
-      ["5개 언어", "6개 언어"],
-      [`${zh})`, `${zh} · 프랑스어 ${f})`],
-      [`${zh}권이`, `${zh}권, 프랑스어 ${f}권이`],
-      ["중국어 번체·독일어)", "중국어 번체·독일어·프랑스어)"],
-      ["영어·일본어·독일어·중국어로", "영어·일본어·독일어·중국어·프랑스어로"],
-      ["한·영·일·중·독", "한·영·일·중·독·불"],
-      ["영·일·독·한·중 원서", "영·일·독·한·중·불 원서"],
-      ["한국·영미·일본·중국·독일 고전", "한국·영미·일본·중국·독일·프랑스 고전"],
-    ]) text = text.split(a).join(b);
-  }
   Object.assign(p, JSON.parse(text));
   return true;
 }
