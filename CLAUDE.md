@@ -43,7 +43,8 @@ firebase deploy --only hosting
 각 프로젝트 필드: `id, title, en, cat(church|ai|game|biz|life), tag, color, url, play?, demo?,
 shot, frame(phone|browser|svg), tagline, overview, flagship[], stages[{stage,summary,items[]}],
 roles[], rolesTitle?, numbers[{value,label}], gallery?[{src,cap}], galleryWide?, supports?, audience, tech[],
-scene?{src,cap,card?}, video?(.mp4면 세로 영상 플레이어), videoPoster?, videoLabel?`
+scene?{src,cap,card?}, video?(.mp4면 세로 영상 플레이어), videoPoster?, videoLabel?,
+videos?[{src,poster?,label}](영상이 여럿일 때 video 대신, 적은 순서대로 나온다)`
 (scene: 실제 사용 장면 사진. 카드 배경(card가 있으면 그 이미지)과 상세 화면 맨 위에 나온다)
 
 순서: 캠프마스터, STARFARER, 다락방 기도앱, 교구 레크리에이션, 다정 리딩북, 케미몰(독립몰), 보캐브스캔, 워드드롭,
@@ -65,6 +66,11 @@ scene?{src,cap,card?}, video?(.mp4면 세로 영상 플레이어), videoPoster?,
   앱의 https://dajeong-audiobook-2026.web.app/classics/index.json 을 읽어 `public/live/readingbook-classics.json`을
   갱신·배포하고, `index.html`의 applyBookCounts가 data.js에 적힌 기준 숫자(BOOK_BASE)를 화면에서 새 숫자로 바꾼다.
   data.js 문구를 직접 고칠 때는 BOOK_BASE도 같은 숫자로 맞춘다.
+- 다정 리딩북은 프랑스어를 추가해 6개 언어로 넓히는 중이다. 앱의 index.json에 `fr` 권수가 생기면 워크플로가 함께 받아 오고,
+  applyBookCounts가 "5개 언어"를 "6개 언어"로, 언어 목록에 프랑스어(불)를 붙이고 판본 수를 권수×6으로 바꾼다.
+  그 전까지 data.js는 5개 언어 그대로 둔다. 프랑스어가 정식 반영되면 data.js 문구와 BOOK_BASE를 6개 언어로 고친다.
+- 다정 리딩북의 **학습 기능**(원서로 듣고 읽으며 문단마다 우리말 번역을 함께 보기, 앱 client/study.js)을 강조한다.
+  대표 기능 4번. 뮤직비디오(Vimeo 1238284264)는 상세 화면 영상 중 맨 앞에 둔다.
 - 실명·개인 QR 등 개인정보가 담긴 이미지는 이름을 바꾸고 QR을 흐리게 처리한다.
 - **이모티콘(이모지) 금지.** 버튼·제목·문구 모두 글자로만 쓴다 (✓ ★ 같은 기호는 괜찮다).
 - 사이트 하단 사업자 정보: 상호 에스에스소프트(SSSOFT), 대표 김성수, 사업자등록번호 772-01-03846,

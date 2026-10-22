@@ -29,7 +29,7 @@ jobs:
           curl -fsSL --retry 3 https://dajeong-audiobook-2026.web.app/classics/index.json -o /tmp/index.json
           # 언어 5개가 모두 0 이상 정수이고 합계가 1,000권 이상일 때만 쓴다.
           jq -e '.languages | [.ko, .en, .ja, .de, ."zh-TW"] | (all(type == "number" and . >= 0 and . == floor)) and (add >= 1000)' /tmp/index.json
-          jq -c '{updated: .updated, languages: {ko: .languages.ko, en: .languages.en, de: .languages.de, "zh-TW": .languages["zh-TW"], ja: .languages.ja}}' /tmp/index.json > public/live/readingbook-classics.json
+          jq -c '{updated: .updated, languages: {ko: .languages.ko, en: .languages.en, de: .languages.de, "zh-TW": .languages["zh-TW"], ja: .languages.ja} + (if (.languages.fr | type) == "number" and .languages.fr > 0 then {fr: .languages.fr} else {} end)}' /tmp/index.json > public/live/readingbook-classics.json
           echo "total=$(jq '[.languages[]] | add' public/live/readingbook-classics.json)" >> "$GITHUB_OUTPUT"
           if git diff --quiet -- public/live/readingbook-classics.json; then echo "changed=false" >> "$GITHUB_OUTPUT"; else echo "changed=true" >> "$GITHUB_OUTPUT"; fi
       - name: Commit
