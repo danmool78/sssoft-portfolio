@@ -1341,13 +1341,17 @@ window.PROJECTS=[
    {
     "src": "gallery/readingbook-korean.jpg",
     "cap": "한국 고전 · 이상의 『봉별기』를 원문 그대로 AI 성우가 낭독하고, 장면마다 삽화를 그립니다"
+   },
+   {
+    "src": "gallery/readingbook-fullscreen-phone.jpg",
+    "cap": "휴대폰 전체화면 · 톨스토이 『사람은 무엇으로 사는가』. 가로로 눕히면 삽화와 자막만 남아 그림책 영화처럼 듣습니다"
    }
   ],
   "galleryWide": true,
   "scene": {
    "src": "shots/readingbook-scene.jpg",
    "card": "shots/readingbook-scene-card.jpg",
-   "cap": "전체화면으로 들으면 장면 삽화가 화면을 가득 채우고, 지금 읽는 문장이 자막으로 따라 나옵니다"
+   "cap": "『천일야화』를 전체화면으로 들으면 장면 삽화가 화면을 가득 채우고, 지금 읽는 문장이 자막으로 따라 나옵니다"
   },
   "frame": "phone",
   "tagline": "원어 판본 기준 고전 문학 34,987권을 5개 언어로. 오디오북과 웹북을 오가고, 원서로 들으며 문단마다 우리말 번역을 함께 보고, 본문 속 장면 삽화로 책 한 권이 그림책이 됩니다",
