@@ -1333,18 +1333,6 @@ window.PROJECTS=[
    {
     "src": "gallery/readingbook-newbook.jpg",
     "cap": "새 책 만들기 · 책 이름을 적고 AI 성우 7명, Google 음성(여성·남성), 무료 기기 음성 중 목소리를 고르거나 내용에 맞춰 자동으로 맡기고, 삽화 스타일과 한국어 번역 여부를 정합니다"
-   },
-   {
-    "src": "gallery/readingbook-wide-light.jpg",
-    "cap": "밝은 화면 · 본문이 책 한 쪽처럼 놓이고, 지금 읽는 구간이 진하게 표시되며 낭독을 따라 페이지가 넘어갑니다"
-   },
-   {
-    "src": "gallery/readingbook-korean.jpg",
-    "cap": "한국 고전 · 이상의 『봉별기』를 원문 그대로 AI 성우가 낭독하고, 장면마다 삽화를 그립니다"
-   },
-   {
-    "src": "gallery/readingbook-fullscreen-phone.jpg",
-    "cap": "휴대폰 전체화면 · 톨스토이 『사람은 무엇으로 사는가』. 휴대폰에서도 전체화면으로 장면 삽화와 자막을 보며 듣습니다"
    }
   ],
   "galleryWide": true,
