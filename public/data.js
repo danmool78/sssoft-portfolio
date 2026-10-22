@@ -1344,7 +1344,7 @@ window.PROJECTS=[
    },
    {
     "src": "gallery/readingbook-fullscreen-phone.jpg",
-    "cap": "휴대폰 전체화면 · 톨스토이 『사람은 무엇으로 사는가』. 가로로 눕히면 삽화와 자막만 남아 그림책 영화처럼 듣습니다"
+    "cap": "휴대폰 전체화면 · 톨스토이 『사람은 무엇으로 사는가』. 휴대폰에서도 전체화면으로 장면 삽화와 자막을 보며 듣습니다"
    }
   ],
   "galleryWide": true,
