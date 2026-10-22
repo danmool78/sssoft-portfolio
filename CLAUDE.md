@@ -44,7 +44,8 @@ firebase deploy --only hosting
 shot, frame(phone|browser|svg), tagline, overview, flagship[], stages[{stage,summary,items[]}],
 roles[], rolesTitle?, numbers[{value,label}], gallery?[{src,cap}], galleryWide?, supports?, audience, tech[],
 scene?{src,cap,card?}, video?(.mp4면 세로 영상 플레이어), videoPoster?, videoLabel?,
-videos?[{src,poster?,label}](영상이 여럿일 때 video 대신, 적은 순서대로 나온다)`
+videos?[{src,poster?,label,wide?}](영상이 여럿일 때 video 대신, 적은 순서대로 나온다. wide: 가로 mp4)`
+(사이트에 올리는 mp4는 ffmpeg로 1280px·CRF 26 정도로 줄여 public/에 영문 파일명으로 둔다)
 (scene: 실제 사용 장면 사진. 카드 배경(card가 있으면 그 이미지)과 상세 화면 영상 바로 아래에 나온다.
 상세 화면은 영상 → 사용 장면 → 숫자 → 대표 기능 → 미리보기 순서. 영상을 보면 앱이 다 이해되므로 맨 위에 둔다)
 

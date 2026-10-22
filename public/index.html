@@ -164,6 +164,7 @@ dialog::backdrop{background:rgba(8,9,14,.62);backdrop-filter:blur(4px)}
 .vid{position:relative;aspect-ratio:16/9;border-radius:16px;overflow:hidden;background:#000;margin-bottom:34px}
 .vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .vid.tall{aspect-ratio:auto;max-width:340px;margin-left:auto;margin-right:auto;background:none}
+.vid.wv{aspect-ratio:auto;background:none}
 .vid video{display:block;width:100%;border-radius:16px;background:#000}
 .gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;margin-bottom:34px;align-items:start}
 .gal.wide{grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
@@ -473,7 +474,7 @@ function open(id){
    </div>
    <div class="dbody">
      ${(p.videos||(p.video?[{src:p.video,poster:p.videoPoster,label:p.videoLabel}]:[])).map(v=>`<h4>▶ ${esc(v.label||"플레이 영상")}</h4>${/\.mp4$/.test(v.src)
-       ?`<div class="vid tall"><video src="${v.src}" ${v.poster?`poster="${v.poster}"`:""} controls playsinline preload="none"></video></div>`
+       ?`<div class="vid ${v.wide?"wv":"tall"}"><video src="${v.src}" ${v.poster?`poster="${v.poster}"`:""} controls playsinline preload="none"></video></div>`
        :`<div class="vid"><iframe src="${v.src}" title="${esc(p.title)} ${esc(v.label||"플레이 영상")}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>`}`).join("")}
      ${p.scene?`<figure class="scene"><img src="${p.scene.src}" alt="${esc(p.title)} ${esc(p.scene.cap||"사용 장면")}" loading="lazy">${p.scene.cap?`<figcaption>${esc(p.scene.cap)}</figcaption>`:""}</figure>`:""}
      ${p.numbers&&p.numbers.length?`<div class="nums">${p.numbers.map(n=>`<div><b>${esc(n.value)}</b><small>${esc(n.label)}</small></div>`).join("")}</div>`:""}

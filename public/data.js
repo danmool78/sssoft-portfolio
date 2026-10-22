@@ -1297,6 +1297,12 @@ window.PROJECTS=[
     "label": "다정 리딩북 뮤직비디오"
    },
    {
+    "src": "readingbook-sherlock-pc.mp4",
+    "poster": "readingbook-sherlock-pc-poster.jpg",
+    "label": "PC 화면 · 『셜록 홈즈의 모험』 낭독과 원문 보기",
+    "wide": true
+   },
+   {
     "src": "readingbook-demo.mp4",
     "poster": "readingbook-demo-poster.jpg",
     "label": "실제 낭독 화면"
@@ -1329,20 +1335,12 @@ window.PROJECTS=[
     "cap": "새 책 만들기 · 책 이름을 적고 AI 성우 7명, Google 음성(여성·남성), 무료 기기 음성 중 목소리를 고르거나 내용에 맞춰 자동으로 맡기고, 삽화 스타일과 한국어 번역 여부를 정합니다"
    },
    {
-    "src": "gallery/readingbook-popular.jpg",
-    "cap": "고전 도서관 '지금 인기 100' · 한국·영미·일본·중국·독일 고전이 한 목록에 함께 나옵니다"
-   },
-   {
     "src": "gallery/readingbook-wide-light.jpg",
     "cap": "밝은 화면 · 본문이 책 한 쪽처럼 놓이고, 지금 읽는 구간이 진하게 표시되며 낭독을 따라 페이지가 넘어갑니다"
    },
    {
     "src": "gallery/readingbook-korean.jpg",
     "cap": "한국 고전 · 이상의 『봉별기』를 원문 그대로 AI 성우가 낭독하고, 장면마다 삽화를 그립니다"
-   },
-   {
-    "src": "gallery/readingbook-korean-list.jpg",
-    "cap": "고전 도서관 · 책이 정말 많습니다. 한국 고전의 단편·장편·시·희곡·동화가 작가와 분량, 쪽수와 함께 줄줄이 이어지고, 이만큼 보고도 '더 보기'에도 3만 권 넘게 남습니다"
    }
   ],
   "galleryWide": true,
