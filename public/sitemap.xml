@@ -1,6 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://sssoft-idea.web.app/</loc><lastmod>2026-10-14</lastmod></url>
-  <url><loc>https://sssoft-idea.web.app/contract.html</loc><lastmod>2026-10-14</lastmod></url>
-  <url><loc>https://sssoft-idea.web.app/maintenance.html</loc><lastmod>2026-10-14</lastmod></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+  <url>
+    <loc>https://sssoft-idea.web.app/</loc>
+    <lastmod>2026-10-20</lastmod>
+    <image:image><image:loc>https://sssoft-idea.web.app/og-image.png</image:loc></image:image>
+    <image:image><image:loc>https://sssoft-idea.web.app/shots/campmaster-m.png</image:loc></image:image>
+    <image:image><image:loc>https://sssoft-idea.web.app/shots/starfarer-d.png</image:loc></image:image>
+    <image:image><image:loc>https://sssoft-idea.web.app/shots/darakbang-m.png</image:loc></image:image>
+    <image:image><image:loc>https://sssoft-idea.web.app/shots/gyogurec-d.png</image:loc></image:image>
+    <image:image><image:loc>https://sssoft-idea.web.app/shots/readingbook-m.png</image:loc></image:image>
+    <image:image><image:loc>https://sssoft-idea.web.app/shots/chemimall-d.png</image:loc></image:image>
+    <image:image><image:loc>https://sssoft-idea.web.app/shots/vocabscan-m.png</image:loc></image:image>
+    <image:image><image:loc>https://sssoft-idea.web.app/shots/worddrop-m.png</image:loc></image:image>
+    <image:image><image:loc>https://sssoft-idea.web.app/shots/retire-d.png</image:loc></image:image>
+    <image:image><image:loc>https://sssoft-idea.web.app/shots/balance-m.png</image:loc></image:image>
+    <video:video>
+      <video:thumbnail_loc>https://sssoft-idea.web.app/sssoft-reel-poster.jpg</video:thumbnail_loc>
+      <video:title>26초 만에 보는 SSSOFT</video:title>
+      <video:description>캠프마스터부터 STARFARER, 노후자금 시뮬레이터까지. 아이디어가 서비스가 되는 순간들을 짧게 모은 SSSOFT 소개 영상입니다.</video:description>
+      <video:content_loc>https://sssoft-idea.web.app/sssoft-reel-720.mp4</video:content_loc>
+      <video:duration>26</video:duration>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://sssoft-idea.web.app/contract.html</loc>
+    <lastmod>2026-10-14</lastmod>
+  </url>
+  <url>
+    <loc>https://sssoft-idea.web.app/maintenance.html</loc>
+    <lastmod>2026-10-14</lastmod>
+  </url>
 </urlset>

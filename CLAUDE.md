@@ -18,6 +18,8 @@ public/            ← 배포되는 사이트. 이 폴더가 원본이다 (루�
   shots/           카드·상세 화면 대표 이미지 ({id}-m.png 폰, {id}-d.png 데스크톱)
   gallery/         상세 화면 미리보기 이미지
   sssoft-reel-720.mp4, sssoft-reel-poster.jpg  사이트용 릴스
+  sitemap.xml      scripts/sitemap.cjs가 만든다 (직접 고치지 않는다)
+scripts/sitemap.cjs  sitemap.xml 생성: 페이지별 lastmod(git 커밋 날짜), 홈 카드 이미지, 릴스 영상
 reel/              홍보 릴스(26초, 1080×1920) 원본
   reel.html        프레임 단위 애니메이션 (window.render(t))
   render.cjs       reel.html → sssoft-reel-nomusic.mp4
@@ -32,9 +34,9 @@ design/            로고·글꼴 시안, 원본 캡처
 firebase deploy --only hosting
 ```
 
-두 사이트에 함께 배포된다. html/js/png 등은 `no-cache` 헤더라 새로고침하면 바로 반영된다.
+`npm run deploy`는 sitemap.xml을 다시 만든 뒤 배포한다. 두 사이트에 함께 배포된다. html/js/png 등은 `no-cache` 헤더라 새로고침하면 바로 반영된다.
 클라우드(GitHub)에서는 `main`에 push하면 `.github/workflows/deploy.yml`이 배포한다
-(저장소 Secret `FIREBASE_SERVICE_ACCOUNT_SSSOFT_PORTFOLIO` 필요).
+(배포 전에 sitemap.xml도 다시 만든다. 저장소 Secret `FIREBASE_SERVICE_ACCOUNT_SSSOFT_PORTFOLIO` 필요).
 
 ## 앱 데이터(data.js) 규칙
 

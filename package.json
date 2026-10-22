@@ -3,7 +3,8 @@
   "private": true,
   "description": "SSSOFT portfolio site (static, Firebase Hosting) and promo reel",
   "scripts": {
-    "deploy": "firebase deploy --only hosting",
+    "deploy": "npm run sitemap && firebase deploy --only hosting",
+    "sitemap": "node scripts/sitemap.cjs",
     "reel:render": "node reel/render.cjs",
     "reel:mux": "node reel/mux.cjs"
   },

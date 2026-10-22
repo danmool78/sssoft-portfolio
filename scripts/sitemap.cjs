@@ -1,0 +1,84 @@
+// public/sitemap.xml 생성.
+// - lastmod: 각 페이지(와 그 페이지에 쓰이는 파일)의 마지막 커밋 날짜. 커밋 안 된 변경이 있으면 오늘 날짜.
+// - 홈: 카드에 보이는 앱 화면 이미지(data.js 기준)·공유 이미지, 26초 릴스 영상.
+// 사용: npm run sitemap
+const fs = require("fs");
+const path = require("path");
+const vm = require("vm");
+const { execFileSync } = require("child_process");
+
+const ROOT = path.join(__dirname, "..");
+const PUB = path.join(ROOT, "public");
+const SITE = "https://sssoft-idea.web.app/";
+
+const git = (...args) => execFileSync("git", args, { cwd: ROOT, encoding: "utf8" }).trim();
+const today = new Date().toISOString().slice(0, 10);
+function lastmod(specs) {
+  if (git("status", "--porcelain", "--", ...specs)) return today;
+  return git("log", "-1", "--format=%cs", "--", ...specs) || today;
+}
+const esc = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+const abs = p => SITE + p.split("/").map(encodeURIComponent).join("/");
+const exists = p => fs.existsSync(path.join(PUB, p));
+
+// data.js → window.PROJECTS
+const ctx = { window: {} };
+vm.runInNewContext(fs.readFileSync(path.join(PUB, "data.js"), "utf8"), ctx);
+const P = ctx.window.PROJECTS;
+
+// 홈 카드에 그려지는 앱 화면 (index.html visual())
+const images = ["og-image.png"];
+for (const p of P) {
+  if (p.frame === "svg") continue;
+  const src = `shots/${p.shot}-${p.frame === "phone" ? "m" : "d"}.png`;
+  if (exists(src)) images.push(src);
+}
+
+const pages = [
+  {
+    loc: SITE,
+    lastmod: lastmod([
+      "public",
+      ":!public/contract.html", ":!public/maintenance.html",
+      ":!public/sitemap.xml", ":!public/robots.txt", ":!public/live",
+    ]),
+    images,
+    video: {
+      thumb: "sssoft-reel-poster.jpg",
+      content: "sssoft-reel-720.mp4",
+      title: "26초 만에 보는 SSSOFT",
+      desc: "캠프마스터부터 STARFARER, 노후자금 시뮬레이터까지. 아이디어가 서비스가 되는 순간들을 짧게 모은 SSSOFT 소개 영상입니다.",
+      duration: 26,
+    },
+  },
+  { loc: SITE + "contract.html", lastmod: lastmod(["public/contract.html"]) },
+  { loc: SITE + "maintenance.html", lastmod: lastmod(["public/maintenance.html"]) },
+];
+
+const out = [
+  '<?xml version="1.0" encoding="UTF-8"?>',
+  '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"',
+  '        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"',
+  '        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">',
+];
+for (const pg of pages) {
+  out.push("  <url>", `    <loc>${esc(pg.loc)}</loc>`, `    <lastmod>${pg.lastmod}</lastmod>`);
+  for (const img of pg.images || []) out.push(`    <image:image><image:loc>${esc(abs(img))}</image:loc></image:image>`);
+  const v = pg.video;
+  if (v && exists(v.content) && exists(v.thumb)) {
+    out.push(
+      "    <video:video>",
+      `      <video:thumbnail_loc>${esc(abs(v.thumb))}</video:thumbnail_loc>`,
+      `      <video:title>${esc(v.title)}</video:title>`,
+      `      <video:description>${esc(v.desc)}</video:description>`,
+      `      <video:content_loc>${esc(abs(v.content))}</video:content_loc>`,
+      `      <video:duration>${v.duration}</video:duration>`,
+      "    </video:video>",
+    );
+  }
+  out.push("  </url>");
+}
+out.push("</urlset>", "");
+
+fs.writeFileSync(path.join(PUB, "sitemap.xml"), out.join("\n"));
+console.log(`sitemap.xml: ${pages.length} pages, ${images.length} images`);
