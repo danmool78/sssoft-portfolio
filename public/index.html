@@ -472,13 +472,13 @@ function open(id){
      <div class="dshot">${p.frame==="browser"?`<div class="phone"><img src="shots/${p.shot}-m.png" alt="${esc(p.title)} 모바일 화면" onerror="this.parentNode.remove()"></div>`:visual(p,true)}</div>
    </div>
    <div class="dbody">
+     ${(p.videos||(p.video?[{src:p.video,poster:p.videoPoster,label:p.videoLabel}]:[])).map(v=>`<h4>▶ ${esc(v.label||"플레이 영상")}</h4>${/\.mp4$/.test(v.src)
+       ?`<div class="vid tall"><video src="${v.src}" ${v.poster?`poster="${v.poster}"`:""} controls playsinline preload="none"></video></div>`
+       :`<div class="vid"><iframe src="${v.src}" title="${esc(p.title)} ${esc(v.label||"플레이 영상")}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>`}`).join("")}
      ${p.scene?`<figure class="scene"><img src="${p.scene.src}" alt="${esc(p.title)} ${esc(p.scene.cap||"사용 장면")}" loading="lazy">${p.scene.cap?`<figcaption>${esc(p.scene.cap)}</figcaption>`:""}</figure>`:""}
      ${p.numbers&&p.numbers.length?`<div class="nums">${p.numbers.map(n=>`<div><b>${esc(n.value)}</b><small>${esc(n.label)}</small></div>`).join("")}</div>`:""}
      <h4>★ 대표 기능</h4>
      <div class="flag">${(p.flagship||p.features).map((f,i)=>`<div><em>${String(i+1).padStart(2,"0")}</em><b>${esc(f.title)}</b><span>${esc(f.desc)}</span></div>`).join("")}</div>
-     ${(p.videos||(p.video?[{src:p.video,poster:p.videoPoster,label:p.videoLabel}]:[])).map(v=>`<h4>▶ ${esc(v.label||"플레이 영상")}</h4>${/\.mp4$/.test(v.src)
-       ?`<div class="vid tall"><video src="${v.src}" ${v.poster?`poster="${v.poster}"`:""} controls playsinline preload="none"></video></div>`
-       :`<div class="vid"><iframe src="${v.src}" title="${esc(p.title)} ${esc(v.label||"플레이 영상")}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>`}`).join("")}
      ${p.gallery?`<h4>▣ 미리보기</h4><div class="gal ${p.galleryWide?"wide":""} ${p.galleryTall?"tall":""}">${p.gallery.map(g=>`<figure class="${g.paper?"paper":""}"><a href="${g.src}" target="_blank" rel="noopener"><img src="${g.src}" alt="${esc(p.title)} ${esc(g.cap||"화면")}" loading="lazy"></a>${g.cap?`<figcaption>${esc(g.cap)}</figcaption>`:""}</figure>`).join("")}</div>`:""}
      ${p.stages?`<h4>◆ 처음부터 끝까지, 빠짐없는 구성</h4>
      <div class="stages">${p.stages.map((s,i)=>`<details class="stg" ${i<2?"open":""}>
