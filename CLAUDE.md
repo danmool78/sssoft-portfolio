@@ -66,6 +66,7 @@ videos?[{src,poster?,label}](영상이 여럿일 때 video 대신, 적은 순서
   앱의 https://dajeong-audiobook-2026.web.app/classics/index.json 을 읽어 `public/live/readingbook-classics.json`을
   갱신·배포하고, `index.html`의 applyBookCounts가 data.js에 적힌 기준 숫자(BOOK_BASE)를 화면에서 새 숫자로 바꾼다.
   data.js 문구를 직접 고칠 때는 BOOK_BASE도 같은 숫자로 맞춘다.
+- 다정 리딩북 주소는 https://dajeongbook.com (소개 링크). 권수 워크플로는 Firebase 기본 주소(web.app)를 그대로 읽는다.
 - 다정 리딩북은 프랑스어를 추가해 6개 언어로 넓히는 중이다. 앱의 index.json에 `fr` 권수가 생기면 워크플로가 함께 받아 오고,
   applyBookCounts가 "5개 언어"를 "6개 언어"로, 언어 목록에 프랑스어(불)를 붙이고 판본 수를 권수×6으로 바꾼다.
   그 전까지 data.js는 5개 언어 그대로 둔다. 프랑스어가 정식 반영되면 data.js 문구와 BOOK_BASE를 6개 언어로 고친다.

@@ -1289,7 +1289,7 @@ window.PROJECTS=[
   "cat": "ai",
   "tag": "AI 오디오북",
   "color": "#5b7a62",
-  "url": "https://dajeong-audiobook-2026.web.app",
+  "url": "https://dajeongbook.com",
   "shot": "readingbook",
   "videos": [
    {
