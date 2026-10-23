@@ -1293,7 +1293,7 @@ window.PROJECTS=[
   "shot": "readingbook",
   "videos": [
    {
-    "src": "https://player.vimeo.com/video/1238284264?dnt=1&title=0&byline=0&portrait=0",
+    "src": "https://player.vimeo.com/video/1238636676?dnt=1&title=0&byline=0&portrait=0",
     "label": "다정 리딩북 뮤직비디오"
    },
    {
