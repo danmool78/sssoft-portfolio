@@ -122,6 +122,12 @@ section{padding:72px 0}
 .steps b{display:block;font-size:17px;margin:4px 0 4px}
 .steps span{color:var(--muted);font-size:14.5px}
 @media (max-width:820px){.steps{grid-template-columns:1fr}}
+.featured{display:grid;grid-template-columns:1fr 1.5fr;gap:44px;align-items:center;border-top:1px solid var(--line)}
+.featured h2{font-size:32px;font-weight:900;margin:8px 0 10px}
+.featured .tl{font-size:16px;color:var(--muted);margin-bottom:22px}
+.featured .vid{margin:0;box-shadow:var(--shadow)}
+.featured .cbtns .btn{border:none;cursor:pointer;font:inherit;font-weight:700}
+@media (max-width:820px){.featured{grid-template-columns:1fr;gap:24px}}
 .reelsec{display:grid;grid-template-columns:1fr 360px;gap:48px;align-items:center;padding:72px 24px;border-top:1px solid var(--line)}
 .reeltxt h2{font-size:32px;font-weight:900;margin:8px 0 12px}
 .reeltxt p{color:var(--muted);margin-bottom:22px;max-width:46ch}
@@ -263,6 +269,8 @@ h1,h2,h3,.hero h1,.sec-head h2,.about h2,.process h2,.reeltxt h2,.contact h2,.bo
       <div><b>100%</b><small>자체 기획·개발·운영</small></div>
     </div>
   </div>
+
+  <section id="featured" class="featured" hidden></section>
 
   <section id="work">
     <div class="sec-head">
@@ -411,6 +419,22 @@ function fitText(root){
   });
 }
 render("all");
+// 대표작: 다정 리딩북의 첫 번째 영상(뮤직비디오)을 메인에서 바로 재생한다.
+const featured = document.getElementById("featured");
+function renderFeatured(){
+  const p = P.find(x => x.id === "readingbook"), v = p && p.videos && p.videos[0]; if (!v) return;
+  featured.style.setProperty("--accent", p.color);
+  featured.innerHTML = `
+    <div>
+      <div class="eyebrow" style="color:${p.color}">대표작 · ${esc(p.en)}</div>
+      <h2>${esc(p.title)}</h2>
+      <div class="tl">${esc(p.tagline)}</div>
+      <div class="cbtns"><button class="btn" type="button" data-id="${p.id}" style="background:${p.color}">자세히 보기 →</button>${p.url?`<a class="btn alt" href="${p.url}" target="_blank" rel="noopener">서비스 바로가기 →</a>`:""}</div>
+    </div>
+    <div class="vid"><iframe src="${v.src}" title="${esc(p.title)} ${esc(v.label||"영상")}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>`;
+  featured.hidden = false;
+}
+renderFeatured();
 // 다정 리딩북 고전 권수를 실시간으로: live/readingbook-classics.json(앱의 classics/index.json을 GitHub Actions가
 // 매일 받아 옴)을 읽어 data.js에 적힌 기준 숫자(원어 판본 36,884권 · 6개 언어 221,304가지 · 언어별 권수)를 바꾼다.
 // 못 읽으면 data.js 숫자가 그대로 보인다.
@@ -433,7 +457,7 @@ function applyBookCounts(langs){
   return true;
 }
 fetch("live/readingbook-classics.json", { cache: "no-cache" }).then(r => r.ok ? r.json() : null)
-  .then(d => { if (d && applyBookCounts(d.languages)) { render(document.querySelector("#filters .on")?.dataset.f || "all"); fitText(grid); } })
+  .then(d => { if (d && applyBookCounts(d.languages)) { featured.querySelector(".tl").textContent = P.find(x => x.id === "readingbook").tagline; render(document.querySelector("#filters .on")?.dataset.f || "all"); fitText(grid); } })
   .catch(() => {});
 fitText();
 document.fonts&&document.fonts.ready.then(()=>fitText());
