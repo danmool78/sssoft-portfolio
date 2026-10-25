@@ -21,10 +21,10 @@
     <image:image><image:loc>https://sssoft-idea.web.app/shots/visionquest-m.png</image:loc></image:image>
     <video:video>
       <video:thumbnail_loc>https://sssoft-idea.web.app/sssoft-reel-poster.jpg</video:thumbnail_loc>
-      <video:title>26초 만에 보는 SSSOFT</video:title>
-      <video:description>캠프마스터부터 STARFARER, 노후자금 시뮬레이터까지. 아이디어가 서비스가 되는 순간들을 짧게 모은 SSSOFT 소개 영상입니다.</video:description>
+      <video:title>32초 만에 보는 SSSOFT</video:title>
+      <video:description>캠프마스터부터 STARFARER, 다정 리딩북, 그 길, 비전 퀘스트까지. 아이디어가 서비스가 되는 순간들을 짧게 모은 SSSOFT 소개 영상입니다.</video:description>
       <video:content_loc>https://sssoft-idea.web.app/sssoft-reel-720.mp4</video:content_loc>
-      <video:duration>26</video:duration>
+      <video:duration>32</video:duration>
     </video:video>
   </url>
   <url>
