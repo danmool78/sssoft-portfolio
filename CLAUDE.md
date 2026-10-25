@@ -40,7 +40,7 @@ firebase deploy --only hosting
 
 ## 앱 데이터(data.js) 규칙
 
-각 프로젝트 필드: `id, title, en, cat(church|ai|game|biz|life), tag, color, url, play?, demo?,
+각 프로젝트 필드: `id, title, en, cat(church|ai|game|biz|life), tag, color, url, play?, demo?, share?(true면 카드·상세에 "앱 공유하기" 버튼: 휴대폰은 공유 창, PC는 url 복사),
 shot, frame(phone|browser|svg), tagline, overview, flagship[], stages[{stage,summary,items[]}],
 roles[], rolesTitle?, numbers[{value,label}], gallery?[{src,cap}], galleryWide?, supports?, audience, tech[],
 scene?{src,cap,card?}, video?(.mp4면 세로 영상 플레이어), videoPoster?, videoLabel?,
