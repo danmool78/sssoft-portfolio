@@ -20,7 +20,7 @@ public/            ← 배포되는 사이트. 이 폴더가 원본이다 (루�
   sssoft-reel-720.mp4, sssoft-reel-poster.jpg  사이트용 릴스
   sitemap.xml      scripts/sitemap.cjs가 만든다 (직접 고치지 않는다)
 scripts/sitemap.cjs  sitemap.xml 생성: 페이지별 lastmod(git 커밋 날짜), 홈 카드 이미지, 릴스 영상
-reel/              홍보 릴스(26초, 1080×1920) 원본
+reel/              홍보 릴스(32초, 1080×1920) 원본
   reel.html        프레임 단위 애니메이션 (window.render(t))
   render.cjs       reel.html → sssoft-reel-nomusic.mp4
   mux.cjs          메인곡 입히기 + 사이트용 720p·포스터 생성
