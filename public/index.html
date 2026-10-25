@@ -267,8 +267,8 @@ h1,h2,h3,.hero h1,.sec-head h2,.about h2,.process h2,.reeltxt h2,.contact h2,.bo
     <p>SSSOFT는 현장의 불편을 직접 겪고 해결하는 소프트웨어 스튜디오입니다. 수련회 운영부터 우주 MMO, AI 오디오북까지 모든 서비스를 직접 기획하고 개발해 실제로 운영하고 있습니다.</p>
     <div class="marquee" id="quick"></div>
     <div class="stats">
-      <div><b>14</b><small>출시·운영 중인 서비스</small></div>
-      <div><b>440+</b><small>서비스에 담긴 기능</small></div>
+      <div><b id="statApps">14</b><small>출시·운영 중인 서비스</small></div>
+      <div><b id="statFeats">450+</b><small>서비스에 담긴 기능</small></div>
       <div><b>17+</b><small>지원 언어 (보캐브스캔)</small></div>
       <div><b>100%</b><small>자체 기획·개발·운영</small></div>
     </div>
@@ -308,7 +308,7 @@ h1,h2,h3,.hero h1,.sec-head h2,.about h2,.process h2,.reeltxt h2,.contact h2,.bo
       </article>
       <article>
         <svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><defs><linearGradient id="g-ship" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#3d5afe"/><stop offset=".55" stop-color="#a855f7"/><stop offset="1" stop-color="#ff7a59"/></linearGradient></defs><rect width="48" height="48" rx="13" fill="url(#g-ship)"/><g fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M24 10 c5 4 7 9 7 15 l-3 6 h-8 l-3 -6 c0 -6 2 -11 7 -15z"/><circle cx="24" cy="21" r="2.6"/><path d="M17 25 l-4 5 4 2 M31 25 l4 5 -4 2"/><path d="M22 35 l2 4 2 -4"/></g></svg><em>03 · SHIP</em><h3>내보내고, 끝까지 운영합니다</h3>
-        <p>만들고 끝나는 프로젝트는 없습니다. 14개의 서비스가 지금도 웹, PWA, Google Play에서 실제 사용자를 만나고 있고, SSSOFT는 그 서비스들을 직접 운영하며 계속 키워 갑니다.</p>
+        <p>만들고 끝나는 프로젝트는 없습니다. <span id="aboutApps">14</span>개의 서비스가 지금도 웹, PWA, Google Play에서 실제 사용자를 만나고 있고, SSSOFT는 그 서비스들을 직접 운영하며 계속 키워 갑니다.</p>
         <small>웹 · PWA · Google Play · 실시간 운영</small>
       </article>
     </div>
@@ -423,6 +423,12 @@ function fitText(root){
   });
 }
 render("all");
+// 상단 숫자: 서비스 수와 기능 수(카드의 "전체 기능 N가지"와 같은 방식, 10 단위 내림 +)를 data.js에서 센다.
+(function(){
+  const feats = P.reduce((t,p) => t + (p.stages ? p.stages.reduce((n,s)=>n+s.items.length,0) : (p.flagship||p.features||[]).length), 0);
+  document.getElementById("statApps").textContent = document.getElementById("aboutApps").textContent = P.length;
+  document.getElementById("statFeats").textContent = Math.floor(feats/10)*10 + "+";
+})();
 // 대표작: 다정 리딩북의 첫 번째 영상(뮤직비디오)을 메인에서 바로 재생한다.
 const featured = document.getElementById("featured");
 function renderFeatured(){
