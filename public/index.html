@@ -4,12 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>SSSOFT — 앱·웹 서비스 개발 스튜디오</title>
-<meta name="description" content="SSSOFT는 아이디어를 매일 쓰이는 서비스로 만드는 소프트웨어 스튜디오입니다. 캠프마스터, STARFARER, 다락방 기도앱, 교구 레크리에이션, 다정 리딩북, 케미몰, 보캐브스캔, 워드드롭, 부부 노후자금 시뮬레이터, 중심잡기, 큐티레이스, 열왕기 — 두 왕국의 연대기를 직접 기획·개발해 운영합니다. 앱·웹 개발 의뢰: sssoft1004@gmail.com">
+<meta name="description" content="SSSOFT는 아이디어를 매일 쓰이는 서비스로 만드는 소프트웨어 스튜디오입니다. 캠프마스터, STARFARER, 다락방 기도앱, 교구 레크리에이션, 다정 리딩북, 케미몰, 보캐브스캔, 워드드롭, 부부 노후자금 시뮬레이터, 중심잡기, 큐티레이스, 열왕기 — 두 왕국의 연대기, 그 길 — 예수의 발자취, 비전 퀘스트를 직접 기획·개발해 운영합니다. 앱·웹 개발 의뢰: sssoft1004@gmail.com">
 <link rel="canonical" href="https://sssoft-idea.web.app/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="SSSOFT">
 <meta property="og:title" content="SSSOFT — 기발한 아이디어를, 매일 쓰이는 서비스로.">
-<meta property="og:description" content="SSSOFT는 아이디어를 매일 쓰이는 서비스로 만드는 소프트웨어 스튜디오입니다. 캠프마스터, STARFARER, 다락방 기도앱, 교구 레크리에이션, 다정 리딩북, 케미몰, 보캐브스캔, 워드드롭, 부부 노후자금 시뮬레이터, 중심잡기, 큐티레이스, 열왕기 — 두 왕국의 연대기를 직접 기획·개발해 운영합니다. 앱·웹 개발 의뢰: sssoft1004@gmail.com">
+<meta property="og:description" content="SSSOFT는 아이디어를 매일 쓰이는 서비스로 만드는 소프트웨어 스튜디오입니다. 캠프마스터, STARFARER, 다락방 기도앱, 교구 레크리에이션, 다정 리딩북, 케미몰, 보캐브스캔, 워드드롭, 부부 노후자금 시뮬레이터, 중심잡기, 큐티레이스, 열왕기 — 두 왕국의 연대기, 그 길 — 예수의 발자취, 비전 퀘스트를 직접 기획·개발해 운영합니다. 앱·웹 개발 의뢰: sssoft1004@gmail.com">
 <meta property="og:url" content="https://sssoft-idea.web.app/">
 <meta property="og:image" content="https://sssoft-idea.web.app/og-image.png">
 <meta property="og:image:width" content="1200">
@@ -187,6 +187,10 @@ dialog::backdrop{background:rgba(8,9,14,.62);backdrop-filter:blur(4px)}
 .gal figcaption{font-size:13px;color:var(--muted);margin-top:6px;text-align:center}
 @media (max-width:820px){.gal{grid-template-columns:repeat(2,1fr)}.gal.wide,.gal.tall{grid-template-columns:1fr}}
 .demo{display:inline-block;margin:-4px 0 14px;font-size:14px;font-weight:700;color:#fff;background:var(--c);padding:7px 14px;border-radius:999px;text-decoration:none;align-self:flex-start}
+.demo.share{cursor:pointer}
+.btn.share{border:0;cursor:pointer;font:inherit;font-weight:700}
+#shareMsg{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);z-index:100;background:#15161a;color:#fff;font-size:14px;font-weight:700;padding:10px 18px;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.3);opacity:0;transition:opacity .2s;pointer-events:none;max-width:calc(100% - 32px);text-align:center}
+#shareMsg.on{opacity:1}
 .sup{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 14px}
 .sup span{font-size:13px;font-weight:700;color:var(--c);border:1.5px solid var(--c);border-radius:999px;padding:2px 10px}
 .nums{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:30px}
@@ -263,8 +267,8 @@ h1,h2,h3,.hero h1,.sec-head h2,.about h2,.process h2,.reeltxt h2,.contact h2,.bo
     <p>SSSOFT는 현장의 불편을 직접 겪고 해결하는 소프트웨어 스튜디오입니다. 수련회 운영부터 우주 MMO, AI 오디오북까지 모든 서비스를 직접 기획하고 개발해 실제로 운영하고 있습니다.</p>
     <div class="marquee" id="quick"></div>
     <div class="stats">
-      <div><b>12</b><small>출시·운영 중인 서비스</small></div>
-      <div><b>380+</b><small>서비스에 담긴 기능</small></div>
+      <div><b>14</b><small>출시·운영 중인 서비스</small></div>
+      <div><b>440+</b><small>서비스에 담긴 기능</small></div>
       <div><b>17+</b><small>지원 언어 (보캐브스캔)</small></div>
       <div><b>100%</b><small>자체 기획·개발·운영</small></div>
     </div>
@@ -304,7 +308,7 @@ h1,h2,h3,.hero h1,.sec-head h2,.about h2,.process h2,.reeltxt h2,.contact h2,.bo
       </article>
       <article>
         <svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><defs><linearGradient id="g-ship" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#3d5afe"/><stop offset=".55" stop-color="#a855f7"/><stop offset="1" stop-color="#ff7a59"/></linearGradient></defs><rect width="48" height="48" rx="13" fill="url(#g-ship)"/><g fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M24 10 c5 4 7 9 7 15 l-3 6 h-8 l-3 -6 c0 -6 2 -11 7 -15z"/><circle cx="24" cy="21" r="2.6"/><path d="M17 25 l-4 5 4 2 M31 25 l4 5 -4 2"/><path d="M22 35 l2 4 2 -4"/></g></svg><em>03 · SHIP</em><h3>내보내고, 끝까지 운영합니다</h3>
-        <p>만들고 끝나는 프로젝트는 없습니다. 12개의 서비스가 지금도 웹, PWA, Google Play에서 실제 사용자를 만나고 있고, SSSOFT는 그 서비스들을 직접 운영하며 계속 키워 갑니다.</p>
+        <p>만들고 끝나는 프로젝트는 없습니다. 14개의 서비스가 지금도 웹, PWA, Google Play에서 실제 사용자를 만나고 있고, SSSOFT는 그 서비스들을 직접 운영하며 계속 키워 갑니다.</p>
         <small>웹 · PWA · Google Play · 실시간 운영</small>
       </article>
     </div>
@@ -350,9 +354,9 @@ h1,h2,h3,.hero h1,.sec-head h2,.about h2,.process h2,.reeltxt h2,.contact h2,.bo
 </div>
 <section class="wrap reelsec" id="reel">
   <div class="reeltxt">
-    <div class="eyebrow">SSSOFT in 26 seconds</div>
-    <h2>26초 만에 보는 SSSOFT</h2>
-    <p>캠프마스터부터 STARFARER, 노후자금 시뮬레이터까지. 아이디어가 서비스가 되는 순간들을 짧게 모았습니다. 배경음악은 STARFARER 메인 테마 〈Terminal Velocity〉입니다.</p>
+    <div class="eyebrow">SSSOFT in 32 seconds</div>
+    <h2>32초 만에 보는 SSSOFT</h2>
+    <p>캠프마스터부터 STARFARER, 다정 리딩북, 그 길, 비전 퀘스트까지. 아이디어가 서비스가 되는 순간들을 짧게 모았습니다. 배경음악은 STARFARER 메인 테마 〈Terminal Velocity〉입니다.</p>
     <a class="btn" href="sssoft-reel-720.mp4" download>⬇ 영상 내려받기</a>
   </div>
   <div class="reelbox"><video src="sssoft-reel-720.mp4" poster="sssoft-reel-poster.jpg" controls playsinline preload="none" loop></video></div>
@@ -406,7 +410,7 @@ function render(f){
       <div class="tl">${esc(p.tagline)}</div>
       ${p.supports?`<div class="sup">${p.supports.map(x=>`<span>✓ ${esc(x)}</span>`).join("")}</div>`:""}
       <ul class="mini">${(p.flagship||p.features).slice(0,4).map(f=>`<li${f.hot?' class="hot"':""}>${esc(f.title)}${f.plus?` <span class="plus">${esc(f.plus)}</span>`:""}</li>`).join("")}</ul>
-      ${p.demo?`<a class="demo" href="${p.demo}" target="_blank" rel="noopener" onclick="event.stopPropagation()">▶ 샘플 페이지 바로가기</a>`:""}<span class="more">${p.stages?`전체 기능 ${p.stages.reduce((n,s)=>n+s.items.length,0)}가지 자세히 보기 →`:`자세히 보기 →`}</span>
+      ${p.demo?`<a class="demo" href="${p.demo}" target="_blank" rel="noopener" onclick="event.stopPropagation()">▶ 샘플 페이지 바로가기</a>`:""}${p.share?`<span class="demo share" role="button" tabindex="0" data-share="${p.id}">앱 공유하기</span>`:""}<span class="more">${p.stages?`전체 기능 ${p.stages.reduce((n,s)=>n+s.items.length,0)}가지 자세히 보기 →`:`자세히 보기 →`}</span>
     </div>
   </button>`).join("");
 }
@@ -484,6 +488,7 @@ function open(id){
        <p class="ov">${esc(p.overview)}</p>
        ${p.url?`<a class="btn" style="background:${p.color}" href="${p.url}" target="_blank" rel="noopener">${p.play?"웹에서 열기 →":"서비스 바로가기 →"}</a>`:""}
        ${p.demo?`<a class="btn play" href="${p.demo}" target="_blank" rel="noopener">▶ 샘플 페이지 바로가기</a>`:""}
+       ${p.share?`<button class="btn play share" type="button" data-share="${p.id}">앱 공유하기</button>`:""}
        ${p.play?`<a class="btn play" href="${p.play}" target="_blank" rel="noopener">▶ Google Play에서 받기</a>`:""}
      </div>
      <div class="dshot">${p.frame==="browser"?`<div class="phone"><img src="shots/${p.shot}-m.png" alt="${esc(p.title)} 모바일 화면" onerror="this.parentNode.remove()"></div>`:visual(p,true)}</div>
@@ -512,8 +517,33 @@ function open(id){
   dlg.showModal(); sheet.scrollTop = 0; fitText(sheet);
 }
 document.addEventListener("click", e => {
+  const s = e.target.closest("[data-share]"); if (s) { e.stopPropagation(); shareApp(s.dataset.share); return; }
   const t = e.target.closest("[data-id]"); if (t) open(t.dataset.id);
 });
+document.addEventListener("keydown", e => {
+  const s = e.target.closest && e.target.closest("span[data-share]");
+  if (s && (e.key==="Enter"||e.key===" ")) { e.preventDefault(); e.stopPropagation(); shareApp(s.dataset.share); }
+}, true);
+// 앱 공유하기: 휴대폰은 공유 창(카톡·문자 등)을 열고, 공유 창이 없는 PC는 앱 주소를 복사한다.
+async function shareApp(id){
+  const p = P.find(x=>x.id===id); if(!p||!p.url) return;
+  if (navigator.share) {
+    try { await navigator.share({ title: p.title, text: p.tagline, url: p.url }); return; }
+    catch(e){ if (e && e.name==="AbortError") return; }
+  }
+  let ok=false;
+  try { await navigator.clipboard.writeText(p.url); ok=true; }
+  catch(e){
+    const t=document.createElement("textarea"); t.value=p.url; t.setAttribute("readonly",""); t.style.position="fixed"; t.style.opacity="0";
+    document.body.appendChild(t); t.select(); try{ok=document.execCommand("copy");}catch(_){} t.remove();
+  }
+  let m=document.getElementById("shareMsg");
+  if(!m){ m=document.createElement("div"); m.id="shareMsg"; m.setAttribute("role","status"); document.body.appendChild(m); }
+  // 상세 창(모달)이 열려 있으면 그 위에 보이게 모달 안으로 옮긴다
+  (dlg.open?dlg:document.body).appendChild(m);
+  m.textContent = ok ? `${p.title} 주소를 복사했어요. 카톡이나 문자에 붙여 넣어 공유해 주세요.` : `이 주소를 공유해 주세요: ${p.url}`;
+  m.classList.add("on"); clearTimeout(m._t); m._t=setTimeout(()=>m.classList.remove("on"), 2600);
+}
 dlg.addEventListener("click", e => { if (e.target===dlg) dlg.close(); });
 dlg.addEventListener("close", () => { sheet.innerHTML = ""; });
 // 미리보기 사진: 새 창 대신 모달로 크게 보여준다. 아무 곳이나 누르거나 Esc로 닫는다.

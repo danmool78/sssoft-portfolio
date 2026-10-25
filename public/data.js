@@ -1284,6 +1284,7 @@ window.PROJECTS=[
  },
  {
   "id": "readingbook",
+  "share": true,
   "title": "다정 리딩북",
   "en": "DAJEONG READING BOOK",
   "cat": "ai",
@@ -3046,6 +3047,7 @@ window.PROJECTS=[
  },
  {
   "id": "kings",
+  "share": true,
   "title": "열왕기 — 두 왕국의 연대기",
   "en": "KINGS CHRONICLE",
   "cat": "church",
@@ -3286,6 +3288,7 @@ window.PROJECTS=[
  },
  {
   "id": "theway",
+  "share": true,
   "title": "그 길 — 예수의 발자취",
   "en": "THE WAY",
   "cat": "church",

@@ -1,6 +1,6 @@
 // public/sitemap.xml 생성.
 // - lastmod: 각 페이지(와 그 페이지에 쓰이는 파일)의 마지막 커밋 날짜. 커밋 안 된 변경이 있으면 오늘 날짜.
-// - 홈: 카드에 보이는 앱 화면 이미지(data.js 기준)·공유 이미지, 26초 릴스 영상.
+// - 홈: 카드에 보이는 앱 화면 이미지(data.js 기준)·공유 이미지, 32초 릴스 영상.
 // 사용: npm run sitemap
 const fs = require("fs");
 const path = require("path");
@@ -46,9 +46,9 @@ const pages = [
     video: {
       thumb: "sssoft-reel-poster.jpg",
       content: "sssoft-reel-720.mp4",
-      title: "26초 만에 보는 SSSOFT",
-      desc: "캠프마스터부터 STARFARER, 노후자금 시뮬레이터까지. 아이디어가 서비스가 되는 순간들을 짧게 모은 SSSOFT 소개 영상입니다.",
-      duration: 26,
+      title: "32초 만에 보는 SSSOFT",
+      desc: "캠프마스터부터 STARFARER, 다정 리딩북, 그 길, 비전 퀘스트까지. 아이디어가 서비스가 되는 순간들을 짧게 모은 SSSOFT 소개 영상입니다.",
+      duration: 32,
     },
   },
   { loc: SITE + "contract.html", lastmod: lastmod(["public/contract.html"]) },

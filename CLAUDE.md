@@ -20,7 +20,7 @@ public/            ← 배포되는 사이트. 이 폴더가 원본이다 (루�
   sssoft-reel-720.mp4, sssoft-reel-poster.jpg  사이트용 릴스
   sitemap.xml      scripts/sitemap.cjs가 만든다 (직접 고치지 않는다)
 scripts/sitemap.cjs  sitemap.xml 생성: 페이지별 lastmod(git 커밋 날짜), 홈 카드 이미지, 릴스 영상
-reel/              홍보 릴스(26초, 1080×1920) 원본
+reel/              홍보 릴스(32초, 1080×1920) 원본
   reel.html        프레임 단위 애니메이션 (window.render(t))
   render.cjs       reel.html → sssoft-reel-nomusic.mp4
   mux.cjs          메인곡 입히기 + 사이트용 720p·포스터 생성
@@ -40,7 +40,7 @@ firebase deploy --only hosting
 
 ## 앱 데이터(data.js) 규칙
 
-각 프로젝트 필드: `id, title, en, cat(church|ai|game|biz|life), tag, color, url, play?, demo?,
+각 프로젝트 필드: `id, title, en, cat(church|ai|game|biz|life), tag, color, url, play?, demo?, share?(true면 카드·상세에 "앱 공유하기" 버튼: 휴대폰은 공유 창, PC는 url 복사),
 shot, frame(phone|browser|svg), tagline, overview, flagship[], stages[{stage,summary,items[]}],
 roles[], rolesTitle?, numbers[{value,label}], gallery?[{src,cap}], galleryWide?, supports?, audience, tech[],
 scene?{src,cap,card?}, video?(.mp4면 세로 영상 플레이어), videoPoster?, videoLabel?,
