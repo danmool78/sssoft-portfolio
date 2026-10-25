@@ -142,6 +142,12 @@ footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-s
 /* detail */
 dialog{border:none;padding:0;background:transparent;max-width:min(1040px,calc(100vw - 32px));width:100%;max-height:calc(100vh - 40px);margin:auto;color:var(--text)}
 dialog::backdrop{background:rgba(8,9,14,.62);backdrop-filter:blur(4px)}
+#imgv{max-width:calc(100vw - 32px);max-height:calc(100vh - 32px);width:auto;overflow:visible;cursor:zoom-out}
+#imgv::backdrop{background:rgba(8,9,14,.88)}
+#imgv img{display:block;max-width:calc(100vw - 32px);max-height:calc(100vh - 90px);border-radius:12px;margin:0 auto;background:var(--sunk)}
+#imgv figcaption{color:#e8e9ef;font-size:14px;text-align:center;margin-top:10px;word-break:keep-all}
+#imgv .x{position:fixed;top:14px;right:14px;width:42px;height:42px;border-radius:50%;border:none;background:rgba(255,255,255,.16);color:#fff;font-size:26px;line-height:1;cursor:pointer}
+.gal a{cursor:zoom-in}
 .sheet{background:var(--surface);border-radius:24px;overflow:auto;max-height:calc(100vh - 40px);position:relative}
 .x{position:sticky;top:14px;float:right;margin:14px 14px 0 0;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--text);font-size:20px;cursor:pointer;z-index:3}
 .dhead{display:grid;grid-template-columns:1fr 300px;gap:32px;padding:40px 44px 32px;background:linear-gradient(160deg,color-mix(in srgb,var(--c) 16%,var(--surface)),var(--surface) 70%)}
@@ -347,6 +353,7 @@ h1,h2,h3,.hero h1,.sec-head h2,.about h2,.process h2,.reeltxt h2,.contact h2,.bo
 <div class="wrap biz"><span>상호 에스에스소프트(SSSOFT)</span><span>대표 김성수</span><span>사업자등록번호 772-01-03846</span><span>전화 <a href="tel:042-670-7577">042-670-7577</a></span><span>이메일 <a href="mailto:sssoft1004@gmail.com">sssoft1004@gmail.com</a></span></div></footer>
 
 <dialog id="dlg"><div class="sheet" id="sheet"></div></dialog>
+<dialog id="imgv" aria-label="사진 크게 보기"><button class="x" aria-label="닫기">×</button><figure><img alt=""><figcaption></figcaption></figure></dialog>
 
 <script src="data.js"></script>
 <script>
@@ -485,6 +492,18 @@ document.addEventListener("click", e => {
 });
 dlg.addEventListener("click", e => { if (e.target===dlg) dlg.close(); });
 dlg.addEventListener("close", () => { sheet.innerHTML = ""; });
+// 미리보기 사진: 새 창 대신 모달로 크게 보여준다. 아무 곳이나 누르거나 Esc로 닫는다.
+const imgv = document.getElementById("imgv"), imgvImg = imgv.querySelector("img"), imgvCap = imgv.querySelector("figcaption");
+sheet.addEventListener("click", e => {
+  const a = e.target.closest(".gal a"); if (!a) return;
+  e.preventDefault();
+  const img = a.querySelector("img"), cap = a.parentNode.querySelector("figcaption");
+  imgvImg.src = a.getAttribute("href"); imgvImg.alt = img ? img.alt : "";
+  imgvCap.textContent = cap ? cap.textContent : ""; imgvCap.hidden = !cap;
+  imgv.showModal();
+});
+imgv.addEventListener("click", () => imgv.close());
+imgv.addEventListener("close", () => { imgvImg.removeAttribute("src"); });
 
 // 카톡으로 던지기: 오픈채팅방 링크를 넣으면 버튼이 나타난다.
 (function(){

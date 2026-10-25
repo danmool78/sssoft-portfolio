@@ -4,7 +4,7 @@
         xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
   <url>
     <loc>https://sssoft-idea.web.app/</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-10-25</lastmod>
     <image:image><image:loc>https://sssoft-idea.web.app/og-image.png</image:loc></image:image>
     <image:image><image:loc>https://sssoft-idea.web.app/shots/campmaster-m.png</image:loc></image:image>
     <image:image><image:loc>https://sssoft-idea.web.app/shots/starfarer-d.png</image:loc></image:image>
@@ -17,6 +17,8 @@
     <image:image><image:loc>https://sssoft-idea.web.app/shots/retire-d.png</image:loc></image:image>
     <image:image><image:loc>https://sssoft-idea.web.app/shots/balance-m.png</image:loc></image:image>
     <image:image><image:loc>https://sssoft-idea.web.app/shots/kings-d.png</image:loc></image:image>
+    <image:image><image:loc>https://sssoft-idea.web.app/shots/theway-d.png</image:loc></image:image>
+    <image:image><image:loc>https://sssoft-idea.web.app/shots/visionquest-m.png</image:loc></image:image>
     <video:video>
       <video:thumbnail_loc>https://sssoft-idea.web.app/sssoft-reel-poster.jpg</video:thumbnail_loc>
       <video:title>26초 만에 보는 SSSOFT</video:title>
