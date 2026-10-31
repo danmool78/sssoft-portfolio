@@ -52,7 +52,9 @@ videos?[{src,poster?,label,wide?}](영상이 여럿일 때 video 대신, 적은 
 순서: 캠프마스터, STARFARER, 다락방 기도앱, 교구 레크리에이션, 다정 리딩북, 케미몰(독립몰), 보캐브스캔, 워드드롭,
 노후자금 시뮬레이터, 중심잡기, 큐티레이스, 열왕기 — 두 왕국의 연대기, 그 길 — 예수의 발자취, 비전 퀘스트.
 (그 길 = the-way-jesus.web.app 저장소, 비전 퀘스트 = team-esc 저장소. 화면은 실제 사이트를 Playwright로 캡처한다.
-비전 퀘스트는 https://team-esc.web.app/?demo 로 로그인 없이 가짜 참가자 화면을 볼 수 있다)
+비전 퀘스트는 https://team-esc.web.app/?demo 로 로그인 없이 가짜 참가자 화면을 볼 수 있다.
+비전 퀘스트 '실전 기록'은 2026-10-31 전주 한옥마을 게임 Q9A54의 실제 자료(`firebase database:get /games/Q9A54 --project team-esc`)에서 센 숫자다.
+참가자 사진은 쓰지 않고 그림으로 다시 그렸다: shots/visionquest-scene.jpg, gallery/visionquest-jeonju.jpg)
 
 ## 글쓰기 원칙 (사용자 피드백)
 
