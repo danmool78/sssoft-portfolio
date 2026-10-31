@@ -51,6 +51,17 @@ const pages = [
       duration: 32,
     },
   },
+  // 앱 소개 페이지(scripts/apps.cjs가 만든 public/apps/{id}/): 그 페이지에 나오는 화면·장면·미리보기 이미지
+  ...P.map(p => ({
+    loc: `${SITE}apps/${p.id}/`,
+    lastmod: lastmod([`public/apps/${p.id}`]),
+    images: [
+      p.frame !== "svg" && `shots/${p.shot}-${p.frame === "phone" ? "m" : "d"}.png`,
+      p.frame === "browser" && `shots/${p.shot}-m.png`,
+      p.scene && p.scene.src,
+      ...(p.gallery || []).map(g => g.src),
+    ].filter(s => s && !/^https?:/.test(s) && exists(s)),
+  })),
   { loc: SITE + "contract.html", lastmod: lastmod(["public/contract.html"]) },
   { loc: SITE + "maintenance.html", lastmod: lastmod(["public/maintenance.html"]) },
 ];

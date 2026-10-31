@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>캠프마스터 — 캠프·행사 운영 플랫폼 | SSSOFT</title>
+<meta name="description" content="타이핑 없는 등록부터 자동 편성, 명찰 QR 현장 관리, 자동 카풀, 접는 명찰, 정산까지. 캠프의 모든 흐름을 한 시스템에서 처리해 운영진은 캠프에만 집중합니다. 캠프마스터는 교회 수련회는 물론 학교 수련회·체험학습, 회사 워크숍·연수까지 단체 캠프 운영에 필요한 일을…">
+<link rel="canonical" href="https://sssoft-idea.web.app/apps/campmaster/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="SSSOFT">
+<meta property="og:title" content="캠프마스터 — 타이핑 없는 등록부터 자동 편성, 명찰 QR 현장 관리, 자동 카풀, 접는 명찰, 정산까지. 캠프의 모든 흐름을 한 시스템에서 처리해 운영진은 캠프에만 집중합니다.">
+<meta property="og:description" content="타이핑 없는 등록부터 자동 편성, 명찰 QR 현장 관리, 자동 카풀, 접는 명찰, 정산까지. 캠프의 모든 흐름을 한 시스템에서 처리해 운영진은 캠프에만 집중합니다. 캠프마스터는 교회 수련회는 물론 학교 수련회·체험학습, 회사 워크숍·연수까지 단체 캠프 운영에 필요한 일을…">
+<meta property="og:url" content="https://sssoft-idea.web.app/apps/campmaster/">
+<meta property="og:image" content="https://sssoft-idea.web.app/shots/campmaster-m.png">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"SoftwareApplication","@id":"https://sssoft-idea.web.app/apps/campmaster/#app","name":"캠프마스터","alternateName":"CAMP MASTER","description":"캠프마스터는 교회 수련회는 물론 학교 수련회·체험학습, 회사 워크숍·연수까지 단체 캠프 운영에 필요한 일을 처음부터 끝까지 하나로 묶은 운영 플랫폼입니다. 참가자 직접 등록, 요청사항을 반영한 조·방·버스 자동 편성, 접는 양면 명찰 자동 출력, 명찰 QR 하나로 하는 입실·퇴실·버스 탑승·상벌점·방키 관리, 점호, 의무·방키·물품, 게임 점수판, 회계 정산까지 모두 들어 있습니다. 참가자 호칭과 소속 단위(부·학년·반, 부서·팀, 마을·구역 등)를 조직에 맞게 바꿀 수 있어 어떤 단체든 같은 방식으로 운영할 수 있습니다. 담당자는 각자 맡은 운영 도구 앱만 링크로 받아 쓰고, 운영진은 서류와 연락 대신 캠프 자체에 집중합니다.","url":"https://srn-camp-master.web.app","image":"https://sssoft-idea.web.app/shots/campmaster-m.png","applicationCategory":"LifestyleApplication","operatingSystem":"Web","inLanguage":"ko","author":{"@id":"https://sssoft-idea.web.app/#org"},"publisher":{"@id":"https://sssoft-idea.web.app/#org"}},{"@type":"WebPage","@id":"https://sssoft-idea.web.app/apps/campmaster/","url":"https://sssoft-idea.web.app/apps/campmaster/","name":"캠프마스터 — 캠프·행사 운영 플랫폼","description":"타이핑 없는 등록부터 자동 편성, 명찰 QR 현장 관리, 자동 카풀, 접는 명찰, 정산까지. 캠프의 모든 흐름을 한 시스템에서 처리해 운영진은 캠프에만 집중합니다. 캠프마스터는 교회 수련회는 물론 학교 수련회·체험학습, 회사 워크숍·연수까지 단체 캠프 운영에 필요한 일을…","inLanguage":"ko","isPartOf":{"@id":"https://sssoft-idea.web.app/#site"},"about":{"@id":"https://sssoft-idea.web.app/apps/campmaster/#app"},"primaryImageOfPage":"https://sssoft-idea.web.app/shots/campmaster-m.png","breadcrumb":{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"SSSOFT","item":"https://sssoft-idea.web.app/"},{"@type":"ListItem","position":2,"name":"프로젝트","item":"https://sssoft-idea.web.app/#work"},{"@type":"ListItem","position":3,"name":"캠프마스터","item":"https://sssoft-idea.web.app/apps/campmaster/"}]}},{"@type":"Organization","@id":"https://sssoft-idea.web.app/#org","name":"SSSOFT","url":"https://sssoft-idea.web.app/","logo":"https://sssoft-idea.web.app/logo-mark.svg","email":"sssoft1004@gmail.com"}]}</script>
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/logo-mark.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f5f4ef;--surface:#fff;--sunk:#ecebe5;--text:#15161a;--muted:#5d6068;--line:#e1dfd7;--accent:#3d5afe;--green:#16a34a;--shadow:0 20px 50px rgba(20,20,40,.10)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d0e12;--surface:#16181e;--sunk:#1d2028;--text:#eceef3;--muted:#9a9eaa;--line:#272a33;--accent:#8c9eff;--green:#4ade80;--shadow:0 20px 50px rgba(0,0,0,.45)}}
+:root[data-theme="dark"]{--bg:#0d0e12;--surface:#16181e;--sunk:#1d2028;--text:#eceef3;--muted:#9a9eaa;--line:#272a33;--accent:#8c9eff;--green:#4ade80;--shadow:0 20px 50px rgba(0,0,0,.45)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:"Noto Sans KR",system-ui,sans-serif;line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+header.top{display:flex;justify-content:space-between;align-items:center;padding:22px 0}
+.logo{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:22px;letter-spacing:.05em;text-decoration:none}
+.logo{display:flex;align-items:center;gap:10px}
+.logo img{display:block;border-radius:9px}
+.logo .lw b{background:linear-gradient(90deg,#3d5afe,#a855f7 50%,#ff7a59);-webkit-background-clip:text;background-clip:text;color:transparent}
+nav a{margin-left:22px;text-decoration:none;color:var(--muted);font-size:15px}
+nav a:hover{color:var(--text)}
+.eyebrow{font-family:"Space Grotesk",sans-serif;color:var(--accent);font-weight:700;letter-spacing:.14em;font-size:13px;text-transform:uppercase}
+.hero{padding:80px 0 64px}
+.hero h1{font-size:clamp(36px,6.4vw,72px);line-height:1.12;font-weight:900;margin:16px 0 22px;letter-spacing:-.025em}
+.hero h1 em{font-style:normal;background:linear-gradient(90deg,#3d5afe,#a855f7 50%,#ff7a59);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:var(--muted);font-size:18px;max-width:52ch}
+.marquee{display:flex;gap:10px;flex-wrap:wrap;margin-top:34px}
+.marquee button{font:inherit;font-size:14px;font-weight:500;border:1px solid var(--line);background:var(--surface);color:var(--text);padding:8px 14px;border-radius:999px;cursor:pointer;display:flex;align-items:center;gap:8px}
+.marquee button i{width:8px;height:8px;border-radius:50%;display:inline-block}
+.marquee button:hover{border-color:var(--text)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden;margin-top:56px}
+.stats div{background:var(--surface);padding:22px 24px}
+.stats b{display:block;font-family:"Space Grotesk",sans-serif;font-size:34px;line-height:1.1}
+.stats small{color:var(--muted);font-size:14px}
+section{padding:72px 0}
+.sec-head{display:flex;justify-content:space-between;align-items:end;gap:16px;margin-bottom:32px;flex-wrap:wrap}
+.sec-head h2{font-size:32px;font-weight:900;letter-spacing:-.01em}
+.filters button{font:inherit;font-size:14px;border:1px solid var(--line);background:var(--surface);color:var(--muted);padding:6px 14px;border-radius:999px;cursor:pointer;margin-left:6px}
+.filters button.on{background:var(--text);color:var(--bg);border-color:var(--text)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:26px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;cursor:pointer;transition:transform .25s,box-shadow .25s;text-align:left;font:inherit;color:inherit}
+.card:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+.card:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.stage{height:260px;position:relative;overflow:hidden;display:flex;justify-content:center;align-items:flex-start;padding-top:28px}
+.stage .tag{position:absolute;top:14px;left:14px;font-size:12px;font-weight:700;background:rgba(255,255,255,.92);color:#15161a;padding:3px 10px;border-radius:999px;z-index:2}
+.phone{width:150px;border-radius:24px;border:6px solid #111;background:#111;overflow:hidden;box-shadow:0 18px 40px rgba(0,0,0,.35);transform:rotate(-4deg) translateY(6px);transition:transform .35s}
+.phone img{display:block;width:100%}
+.card:hover .phone{transform:rotate(0) translateY(-4px)}
+.browser{width:86%;border-radius:10px;overflow:hidden;background:#222;box-shadow:0 18px 40px rgba(0,0,0,.35);transition:transform .35s}
+.browser::before{content:"";display:block;height:14px;background:#2b2d33 radial-gradient(circle at 10px 7px,#ff5f57 3px,transparent 3.5px),#2b2d33}
+.browser img{display:block;width:100%}
+.card:hover .browser{transform:translateY(-6px)}
+.stage svg{width:88%;height:auto}
+.stage.scn{justify-content:flex-end;padding-right:26px}
+.scene{margin:0 0 34px}
+.scene img{display:block;width:100%;border-radius:16px;border:1px solid var(--line)}
+.scene figcaption{font-size:13px;color:var(--muted);margin-top:8px;text-align:center}
+.body{padding:22px 24px 24px;display:flex;flex-direction:column;flex:1}
+.en{font-family:"Space Grotesk",sans-serif;font-size:12px;letter-spacing:.12em;color:var(--muted)}
+.body h3{font-size:23px;font-weight:900;margin:2px 0 6px}
+.tl{font-size:15px;color:var(--text);margin-bottom:14px}
+.mini{list-style:none;font-size:14px;color:var(--muted);margin-bottom:18px}
+.mini li{padding:4px 0 4px 20px;position:relative}
+.mini li::before{content:"✦";position:absolute;left:0;color:var(--c)}
+.mini li.hot{color:var(--text);font-weight:700}
+.plus{color:var(--green);font-weight:700;white-space:nowrap}
+.more{margin-top:auto;font-weight:700;font-size:14px;color:var(--c)}
+.about2{border-top:1px solid var(--line)}
+.sss{font-family:"Space Grotesk","Noto Sans KR",sans-serif;font-size:clamp(34px,6vw,64px);font-weight:700;letter-spacing:-.02em;margin:12px 0 18px;line-height:1.1}
+.sss span{background:linear-gradient(90deg,#3d5afe,#a855f7 50%,#ff7a59);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead2{color:var(--muted);font-size:17px;max-width:60ch;margin-bottom:34px}
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:48px}
+.trio article{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:26px 26px 22px;display:flex;flex-direction:column}
+.trio .ic{width:44px;height:44px;display:block}
+.trio em{font-style:normal;font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:13px;letter-spacing:.14em;color:var(--accent);margin-top:10px}
+.trio h3{font-size:21px;font-weight:900;margin:4px 0 10px}
+.trio p{color:var(--muted);font-size:15px;flex:1}
+.trio small{margin-top:14px;font-size:13px;color:var(--text);border-top:1px dashed var(--line);padding-top:10px}
+.tagline2{font-family:"Space Grotesk",sans-serif;font-size:30px;font-weight:700;margin-bottom:12px}
+.foot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.foot b{color:var(--text)}
+.biz{margin-top:14px;font-size:13px;line-height:1.9;display:flex;flex-wrap:wrap;column-gap:16px}
+.biz span{white-space:nowrap}
+.biz span+span::before{content:"|";margin-right:16px;opacity:.4}
+@media (max-width:820px){.biz{display:grid;column-gap:0}.biz span+span::before{content:none}}
+.biz a{color:inherit;text-decoration:none}
+.applinks{margin-top:14px;font-size:13px;line-height:1.9;display:flex;flex-wrap:wrap;column-gap:14px}
+.applinks a{color:inherit;text-decoration:none}
+.applinks a:hover{color:var(--text);text-decoration:underline}
+@media (max-width:820px){.trio{grid-template-columns:1fr}.about2 .about{grid-template-columns:1fr;gap:20px}}
+.about2 .about{display:grid;grid-template-columns:1fr 1.2fr;gap:48px}
+.about h2{font-size:32px;font-weight:900;margin-top:10px;line-height:1.3}
+.about p{color:var(--muted);margin-bottom:14px}
+.svc{list-style:none}
+.svc li{padding:14px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:12px}
+.svc li span{color:var(--muted);font-size:14px;text-align:right}
+.process{border-top:1px solid var(--line)}
+.process h2{font-size:32px;font-weight:900}
+.cbtns{display:flex;gap:8px;flex-wrap:wrap}
+.btn.alt{background:transparent;color:var(--text);border:1px solid var(--line)}
+.steps{list-style:none;counter-reset:s;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.steps li{counter-increment:s;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px 22px}
+.steps li::before{content:counter(s,decimal-leading-zero);font-family:"Space Grotesk",sans-serif;font-weight:700;color:var(--accent);font-size:14px}
+.steps b{display:block;font-size:17px;margin:4px 0 4px}
+.steps span{color:var(--muted);font-size:14.5px}
+@media (max-width:820px){.steps{grid-template-columns:1fr}}
+.featured{display:grid;grid-template-columns:1fr 1.5fr;gap:44px;align-items:center;border-top:1px solid var(--line)}
+.featured h2{font-size:32px;font-weight:900;margin:8px 0 10px}
+.featured .tl{font-size:16px;color:var(--muted);margin-bottom:22px}
+.featured .vid{margin:0;box-shadow:var(--shadow)}
+.featured .cbtns .btn{border:none;cursor:pointer;font:inherit;font-weight:700}
+@media (max-width:820px){.featured{grid-template-columns:1fr;gap:24px}}
+.reelsec{display:grid;grid-template-columns:1fr 360px;gap:48px;align-items:center;padding:72px 24px;border-top:1px solid var(--line)}
+.reeltxt h2{font-size:32px;font-weight:900;margin:8px 0 12px}
+.reeltxt p{color:var(--muted);margin-bottom:22px;max-width:46ch}
+.reelbox video{display:block;width:100%;aspect-ratio:9/16;border-radius:28px;background:#000;box-shadow:var(--shadow)}
+@media (max-width:820px){.reelsec{grid-template-columns:1fr;padding:52px 16px}.reelbox{max-width:340px;margin:0 auto}}
+.contact{background:var(--text);color:var(--bg);border-radius:24px;padding:56px;text-align:center;margin-bottom:72px}
+.contact h2{font-size:30px;font-weight:900;margin-bottom:10px}
+.contact p{opacity:.7;margin-bottom:24px}
+#copyMail{border:0;cursor:pointer;font:inherit;font-weight:700;color:var(--bg)}
+.cta2{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.btn.kakao{background:#fee500;color:#191919}
+.btn[hidden]{display:none}
+.contact .mail-line{margin:16px 0 0;font-size:15px;opacity:.75}
+.contact .mail-line a{color:inherit}
+.contact .copy-msg{margin:10px 0 0;min-height:1.5em;font-weight:700;opacity:1}
+.btn{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;font-weight:700;padding:13px 26px;border-radius:999px}
+footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-size:14px}
+/* detail */
+dialog{border:none;padding:0;background:transparent;max-width:min(1040px,calc(100vw - 32px));width:100%;max-height:calc(100vh - 40px);margin:auto;color:var(--text)}
+dialog::backdrop{background:rgba(8,9,14,.62);backdrop-filter:blur(4px)}
+#imgv{max-width:calc(100vw - 32px);max-height:calc(100vh - 32px);width:auto;overflow:visible;cursor:zoom-out}
+#imgv::backdrop{background:rgba(8,9,14,.88)}
+#imgv img{display:block;max-width:calc(100vw - 32px);max-height:calc(100vh - 90px);border-radius:12px;margin:0 auto;background:var(--sunk)}
+#imgv figcaption{color:#e8e9ef;font-size:14px;text-align:center;margin-top:10px;word-break:keep-all}
+#imgv .x{position:fixed;top:14px;right:14px;width:42px;height:42px;border-radius:50%;border:none;background:rgba(255,255,255,.16);color:#fff;font-size:26px;line-height:1;cursor:pointer}
+.gal a{cursor:zoom-in}
+.sheet{background:var(--surface);border-radius:24px;overflow:auto;max-height:calc(100vh - 40px);position:relative}
+.x{position:sticky;top:14px;float:right;margin:14px 14px 0 0;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--text);font-size:20px;cursor:pointer;z-index:3}
+.dhead{display:grid;grid-template-columns:1fr 300px;gap:32px;padding:40px 44px 32px;background:linear-gradient(160deg,color-mix(in srgb,var(--c) 16%,var(--surface)),var(--surface) 70%)}
+.dhead h2{font-size:clamp(30px,4vw,44px);font-weight:900;line-height:1.15;margin:4px 0 12px}
+.dhead .tl{font-size:18px;font-weight:500}
+.dhead .ov{color:var(--muted);font-size:15.5px;margin:14px 0 22px}
+.dshot{display:flex;justify-content:center;align-items:flex-start}
+.dshot .phone{width:220px;transform:none}
+.dshot .browser{width:100%}
+.dshot svg{width:100%}
+.dbody{padding:32px 44px 44px}
+.dbody h4{font-size:13px;letter-spacing:.12em;color:var(--muted);font-family:"Space Grotesk",sans-serif;margin-bottom:16px}
+.feats{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:34px}
+.feat{background:var(--sunk);border-radius:14px;padding:18px 20px;border-left:4px solid var(--c)}
+.feat b{display:block;font-size:16px;margin-bottom:4px}
+.feat span{color:var(--muted);font-size:14.5px}
+.btn.play{background:#15161a;color:#fff;margin-left:8px;border:1px solid rgba(255,255,255,.2)}
+.stage .tag.gp{left:auto;right:14px;background:#15161a;color:#fff}
+@media (max-width:820px){.btn.play{margin:10px 0 0}}
+.vid{position:relative;aspect-ratio:16/9;border-radius:16px;overflow:hidden;background:#000;margin-bottom:34px}
+.vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid.tall{aspect-ratio:auto;max-width:340px;margin-left:auto;margin-right:auto;background:none}
+.vid.wv{aspect-ratio:auto;background:none}
+.vid video{display:block;width:100%;border-radius:16px;background:#000}
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;margin-bottom:34px;align-items:start}
+.gal.wide{grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
+.gal.tall{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.gal figure{min-width:0}
+.gal figure:only-child{grid-column:1/-1}
+.gal img{display:block;width:100%;border-radius:14px;border:1px solid var(--line);background:var(--sunk)}
+.gal figcaption{font-size:13px;color:var(--muted);margin-top:6px;text-align:center}
+@media (max-width:820px){.gal{grid-template-columns:repeat(2,1fr)}.gal.wide,.gal.tall{grid-template-columns:1fr}}
+.demo{display:inline-block;margin:-4px 0 14px;font-size:14px;font-weight:700;color:#fff;background:var(--c);padding:7px 14px;border-radius:999px;text-decoration:none;align-self:flex-start}
+.demo.share{cursor:pointer}
+.btn.share{border:0;cursor:pointer;font:inherit;font-weight:700}
+#shareMsg{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);z-index:100;background:#15161a;color:#fff;font-size:14px;font-weight:700;padding:10px 18px;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.3);opacity:0;transition:opacity .2s;pointer-events:none;max-width:calc(100% - 32px);text-align:center}
+#shareMsg.on{opacity:1}
+.sup{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 14px}
+.sup span{font-size:13px;font-weight:700;color:var(--c);border:1.5px solid var(--c);border-radius:999px;padding:2px 10px}
+.nums{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:30px}
+.nums div{border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.nums b{display:block;font-family:"Space Grotesk","Noto Sans KR",sans-serif;font-size:28px;color:var(--c);line-height:1.2}
+.nums small{color:var(--muted);font-size:13px}
+.flag{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-bottom:36px}
+.flag div{background:linear-gradient(150deg,color-mix(in srgb,var(--c) 18%,var(--sunk)),var(--sunk));border-radius:16px;padding:22px}
+.flag em{font-style:normal;font-family:"Space Grotesk",sans-serif;font-weight:700;color:var(--c);font-size:14px}
+.flag b{display:block;font-size:18px;margin:4px 0 6px}
+.flag span{color:var(--muted);font-size:14.5px}
+.stages{margin-bottom:36px;border-top:1px solid var(--line)}
+.stg{border-bottom:1px solid var(--line)}
+.stg summary{list-style:none;display:flex;align-items:center;gap:14px;padding:16px 4px;cursor:pointer}
+.stg summary::-webkit-details-marker{display:none}
+.stg summary i{font-style:normal;flex:none;width:32px;height:32px;border-radius:50%;background:var(--c);color:#fff;display:grid;place-items:center;font-weight:700;font-size:14px}
+.stg summary div{flex:1}
+.stg summary b{display:block;font-size:17px}
+.stg summary span{color:var(--muted);font-size:14px}
+.stg summary small{color:var(--muted);font-size:13px;border:1px solid var(--line);border-radius:999px;padding:1px 10px}
+.stg[open] summary small{background:var(--c);color:#fff;border-color:var(--c)}
+.stg .feats{margin:0 0 20px 46px}
+.roles{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-bottom:34px}
+.roles div{border:1px dashed var(--c);border-radius:14px;padding:16px 18px}
+.roles b{display:block;margin-bottom:4px}
+.roles span{color:var(--muted);font-size:14px}
+.meta2{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.meta2 p{color:var(--muted);font-size:15px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips span{font-size:13px;border:1px solid var(--line);padding:4px 10px;border-radius:8px}
+.wide{margin-top:26px}
+.wide .browser{width:100%}
+@media (max-width:820px){
+  .wrap{padding:0 16px}
+  nav a{margin-left:12px;font-size:14px}
+  .hero{padding:48px 0 40px}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  section{padding:52px 0}
+  .grid{grid-template-columns:1fr}
+  .about{grid-template-columns:1fr;gap:20px}
+  .contact{padding:40px 20px}
+  .filters button{margin:0 6px 6px 0}
+  .dhead{grid-template-columns:1fr;padding:56px 22px 24px}
+  .dshot .phone{width:180px}
+  .dbody{padding:24px 22px 32px}
+  .feats,.meta2{grid-template-columns:1fr}
+  .stg .feats{margin-left:0}
+}
+
+/* typography: friendly headings + readable body */
+@font-face{font-family:GmarketSans;font-weight:500;font-display:swap;src:url(https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff) format("woff")}
+@font-face{font-family:GmarketSans;font-weight:700;font-display:swap;src:url(https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff) format("woff")}
+body{font-family:Pretendard,"Noto Sans KR",system-ui,sans-serif}
+body{word-break:keep-all;overflow-wrap:break-word}
+.body h3,.dhead h2{white-space:nowrap}
+.dhead>div{min-width:0}
+h1,h2,h3,.hero h1,.sec-head h2,.about h2,.process h2,.reeltxt h2,.contact h2,.body h3,.dhead h2,.dhead .tl,.flag b,.steps b,.trio h3,.tagline2,.sss,.stats b,.nums b,.stg summary b,.feat b,.roles b,.tl{font-family:GmarketSans,Pretendard,sans-serif;font-weight:700;letter-spacing:-.01em}
+.hero h1{line-height:1.2}
+.body h3{font-size:24px}
+.tl{font-weight:500}
+.body .tl{font-family:Pretendard,sans-serif;font-weight:600;letter-spacing:0}
+
+/* 앱 소개 페이지: 상세 창을 페이지로 */
+.crumb{font-size:14px;color:var(--muted);margin:4px 0 16px}
+.crumb a{text-decoration:none;margin:0 2px;color:inherit;font-size:inherit}
+.crumb a:hover{color:var(--text)}
+.app{background:var(--surface);border:1px solid var(--line);border-radius:24px;overflow:hidden;margin-bottom:56px}
+.app .dhead h1{font-size:clamp(30px,4vw,44px);font-weight:900;line-height:1.15;margin:4px 0 12px;font-family:GmarketSans,Pretendard,sans-serif;letter-spacing:-.01em}
+.app .btn{margin-bottom:8px}
+.others h2,.contact h2{font-family:GmarketSans,Pretendard,sans-serif}
+.others h2{font-size:26px;margin-bottom:18px}
+.olist{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px;list-style:none;margin-bottom:56px}
+.olist a{display:block;height:100%;text-decoration:none;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--c);border-radius:14px;padding:14px 16px}
+.olist a:hover{border-color:var(--c)}
+.olist b{display:block;font-size:16px}
+.olist span{color:var(--muted);font-size:13.5px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="logo" href="/"><img src="/logo-mark.svg" alt="" width="34" height="34"><span class="lw"><b>SSS</b>OFT</span></a>
+    <nav><a href="/#work">프로젝트</a><a href="/#about">회사소개</a><a href="/#process">의뢰·계약</a><a href="/#contact">문의</a></nav>
+  </header>
+  <nav class="crumb" aria-label="현재 위치"><a href="/">SSSOFT</a> › <a href="/#work">프로젝트</a> › 캠프마스터</nav>
+  <main class="app" style="--c:#4f8cff">
+   <div class="dhead">
+     <div>
+       <div class="eyebrow" style="color:#4f8cff">캠프·행사 운영 플랫폼 · CAMP MASTER</div>
+       <h1>캠프마스터</h1>
+       <div class="tl">타이핑 없는 등록부터 자동 편성, 명찰 QR 현장 관리, 자동 카풀, 접는 명찰, 정산까지. 캠프의 모든 흐름을 한 시스템에서 처리해 운영진은 캠프에만 집중합니다.</div>
+       <div class="sup"><span>✓ 교회 수련회</span><span>✓ 학교 캠프</span><span>✓ 회사 워크숍</span></div>
+       <p class="ov">캠프마스터는 교회 수련회는 물론 학교 수련회·체험학습, 회사 워크숍·연수까지 단체 캠프 운영에 필요한 일을 처음부터 끝까지 하나로 묶은 운영 플랫폼입니다. 참가자 직접 등록, 요청사항을 반영한 조·방·버스 자동 편성, 접는 양면 명찰 자동 출력, 명찰 QR 하나로 하는 입실·퇴실·버스 탑승·상벌점·방키 관리, 점호, 의무·방키·물품, 게임 점수판, 회계 정산까지 모두 들어 있습니다. 참가자 호칭과 소속 단위(부·학년·반, 부서·팀, 마을·구역 등)를 조직에 맞게 바꿀 수 있어 어떤 단체든 같은 방식으로 운영할 수 있습니다. 담당자는 각자 맡은 운영 도구 앱만 링크로 받아 쓰고, 운영진은 서류와 연락 대신 캠프 자체에 집중합니다.</p>
+       <a class="btn" style="background:#4f8cff" href="https://srn-camp-master.web.app" target="_blank" rel="noopener">서비스 바로가기 →</a>
+       <a class="btn play" href="https://srn-camp-master.web.app/o/sample/admin" target="_blank" rel="noopener">▶ 샘플 페이지 바로가기</a>
+       
+     </div>
+     <div class="dshot"><div class="phone"><img src="/shots/campmaster-m.png" alt="캠프마스터 앱 화면"></div></div>
+   </div>
+   <div class="dbody">
+     
+     
+     <div class="nums"><div><b>13개</b><small>담당자별 운영 도구 앱 (로그인 없이 링크로 배포)</small></div><div><b>7종</b><small>빔 프로젝터용 틈새게임</small></div><div><b>3가지</b><small>명찰 인쇄 모드 (개별·조별·빈 명찰)</small></div><div><b>20+</b><small>관리자 콘솔 메뉴</small></div></div>
+     <h4>★ 대표 기능</h4>
+     <div class="flag"><div><em>01</em><b>타이핑 없는 사용자 등록</b><span>운영진이 명단을 한 줄도 직접 치지 않습니다. 참가자와 선생님이 단톡방에 공유된 등록 링크로 직접 이름, 학년·반, 연락처, 참석 일정, 요청사항을 입력하고 사진으로 AI 캐릭터까지 만듭니다. 이 정보가 편성, 명찰, QR, 버스, 점호, 회계까지 그대로 이어집니다.</span></div><div><em>02</em><b>요청사항 반영 자동 조편성·방 배정</b><span>'누구랑 같은 조·같은 방 하고 싶어요' 같은 요청사항을 AI가 읽어 친구 쌍으로 정리하고, 운영자가 허용한 쌍만 반영해 조·방·버스를 자동 편성합니다. 반·학년 균형, 성비, 정원, 날짜별 숙박 여부까지 함께 맞추고, 이성 요청처럼 불가능한 조합은 자동으로 걸러냅니다.</span></div><div><em>03</em><b>명찰 QR 하나로 끝나는 현장 관리</b><span>참가자마다 명찰에 개인 QR이 찍혀 나오고, 이 QR 하나로 현장 업무가 처리됩니다. 입구 담당이 휴대폰 카메라로 비추기만 하면 입실·퇴실·상점·벌점이 바로 처리되고, 다음 사람을 비추면 연속으로 스캔됩니다. 인솔 교사가 버스에서 찍으면 탑승과 입실(귀가 때는 퇴실)이 한 번에 기록되고, 다른 호차 참가자는 '이 버스 아님 → 몇 호차'로 바로 안내합니다. 방키도 키 QR로 대출·반납을 처리합니다. 이미 처리된 사람은 다시 처리되지 않고, 상벌점은 같은 사람을 정해진 시간(기본 8초) 안에 다시 찍어도 무시해 중복 점수를 막습니다. 여러 기기로 동시에 스캔해도 충돌이 없어 입구마다 한 대씩 두면 되고, 결과는 모든 관리자 화면에 실시간으로 반영됩니다. 참가자가 자기 명찰 QR을 휴대폰으로 찍으면 자기 마이페이지가 열립니다.</span></div><div><em>04</em><b>자동 카풀 매칭</b><span>관리자의 손길을 최소화한 카풀 시스템입니다. 선생님이 마이페이지에서 시간대별 등원·귀가 좌석 수를 올리면, 학생은 차량 카드를 골라 바로 가확정됩니다. 출발 N일 전이 되면 자동으로 일괄 확정되고, 그때부터 운전자와 탑승자의 전화번호가 서로 공유되며 확정 알림이 푸시로 갑니다. 관리자는 차량 취소나 좌석 초과처럼 문제가 생겼을 때 뜨는 빨간 '조치 필요' 카드만 처리하면 됩니다.</span></div><div><em>05</em><b>접는 양면 명찰 자동 출력</b><span>등록 정보만으로 캠프의 모든 정보가 담긴 명찰이 완성됩니다. 앞면에는 AI 캐릭터, 이름, 조, 직분, 수련회 테마와 표어, 개인 QR, 방 번호, 갈 때·올 때 버스 호차가 들어가고, 뒷면에는 날짜별 전체 시간표가 거꾸로 인쇄돼 반으로 접으면 그대로 읽힙니다. 개별·조별·빈 명찰 3가지 모드, mm 단위 크기 조정, 디자인 버전 저장, 방이나 버스가 바뀐 사람만 골라 다시 출력하는 기능까지 갖췄습니다.</span></div><div><em>06</em><b>운영 도구 앱 13개</b><span>등록, 입금 확인, 조 관리, QR, 버스, 환자, 방키, 점호, 지출 입력까지 13개 운영 도구 앱을 담당자에게 링크로 나눠 줍니다. 담당자는 로그인 없이 자기 휴대폰에서 맡은 앱만 열어 쓰고, 입력한 내용은 관리자 화면과 실시간으로 동기화됩니다. 홈 화면에 앱으로 설치할 수도 있습니다.</span></div><div><em>07</em><b>카드형 회계와 정산</b><span>참가비 수입은 입금 상태에서 자동으로 집계됩니다. 영수증은 OCR과 AI 분류로 카드처럼 입력합니다. 예산 집행률, 정산 점검, 엑셀·PDF 마감 보고서까지 한 곳에서 끝납니다.</span></div></div>
+     <h4>▣ 미리보기</h4><div class="gal  tall"><figure><a href="/gallery/campmaster-badge-1.png" target="_blank" rel="noopener"><img src="/gallery/campmaster-badge-1.png" alt="캠프마스터 실제 출력 명찰 · 접는 선 아래 뒷면 시간표" loading="lazy"></a><figcaption>실제 출력 명찰 · 접는 선 아래 뒷면 시간표</figcaption></figure><figure><a href="/gallery/campmaster-badge-2.png" target="_blank" rel="noopener"><img src="/gallery/campmaster-badge-2.png" alt="캠프마스터 실제 출력 명찰 · 앞면" loading="lazy"></a><figcaption>실제 출력 명찰 · 앞면</figcaption></figure></div>
+     <h4>◆ 처음부터 끝까지, 빠짐없는 구성</h4>
+     <div class="stages"><details class="stg" open>
+       <summary><i>1</i><div><b>준비·설정</b><span>캠프 기본 데이터와 운영진 구성</span></div><small>6</small></summary>
+       <div class="feats"><div class="feat"><b>부서 생성·데모</b><span>부서(조직)를 만들고 샘플 데모(/o/sample/admin)로 미리 체험해 볼 수 있습니다.</span></div><div class="feat"><b>관리자 권한 관리</b><span>Google 로그인과 관리자 화이트리스트로 권한을 관리하고, 소유권 이전과 조회 전용 권한도 지원합니다.</span></div><div class="feat"><b>기본 데이터 입력</b><span>호차, 카풀 슬롯, 긴급연락처, 시간표를 설정 화면에서 입력합니다.</span></div><div class="feat"><b>명찰 디자인</b><span>앞뒷면 텍스트, 로고·배경 이미지, 크기와 여백을 설정하고 버전으로 저장합니다.</span></div><div class="feat"><b>등록 양식 옵션</b><span>티셔츠 신청, 보험용 주민번호 수집 여부, 참석 일정 항목을 캠프에 맞게 켜고 끕니다.</span></div><div class="feat"><b>공지사항</b><span>참가자에게 보여 줄 공지를 작성하고 관리합니다.</span></div></div>
+     </details><details class="stg" open>
+       <summary><i>2</i><div><b>가입·등록</b><span>참가자와 교사가 직접 등록하고 운영진이 확인</span></div><small>7</small></summary>
+       <div class="feats"><div class="feat"><b>학생·교사 등록</b><span>/register/student와 /register/teacher 페이지에서 역할별로 나눠 신청을 받습니다.</span></div><div class="feat"><b>상세 등록 정보</b><span>성별, 학년·반, 티셔츠, 참석 시간대, 보호자 연락처, 특이사항까지 한 번에 받습니다.</span></div><div class="feat"><b>AI 캐릭터 생성</b><span>본인 사진을 올리면 픽사 스타일 캐릭터가 만들어지고, 명찰과 게임에 쓰입니다.</span></div><div class="feat"><b>등록 안내 공유</b><span>등록 가이드와 캐릭터 이미지를 등록 링크와 함께 공유해 참가를 권합니다.</span></div><div class="feat"><b>입금 확인</b><span>입금 확인과 미확인 인원을 구분해 관리하고, 입금자 명단을 인쇄할 수 있습니다.</span></div><div class="feat"><b>엑셀 붙여넣기 등록</b><span>기존 엑셀 명단을 붙여넣거나 템플릿으로 한꺼번에 올립니다.</span></div><div class="feat"><b>중복·동명이인 정제</b><span>동명이인을 구분하고 학년·반이 맞지 않는 항목을 찾아냅니다.</span></div></div>
+     </details><details class="stg" >
+       <summary><i>3</i><div><b>편성·배정</b><span>조·방·버스·카풀을 자동으로 편성하고 출력물을 준비</span></div><small>7</small></summary>
+       <div class="feats"><div class="feat"><b>조 편성</b><span>조 카드에 드래그로 배정하고, 인솔교사와 조장을 지정합니다.</span></div><div class="feat"><b>날짜별 방 배정</b><span>방 카드를 날짜별로 관리하고, 그날 밤 숙박하지 않는 사람은 자동으로 제외됩니다.</span></div><div class="feat"><b>버스 편성</b><span>등원, 귀가, 임시 배정을 각각 호차별로 배치합니다.</span></div><div class="feat"><b>자동 카풀 매칭</b><span>학생이 직접 차량을 고르면 가확정되고, 출발 N일 전 자동 확정과 함께 연락처 공유·푸시 알림까지 처리되어 관리자는 예외만 챙깁니다.</span></div><div class="feat"><b>정합성 검사</b><span>배정 데이터의 충돌과 불일치를 자동으로 점검합니다.</span></div><div class="feat"><b>명찰 일괄 인쇄</b><span>개별·조별·빈 명찰 모드로 A4에 바로 출력합니다.</span></div><div class="feat"><b>각종 명단 인쇄</b><span>조편성표, 방편성표, 버스 명단, 호차 간판, 카풀 목록을 인쇄할 수 있습니다.</span></div></div>
+     </details><details class="stg" >
+       <summary><i>4</i><div><b>현장 운영</b><span>캠프 기간 중의 실시간 운영</span></div><small>8</small></summary>
+       <div class="feats"><div class="feat"><b>QR 탑승·입퇴실</b><span>호차별 QR 스캔으로 탑승을 체크하고 입실·퇴실을 처리합니다.</span></div><div class="feat"><b>인원 점호</b><span>조별 점호와 방별 점호 모드로 재실 인원을 대시보드에 반영합니다.</span></div><div class="feat"><b>의무팀 환자 관리</b><span>증상, 경과, 처방을 기록하고 귀가 조치까지 관리합니다.</span></div><div class="feat"><b>방키 관리</b><span>키 QR로 대출과 반납을 처리하고, 키를 가진 사람을 방별로 보여 줍니다.</span></div><div class="feat"><b>물품 대여</b><span>물품 대여 도구로 대여 현황을 관리하고 대여 리스트를 인쇄합니다.</span></div><div class="feat"><b>푸시 알림</b><span>전체 또는 개별 선생님에게 긴급 집합과 공지를 보냅니다.</span></div><div class="feat"><b>시간표·일정</b><span>전체 시간표와 일정을 인쇄하고 참가자와 공유합니다.</span></div><div class="feat"><b>카풀 알림·진단</b><span>확정·취소를 앱 배너와 폰 푸시로 알리고, 좌석 초과나 유령 탑승자 같은 꼬인 데이터는 진단 버튼 한 번으로 찾아 정리합니다.</span></div></div>
+     </details><details class="stg" >
+       <summary><i>5</i><div><b>프로그램·게임</b><span>점수와 참여를 끌어올리는 프로그램 도구</span></div><small>7</small></summary>
+       <div class="feats"><div class="feat"><b>코너게임 도구</b><span>대진표를 자동으로 만들고, 스탭이 링크로 승패를 입력하면 점수가 자동으로 합산됩니다.</span></div><div class="feat"><b>실시간 점수판</b><span>조별 점수와 순위를 실시간 점수판으로 공유합니다.</span></div><div class="feat"><b>틈새게임 7종</b><span>조 룰렛, 캐릭터 뽑기, 이 사람을 찾아보세요, 인물 빙고, 사다리타기, 미션 폭탄, 다리 건너기(오징어게임)를 빔 프로젝터에 띄워 진행합니다.</span></div><div class="feat"><b>점수 잠금</b><span>게임이 모두 끝나면 점수를 잠가 시상 직전에 실수로 점수가 바뀌는 일을 막습니다.</span></div><div class="feat"><b>AI 음악미션</b><span>조별 링크로 음악 미션을 진행합니다.</span></div><div class="feat"><b>투표·설문 도구</b><span>투표와 설문을 만들고 참여 알림을 보냅니다. 투표 결과를 점수로 환산해 합산할 수도 있습니다.</span></div><div class="feat"><b>상벌점</b><span>QR과 상벌 도구로 조 점수에 반영합니다.</span></div></div>
+     </details><details class="stg" >
+       <summary><i>6</i><div><b>마무리·정산</b><span>회계 마감과 데이터 정리</span></div><small>7</small></summary>
+       <div class="feats"><div class="feat"><b>회계 대시보드</b><span>수입, 지출, 예산 집행률을 한눈에 보여 줍니다.</span></div><div class="feat"><b>영수증 OCR</b><span>영수증을 찍으면 금액, 사용처, 날짜를 읽어 오고 AI가 분류합니다.</span></div><div class="feat"><b>찬조금·기타수입</b><span>찬조자와 금액을 기록하고 입금자·찬조자 명단을 인쇄합니다.</span></div><div class="feat"><b>정산 점검·보고서</b><span>정산을 점검하고 전체 회계 보고서를 엑셀이나 PDF로 확정합니다.</span></div><div class="feat"><b>영수증 일괄인쇄</b><span>분류별 리스트와 영수증을 한꺼번에 출력합니다.</span></div><div class="feat"><b>백업·개인정보 파기</b><span>명단을 엑셀이나 zip으로 백업한 뒤 개인정보를 파기합니다.</span></div><div class="feat"><b>전시 모드</b><span>전원의 캐릭터를 모자이크로 모아 현수막, 엔딩영상, 굿즈용으로 출력합니다.</span></div></div>
+     </details></div>
+     <h4>● 운영 도구 앱 13개 — 담당자에게 링크만 보내면 끝</h4><div class="roles"><div><b>캠프 등록</b><span>참가자·선생님이 직접 등록하는 링크. 단톡방에 가장 먼저 공유합니다.</span></div><div><b>등록 안내(인쇄)</b><span>QR·앱 설치·등록 순서를 담은 A4 안내문을 학부모에게 배포합니다.</span></div><div><b>입금 확인</b><span>회계 담당이 입금 여부를 확인합니다.</span></div><div><b>신청현황 공유</b><span>부→학년→반으로 눌러 보는 읽기 전용 현황. 누구에게 공유해도 안전합니다.</span></div><div><b>우리 조 관리</b><span>조를 맡은 스탭이 자기 조의 입퇴실·환자·특이사항·보고를 현장에서 처리합니다.</span></div><div><b>조·차 조회</b><span>전체 인원을 가나다순으로 보고 각자의 조와 호차·카풀을 확인합니다.</span></div><div><b>캐릭터 갤러리</b><span>전원의 캐릭터를 한 화면에 모아 전시용으로 인쇄하고 미생성 인원을 점검합니다.</span></div><div><b>지출 입력</b><span>영수증 사진·PDF를 올리면 회계 담당이 승인·반려하고, 반려 사유와 재제출까지 관리합니다.</span></div><div><b>QR 관리</b><span>입구 담당이 명찰 QR을 스캔해 입실·퇴실·상점·벌점을 처리합니다. 여러 기기로 동시에 스캔해도 충돌이 없습니다.</span></div><div><b>버스 탑승체크</b><span>인솔 교사가 호차별 탑승을 체크합니다.</span></div><div><b>환자 관리</b><span>의무팀이 증상·경과·처방을 기록합니다.</span></div><div><b>방키 관리</b><span>숙소 담당이 방키 대출과 반납을 처리합니다.</span></div><div><b>인원 점호</b><span>조장·담당 교사가 조별·방별로 점호합니다.</span></div></div>
+     <div class="meta2">
+       <div><h4>이런 분들을 위해</h4><p>교회 수련회·여름성경학교 운영진, 학교 수련회·체험학습 담당 교사, 회사 워크숍·연수·MT 담당자 등 단체 캠프를 준비하는 모든 운영팀</p></div>
+       <div><h4>기술 스택</h4><div class="chips"><span>React</span><span>Firebase (Firestore·Auth·Hosting)</span><span>PWA·웹 푸시</span><span>AI API (OpenAI 참조 존재)</span><span>QR 스캔 (ZXing 계열)</span><span>SheetJS 엑셀 입출력</span></div></div>
+     </div>
+     
+   </div>
+  </main>
+  <section class="others" style="padding:0">
+    <h2>SSSOFT의 다른 서비스</h2>
+    <ul class="olist"><li><a href="/apps/starfarer/" style="--c:#ff9a2e"><b>STARFARER</b><span>3D 온라인 게임 · PC·태블릿·모바일</span></a></li><li><a href="/apps/darakbang/" style="--c:#7c5cff"><b>다락방 기도앱</b><span>소그룹 커뮤니티</span></a></li><li><a href="/apps/gyogurec/" style="--c:#ff8a3d"><b>교구 레크리에이션</b><span>교회 행사 레크리에이션</span></a></li><li><a href="/apps/readingbook/" style="--c:#5b7a62"><b>다정 리딩북</b><span>AI 오디오북</span></a></li><li><a href="/apps/chemimall/" style="--c:#b3172b"><b>케미몰</b><span>독립몰 구축</span></a></li><li><a href="/apps/vocabscan/" style="--c:#c40000"><b>보캐브스캔</b><span>AI 단어장</span></a></li><li><a href="/apps/worddrop/" style="--c:#8b5cf6"><b>워드드롭</b><span>암기 게임</span></a></li><li><a href="/apps/retire/" style="--c:#1d4ed8"><b>부부 노후자금 시뮬레이터</b><span>노후 재무 설계</span></a></li><li><a href="/apps/balance/" style="--c:#3f9b5a"><b>중심잡기</b><span>3D 캐주얼 게임</span></a></li><li><a href="/apps/qtrace/" style="--c:#ff6b6b"><b>큐티레이스</b><span>교회 이벤트 지원</span></a></li><li><a href="/apps/kings/" style="--c:#2f5d4f"><b>열왕기 — 두 왕국의 연대기</b><span>성경 인터랙티브 연대표</span></a></li><li><a href="/apps/theway/" style="--c:#8a6420"><b>그 길 — 예수의 발자취</b><span>3D 성경 지도 여정</span></a></li><li><a href="/apps/visionquest/" style="--c:#3d7be0"><b>비전 퀘스트</b><span>실시간 위치 팀 미션</span></a></li></ul>
+  </section>
+  <div class="contact">
+    <h2>이런 서비스, 함께 만들어 볼까요?</h2>
+    <p>SSSOFT는 아이디어를 매일 쓰이는 서비스로 만드는 소프트웨어 스튜디오입니다.</p>
+    <div class="cta2"><a class="btn" href="mailto:sssoft1004@gmail.com">sssoft1004@gmail.com</a><a class="btn kakao" href="https://open.kakao.com/o/ssPDUnSi" target="_blank" rel="noopener">카톡으로 던지기</a></div>
+  </div>
+</div>
+<footer><div class="wrap foot"><span><b>SSSOFT</b> = <b>S</b>park · <b>S</b>hape · <b>S</b>hip — Seriously fun software.</span><span>© 2026 SSSOFT. All rights reserved.</span></div>
+<div class="wrap biz"><span>상호 에스에스소프트(SSSOFT)</span><span>대표 김성수</span><span>사업자등록번호 772-01-03846</span><span>전화 <a href="tel:042-670-7577">042-670-7577</a></span><span>이메일 <a href="mailto:sssoft1004@gmail.com">sssoft1004@gmail.com</a></span></div></footer>
+</body>
+</html>
