@@ -12,6 +12,8 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0   # sitemap.xml lastmod를 커밋 날짜로 정하기 위해 전체 기록이 필요
+      - name: Build app pages
+        run: node scripts/apps.cjs
       - name: Build sitemap.xml
         run: node scripts/sitemap.cjs
       - name: Check secret
