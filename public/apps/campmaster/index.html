@@ -197,6 +197,17 @@ dialog::backdrop{background:rgba(8,9,14,.62);backdrop-filter:blur(4px)}
 .nums b{display:block;font-family:"Space Grotesk","Noto Sans KR",sans-serif;font-size:28px;color:var(--c);line-height:1.2}
 .nums small{color:var(--muted);font-size:13px}
 .flag{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-bottom:36px}
+.rec{border:1.5px solid color-mix(in srgb,var(--c) 45%,var(--line));border-radius:18px;padding:22px 22px 8px;margin-bottom:36px;background:color-mix(in srgb,var(--c) 6%,var(--surface))}
+.rec .rd{font-size:14px;color:var(--muted);margin:-4px 0 14px}
+.rec .nums{margin-bottom:18px}
+.rec .rg{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(340px,100%),1fr));gap:12px;margin-bottom:16px}
+.rec .rg div{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.rec .rg b{display:block;font-size:16px;margin-bottom:4px;color:var(--c)}
+.rec .rg span{color:var(--muted);font-size:14.5px}
+.rec .tlx{list-style:none;display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:14.5px;margin:0 0 16px;padding:0}
+.rec .tlx li{display:contents}
+.rec .tlx time{font-family:"Space Grotesk",sans-serif;font-weight:700;color:var(--c)}
+.rec .tlx span{color:var(--muted)}
 .flag div{background:linear-gradient(150deg,color-mix(in srgb,var(--c) 18%,var(--sunk)),var(--sunk));border-radius:16px;padding:22px}
 .flag em{font-style:normal;font-family:"Space Grotesk",sans-serif;font-weight:700;color:var(--c);font-size:14px}
 .flag b{display:block;font-size:18px;margin:4px 0 6px}
@@ -293,6 +304,7 @@ h1,h2,h3,.hero h1,.sec-head h2,.about h2,.process h2,.reeltxt h2,.contact h2,.bo
      
      
      <div class="nums"><div><b>13개</b><small>담당자별 운영 도구 앱 (로그인 없이 링크로 배포)</small></div><div><b>7종</b><small>빔 프로젝터용 틈새게임</small></div><div><b>3가지</b><small>명찰 인쇄 모드 (개별·조별·빈 명찰)</small></div><div><b>20+</b><small>관리자 콘솔 메뉴</small></div></div>
+     
      <h4>★ 대표 기능</h4>
      <div class="flag"><div><em>01</em><b>타이핑 없는 사용자 등록</b><span>운영진이 명단을 한 줄도 직접 치지 않습니다. 참가자와 선생님이 단톡방에 공유된 등록 링크로 직접 이름, 학년·반, 연락처, 참석 일정, 요청사항을 입력하고 사진으로 AI 캐릭터까지 만듭니다. 이 정보가 편성, 명찰, QR, 버스, 점호, 회계까지 그대로 이어집니다.</span></div><div><em>02</em><b>요청사항 반영 자동 조편성·방 배정</b><span>'누구랑 같은 조·같은 방 하고 싶어요' 같은 요청사항을 AI가 읽어 친구 쌍으로 정리하고, 운영자가 허용한 쌍만 반영해 조·방·버스를 자동 편성합니다. 반·학년 균형, 성비, 정원, 날짜별 숙박 여부까지 함께 맞추고, 이성 요청처럼 불가능한 조합은 자동으로 걸러냅니다.</span></div><div><em>03</em><b>명찰 QR 하나로 끝나는 현장 관리</b><span>참가자마다 명찰에 개인 QR이 찍혀 나오고, 이 QR 하나로 현장 업무가 처리됩니다. 입구 담당이 휴대폰 카메라로 비추기만 하면 입실·퇴실·상점·벌점이 바로 처리되고, 다음 사람을 비추면 연속으로 스캔됩니다. 인솔 교사가 버스에서 찍으면 탑승과 입실(귀가 때는 퇴실)이 한 번에 기록되고, 다른 호차 참가자는 '이 버스 아님 → 몇 호차'로 바로 안내합니다. 방키도 키 QR로 대출·반납을 처리합니다. 이미 처리된 사람은 다시 처리되지 않고, 상벌점은 같은 사람을 정해진 시간(기본 8초) 안에 다시 찍어도 무시해 중복 점수를 막습니다. 여러 기기로 동시에 스캔해도 충돌이 없어 입구마다 한 대씩 두면 되고, 결과는 모든 관리자 화면에 실시간으로 반영됩니다. 참가자가 자기 명찰 QR을 휴대폰으로 찍으면 자기 마이페이지가 열립니다.</span></div><div><em>04</em><b>자동 카풀 매칭</b><span>관리자의 손길을 최소화한 카풀 시스템입니다. 선생님이 마이페이지에서 시간대별 등원·귀가 좌석 수를 올리면, 학생은 차량 카드를 골라 바로 가확정됩니다. 출발 N일 전이 되면 자동으로 일괄 확정되고, 그때부터 운전자와 탑승자의 전화번호가 서로 공유되며 확정 알림이 푸시로 갑니다. 관리자는 차량 취소나 좌석 초과처럼 문제가 생겼을 때 뜨는 빨간 '조치 필요' 카드만 처리하면 됩니다.</span></div><div><em>05</em><b>접는 양면 명찰 자동 출력</b><span>등록 정보만으로 캠프의 모든 정보가 담긴 명찰이 완성됩니다. 앞면에는 AI 캐릭터, 이름, 조, 직분, 수련회 테마와 표어, 개인 QR, 방 번호, 갈 때·올 때 버스 호차가 들어가고, 뒷면에는 날짜별 전체 시간표가 거꾸로 인쇄돼 반으로 접으면 그대로 읽힙니다. 개별·조별·빈 명찰 3가지 모드, mm 단위 크기 조정, 디자인 버전 저장, 방이나 버스가 바뀐 사람만 골라 다시 출력하는 기능까지 갖췄습니다.</span></div><div><em>06</em><b>운영 도구 앱 13개</b><span>등록, 입금 확인, 조 관리, QR, 버스, 환자, 방키, 점호, 지출 입력까지 13개 운영 도구 앱을 담당자에게 링크로 나눠 줍니다. 담당자는 로그인 없이 자기 휴대폰에서 맡은 앱만 열어 쓰고, 입력한 내용은 관리자 화면과 실시간으로 동기화됩니다. 홈 화면에 앱으로 설치할 수도 있습니다.</span></div><div><em>07</em><b>카드형 회계와 정산</b><span>참가비 수입은 입금 상태에서 자동으로 집계됩니다. 영수증은 OCR과 AI 분류로 카드처럼 입력합니다. 예산 집행률, 정산 점검, 엑셀·PDF 마감 보고서까지 한 곳에서 끝납니다.</span></div></div>
      <h4>▣ 미리보기</h4><div class="gal  tall"><figure><a href="/gallery/campmaster-badge-1.png" target="_blank" rel="noopener"><img src="/gallery/campmaster-badge-1.png" alt="캠프마스터 실제 출력 명찰 · 접는 선 아래 뒷면 시간표" loading="lazy"></a><figcaption>실제 출력 명찰 · 접는 선 아래 뒷면 시간표</figcaption></figure><figure><a href="/gallery/campmaster-badge-2.png" target="_blank" rel="noopener"><img src="/gallery/campmaster-badge-2.png" alt="캠프마스터 실제 출력 명찰 · 앞면" loading="lazy"></a><figcaption>실제 출력 명찰 · 앞면</figcaption></figure></div>

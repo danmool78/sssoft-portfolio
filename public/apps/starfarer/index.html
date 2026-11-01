@@ -197,6 +197,17 @@ dialog::backdrop{background:rgba(8,9,14,.62);backdrop-filter:blur(4px)}
 .nums b{display:block;font-family:"Space Grotesk","Noto Sans KR",sans-serif;font-size:28px;color:var(--c);line-height:1.2}
 .nums small{color:var(--muted);font-size:13px}
 .flag{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-bottom:36px}
+.rec{border:1.5px solid color-mix(in srgb,var(--c) 45%,var(--line));border-radius:18px;padding:22px 22px 8px;margin-bottom:36px;background:color-mix(in srgb,var(--c) 6%,var(--surface))}
+.rec .rd{font-size:14px;color:var(--muted);margin:-4px 0 14px}
+.rec .nums{margin-bottom:18px}
+.rec .rg{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(340px,100%),1fr));gap:12px;margin-bottom:16px}
+.rec .rg div{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.rec .rg b{display:block;font-size:16px;margin-bottom:4px;color:var(--c)}
+.rec .rg span{color:var(--muted);font-size:14.5px}
+.rec .tlx{list-style:none;display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:14.5px;margin:0 0 16px;padding:0}
+.rec .tlx li{display:contents}
+.rec .tlx time{font-family:"Space Grotesk",sans-serif;font-weight:700;color:var(--c)}
+.rec .tlx span{color:var(--muted)}
 .flag div{background:linear-gradient(150deg,color-mix(in srgb,var(--c) 18%,var(--sunk)),var(--sunk));border-radius:16px;padding:22px}
 .flag em{font-style:normal;font-family:"Space Grotesk",sans-serif;font-weight:700;color:var(--c);font-size:14px}
 .flag b{display:block;font-size:18px;margin:4px 0 6px}
@@ -293,6 +304,7 @@ h1,h2,h3,.hero h1,.sec-head h2,.about h2,.process h2,.reeltxt h2,.contact h2,.bo
      <h4>▶ 플레이 영상</h4><div class="vid"><iframe src="https://player.vimeo.com/video/1223998768?dnt=1&title=0&byline=0&portrait=0" title="STARFARER 플레이 영상" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
      
      <div class="nums"><div><b>10개</b><small>실시간 DB 샤드로 분산한 게임 상태</small></div><div><b>150ms</b><small>레이스 위치 동기화 주기</small></div><div><b>6개</b><small>지원 언어 (한·영·일·중·스페인어·포르투갈어)</small></div><div><b>Web</b><small>PC·태블릿·모바일 브라우저에서 설치 없이 바로 실행</small></div></div>
+     
      <h4>★ 대표 기능</h4>
      <div class="flag"><div><em>01</em><b>안정적인 실시간 멀티플레이</b><span>고빈도 게임 상태를 10개의 실시간 데이터베이스 샤드에 해시로 분산해 한 곳에 부하가 몰리지 않습니다. 원격 함선은 부드럽게 보간되고, 비정상 종료한 플레이어와 빈 방은 자동으로 정리되며, 피해·채굴·도킹 정산은 서버 함수가 검증해 조작과 중복 처리를 막습니다.</span></div><div><em>02</em><b>브라우저 3D 우주 레이싱·전투</b><span>서킷 레이싱, 서바이벌 레이스, 역방향 레이스, 전투(공중전)를 설치 없이 즐기고, 드리프트 터보와 미사일·표적 고정까지 지원합니다. 60초 체험 레이스로 바로 맛볼 수 있습니다.</span></div><div><em>03</em><b>딥 스페이스 오픈 경제</b><span>광맥에 도킹해 채굴하고, 보급소에서 판매·보관 비율을 정하며, 구역별 실시간 거래소와 6시간 시세로 거래합니다. 워프 요금, 연료 보증금, 수리비까지 갖춘 서버 검증형 경제입니다.</span></div><div><em>04</em><b>길드 치안권과 영지 운영</b><span>길드는 24시간 비공개 입찰로 구역 치안권을 따내 관할 구역의 TAX(0/5/10%)와 이자 배당을 받습니다. 길드 금고, 간부 임명, 길드 마크 업로드, 길드 아틀라스 지도까지 운영 도구가 모두 들어 있습니다.</span></div><div><em>05</em><b>호위 vs 약탈 수송 계약</b><span>CSTA 수송선 계약에 호위로 참여하거나 중앙 해적 연합에 가입해 습격합니다. 편대 정렬부터 워프, 도킹까지 단계별로 진행되고, 긴급 대응 함대와 지명수배·현상금 시스템이 붙습니다.</span></div><div><em>06</em><b>나만의 기체와 파일럿</b><span>기체 상점, 능력치 강화, 커스텀 도색과 스티커 편집기를 제공합니다. 내 사진으로 3D 파일럿 닮은꼴을 AI로 만들 수 있습니다.</span></div></div>
      <h4>▣ 미리보기</h4><div class="gal wide "><figure><a href="/gallery/starfarer-signal.jpg" target="_blank" rel="noopener"><img src="/gallery/starfarer-signal.jpg" alt="STARFARER 성운 구역 · 거대 질량 신호 감지" loading="lazy"></a><figcaption>성운 구역 · 거대 질량 신호 감지</figcaption></figure><figure><a href="/gallery/starfarer-combat.jpg" target="_blank" rel="noopener"><img src="/gallery/starfarer-combat.jpg" alt="STARFARER 조종석 시점 · 상대 파일럿과 교전" loading="lazy"></a><figcaption>조종석 시점 · 상대 파일럿과 교전</figcaption></figure><figure><a href="/gallery/starfarer-outside.jpg" target="_blank" rel="noopener"><img src="/gallery/starfarer-outside.jpg" alt="STARFARER 외부 시점 비행" loading="lazy"></a><figcaption>외부 시점 비행</figcaption></figure></div>

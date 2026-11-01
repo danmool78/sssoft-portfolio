@@ -45,6 +45,7 @@ firebase deploy --only hosting
 각 프로젝트 필드: `id, title, en, cat(church|ai|game|biz|life), tag, color, url, play?, demo?, share?(true면 카드·상세에 "앱 공유하기" 버튼: 휴대폰은 공유 창, PC는 url 복사),
 shot, frame(phone|browser|svg), tagline, overview, flagship[], stages[{stage,summary,items[]}],
 roles[], rolesTitle?, numbers[{value,label}], gallery?[{src,cap}], galleryWide?, supports?, audience, tech[],
+record?{title,badge,date,stats[{value,label}],items[{title,desc}],timeline[{time,text}]}(실전 운영 기록: 상세 화면 숫자 바로 아래, badge는 카드 오른쪽 위),
 scene?{src,cap,card?}, video?(.mp4면 세로 영상 플레이어), videoPoster?, videoLabel?,
 videos?[{src,poster?,label,wide?}](영상이 여럿일 때 video 대신, 적은 순서대로 나온다. wide: 가로 mp4)`
 (사이트에 올리는 mp4는 ffmpeg로 1280px·CRF 26 정도로 줄여 public/에 영문 파일명으로 둔다)
@@ -57,6 +58,8 @@ videos?[{src,poster?,label,wide?}](영상이 여럿일 때 video 대신, 적은 
 비전 퀘스트는 https://team-esc.web.app/?demo 로 로그인 없이 가짜 참가자 화면을 볼 수 있다.
 비전 퀘스트 '실전 기록'은 2026-10-31 전주 한옥마을 게임 Q9A54의 실제 자료(`firebase database:get /games/Q9A54 --project team-esc`)에서 센 숫자다.
 참가자 사진은 쓰지 않고 그림으로 다시 그렸다: shots/visionquest-scene.jpg, gallery/visionquest-jeonju.jpg)
+
+교구 레크리에이션 실전 운영 기록(record)은 2026-11-01 행사 서버 기록 요약(교구레크레이션 세션의 운영 기록 페이지)에서 가져왔다.
 
 ## 글쓰기 원칙 (사용자 피드백)
 
