@@ -197,6 +197,17 @@ dialog::backdrop{background:rgba(8,9,14,.62);backdrop-filter:blur(4px)}
 .nums b{display:block;font-family:"Space Grotesk","Noto Sans KR",sans-serif;font-size:28px;color:var(--c);line-height:1.2}
 .nums small{color:var(--muted);font-size:13px}
 .flag{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-bottom:36px}
+.rec{border:1.5px solid color-mix(in srgb,var(--c) 45%,var(--line));border-radius:18px;padding:22px 22px 8px;margin-bottom:36px;background:color-mix(in srgb,var(--c) 6%,var(--surface))}
+.rec .rd{font-size:14px;color:var(--muted);margin:-4px 0 14px}
+.rec .nums{margin-bottom:18px}
+.rec .rg{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(340px,100%),1fr));gap:12px;margin-bottom:16px}
+.rec .rg div{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.rec .rg b{display:block;font-size:16px;margin-bottom:4px;color:var(--c)}
+.rec .rg span{color:var(--muted);font-size:14.5px}
+.rec .tlx{list-style:none;display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:14.5px;margin:0 0 16px;padding:0}
+.rec .tlx li{display:contents}
+.rec .tlx time{font-family:"Space Grotesk",sans-serif;font-weight:700;color:var(--c)}
+.rec .tlx span{color:var(--muted)}
 .flag div{background:linear-gradient(150deg,color-mix(in srgb,var(--c) 18%,var(--sunk)),var(--sunk));border-radius:16px;padding:22px}
 .flag em{font-style:normal;font-family:"Space Grotesk",sans-serif;font-weight:700;color:var(--c);font-size:14px}
 .flag b{display:block;font-size:18px;margin:4px 0 6px}
@@ -293,6 +304,7 @@ h1,h2,h3,.hero h1,.sec-head h2,.about h2,.process h2,.reeltxt h2,.contact h2,.bo
      
      
      <div class="nums"><div><b>매일 05:00</b><small>큐티 자동 생성 시각 (한국 시간)</small></div><div><b>2단계</b><small>권한 구분 (순장·순원)</small></div><div><b>생일 4자리</b><small>순원 로그인에 필요한 것</small></div><div><b>5가지</b><small>테마 색상 (네이비·파랑·초록·오렌지·핑크)</small></div></div>
+     
      <h4>★ 대표 기능</h4>
      <div class="flag"><div><em>01</em><b>매일 새벽 자동 큐티</b><span>매일 새벽 5시(한국 시간)에 godpia 본문을 가져와 D형 큐티를 자동으로 만듭니다. 달력에서 지난 큐티를 다시 볼 수 있고, 단락을 골라 그 부분부터 들을 수 있는 '큐티 읽어주기'(TTS)도 들어 있습니다.</span></div><div><em>02</em><b>순장 전용 '깊은 묵상'</b><span>순장에게는 순원에게 보이지 않는 상세 큐티가 따로 만들어져 모임을 미리 준비할 수 있습니다. 발행 시각을 정해 두는 예약 공개와 직접 작성도 할 수 있습니다.</span></div><div><em>03</em><b>AI 기도제목 정리와 응답 체크</b><span>'AI 문장 정리'가 섞여 있는 기도제목을 주제별로 묶고, 원래 뜻은 그대로 둔 채 문장만 다듬어 줍니다. 항목별로 1건씩 등록해 응답을 체크하고, 응답되지 않은 기도제목은 다음 달로 넘어갑니다.</span></div><div><em>04</em><b>가정 단위 주소록</b><span>가정 이름, 주소, 가족 사진, 남편·아내·자녀 구성까지 가정 단위로 관리합니다. 순원 정보에는 양력·음력 생일, 출생연도, 전화번호가 들어갑니다.</span></div><div><em>05</em><b>쉬운 가입과 공지 푸시 알림</b><span>순원은 이름을 고르고 생일 4자리만 입력하면 로그인됩니다. 순장이 올린 공지는 푸시 알림으로 바로 전달되고, 앱은 홈 화면에 설치해 앱처럼 쓸 수 있습니다(PWA).</span></div></div>
      
