@@ -60,6 +60,7 @@ videos?[{src,poster?,label,wide?}](영상이 여럿일 때 video 대신, 적은 
 참가자 사진은 쓰지 않고 그림으로 다시 그렸다: shots/visionquest-scene.jpg, gallery/visionquest-jeonju.jpg)
 
 교구 레크리에이션 실전 운영 기록(record)은 2026-11-01 행사 서버 기록 요약(교구레크레이션 세션의 운영 기록 페이지)에서 가져왔다.
+평소에는 행사 뒤 데이터를 남기지 않는다(소개 글 그대로). 이 기록은 첫 운영이라 소개용으로 일부러 남긴 것이다.
 
 ## 글쓰기 원칙 (사용자 피드백)
 
