@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<style>
+html,body{margin:0;background:#6aa5e6;overflow:hidden}
+svg{display:block}
+text{font-family:Pretendard,"Malgun Gothic",sans-serif;font-weight:800}
+</style></head>
+<body>
+<!-- 비전 퀘스트 사용 장면 그림 (참가자 사진 대신).
+     ?card 를 붙이면 카드용(위 배지·미션·휴대폰 없이 0,150 ~ 1160×750 영역) -->
+<svg id="s" xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900"></svg>
+<script>
+const CARD = location.search.includes("card");
+const svg = document.getElementById("s");
+if (CARD) { svg.setAttribute("width",1160); svg.setAttribute("height",750); svg.setAttribute("viewBox","0 150 1160 750"); }
+const out = [];
+const add = s => out.push(s);
+
+// 사람: (x, 발끝 y) 기준. 머리 → 목 → 몸통이 이어지고, 긴 머리는 몸통 뒤에 그린다.
+function person(o) {
+  const s = o.s || 1, skin = o.skin || "#f6cfa8", hair = o.hair || "#2a2422", shirt = o.shirt, pants = o.pants || "#2b3247";
+  const g = [];
+  g.push(`<g transform="translate(${o.x} ${o.y}) scale(${s})" opacity="${o.op || 1}">`);
+  g.push(`<ellipse cx="0" cy="2" rx="62" ry="10" fill="#000" opacity=".12"/>`);
+  // 긴 머리(뒤): 어깨 높이까지만, 몸통이 덮는다
+  if (o.style === "long") g.push(`<path d="M-50 -232 Q-54 -180 -44 -150 L44 -150 Q54 -180 50 -232 Z" fill="${hair}"/>`);
+  // 다리
+  g.push(`<rect x="-30" y="-92" width="25" height="92" rx="9" fill="${pants}"/><rect x="5" y="-92" width="25" height="92" rx="9" fill="${pants}"/>`);
+  // 목
+  g.push(`<rect x="-12" y="-200" width="24" height="40" rx="8" fill="${skin}"/><rect x="-12" y="-186" width="24" height="10" fill="#000" opacity=".08"/>`);
+  // 몸통
+  g.push(`<path d="M-48 -82 L-48 -140 Q-48 -172 -18 -172 L18 -172 Q48 -172 48 -140 L48 -82 Q48 -74 40 -74 L-40 -74 Q-48 -74 -48 -82 Z" fill="${shirt}"/>`);
+  // 목 아래 V 넥과 빨간 스카프
+  g.push(`<path d="M-14 -172 L0 -150 L14 -172 Z" fill="${skin}"/><path d="M-20 -170 L20 -170 L0 -140 Z" fill="#c8160f"/>`);
+  // 팔
+  const arm = (d, hx, hy) => g.push(`<path d="${d}" fill="none" stroke="${shirt}" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/><path d="${d}" fill="none" stroke="#000" stroke-opacity=".07" stroke-width="22" stroke-linecap="round"/><circle cx="${hx}" cy="${hy}" r="11" fill="${skin}"/>`);
+  arm("M-40 -158 Q-56 -130 -54 -100", -54, -96);
+  const r = o.arm || "down";
+  if (r === "down") arm("M40 -158 Q56 -130 54 -100", 54, -96);
+  else {
+    arm("M40 -158 Q66 -175 66 -220", 66, -228);
+    if (r === "v") g.push(`<path d="M62 -234 L54 -262 M70 -234 L80 -260" stroke="${skin}" stroke-width="8" stroke-linecap="round"/>`);
+    if (r === "point") g.push(`<path d="M66 -234 L66 -262" stroke="${skin}" stroke-width="8" stroke-linecap="round"/>`);
+    if (r === "phone") g.push(`<rect x="44" y="-292" width="36" height="62" rx="7" transform="rotate(-18 62 -260)" fill="#1c2236"/>`);
+  }
+  // 머리
+  g.push(`<circle cx="0" cy="-236" r="47" fill="${skin}"/>`);
+  if (o.style === "short") g.push(`<path d="M-48 -236 Q-50 -290 0 -290 Q50 -290 48 -236 Q40 -262 6 -262 Q-30 -262 -48 -236 Z" fill="${hair}"/>`);
+  if (o.style === "long") g.push(`<path d="M-50 -232 Q-52 -292 0 -292 Q52 -292 50 -232 Q44 -258 20 -264 Q-14 -268 -44 -246 Z" fill="${hair}"/>`);
+  if (o.style === "bun") g.push(`<circle cx="36" cy="-282" r="18" fill="${hair}"/><path d="M-48 -236 Q-50 -290 0 -290 Q50 -290 48 -236 Q36 -264 0 -262 Q-34 -260 -48 -236 Z" fill="${hair}"/>`);
+  if (o.style === "bald") g.push(`<path d="M-46 -246 Q-40 -286 0 -286 Q40 -286 46 -246 Q20 -266 -46 -246 Z" fill="${hair}"/>`);
+  // 얼굴
+  g.push(`<circle cx="-24" cy="-222" r="8" fill="#f29a8f" opacity=".55"/><circle cx="24" cy="-222" r="8" fill="#f29a8f" opacity=".55"/>`);
+  if (o.sun) g.push(`<rect x="-34" y="-246" width="28" height="15" rx="5" fill="#111"/><rect x="6" y="-246" width="28" height="15" rx="5" fill="#111"/><path d="M-6 -240 L6 -240" stroke="#111" stroke-width="4"/>`);
+  else {
+    g.push(`<circle cx="-16" cy="-238" r="5" fill="#2a2422"/><circle cx="16" cy="-238" r="5" fill="#2a2422"/>`);
+    if (o.glasses) g.push(`<g fill="none" stroke="#2a2422" stroke-width="4"><circle cx="-17" cy="-238" r="13"/><circle cx="17" cy="-238" r="13"/><path d="M-4 -238 L4 -238"/></g>`);
+  }
+  g.push(`<path d="M-15 -214 Q0 -200 15 -214" fill="none" stroke="#8a3b2b" stroke-width="4" stroke-linecap="round"/>`);
+  g.push(`</g>`);
+  if (o.label) g.push(`<g transform="translate(${o.x} ${o.y - 310 * s - 10})"><rect x="-28" y="-16" width="56" height="28" rx="14" fill="#e53935"/><text x="0" y="5" font-size="16" fill="#fff" text-anchor="middle">${o.label}</text></g>`);
+  add(g.join(""));
+}
+
+// 배경
+add(`<defs>
+<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5f9fe6"/><stop offset="1" stop-color="#b9d8f2"/></linearGradient>
+<linearGradient id="ground" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#cdb08c"/><stop offset="1" stop-color="#ad9070"/></linearGradient>
+<linearGradient id="brick" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#a84a32"/><stop offset=".5" stop-color="#c8644a"/><stop offset="1" stop-color="#a84a32"/></linearGradient>
+<linearGradient id="dome" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3f6b62"/><stop offset=".5" stop-color="#6e978d"/><stop offset="1" stop-color="#3f6b62"/></linearGradient>
+<linearGradient id="beam" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff3b0" stop-opacity="0"/><stop offset=".5" stop-color="#fff3b0" stop-opacity=".8"/><stop offset="1" stop-color="#fff3b0" stop-opacity="0"/></linearGradient>
+<radialGradient id="glow"><stop offset="0" stop-color="#fff3b0" stop-opacity=".9"/><stop offset="1" stop-color="#fff3b0" stop-opacity="0"/></radialGradient>
+<clipPath id="vf"><rect x="1196" y="238" width="300" height="452"/></clipPath>
+</defs>
+<rect width="1600" height="900" fill="url(#sky)"/>
+<circle cx="1080" cy="78" r="44" fill="#e8ece6"/>
+<path d="M0 560 Q180 440 380 500 Q560 380 760 470 Q960 400 1160 480 Q1380 420 1600 500 L1600 700 L0 700 Z" fill="#7aa98b"/>
+<path d="M0 610 Q220 520 460 580 Q700 500 960 570 Q1240 520 1600 580 L1600 700 L0 700 Z" fill="#5f8f72"/>`);
+
+const tree = (x, y, r) => add(`<rect x="${x - 9}" y="${y}" width="18" height="${660 - y}" fill="#7a4a2a"/><circle cx="${x}" cy="${y - r * .55}" r="${r}" fill="#f0b429"/><circle cx="${x - r * .45}" cy="${y - r * .2}" r="${r * .6}" fill="#e6a020"/><circle cx="${x + r * .35}" cy="${y - r * .9}" r="${r * .55}" fill="#ffd257"/>`);
+tree(270, 520, 85); tree(880, 560, 70); tree(1080, 540, 80);
+
+// 전동성당
+add(`<g>
+<rect x="410" y="400" width="300" height="200" fill="url(#brick)"/>
+<path d="M480 360 L560 320 L640 360 L640 400 L480 400 Z" fill="#b85640"/>
+<rect x="420" y="268" width="60" height="332" fill="url(#brick)"/><path d="M416 270 Q416 196 450 196 Q484 196 484 270 Z" fill="url(#dome)"/>
+<rect x="640" y="268" width="60" height="332" fill="url(#brick)"/><path d="M636 270 Q636 196 670 196 Q704 196 704 270 Z" fill="url(#dome)"/>
+<path d="M450 168 L450 198 M440 180 L460 180 M670 168 L670 198 M660 180 L680 180" stroke="#e7c98e" stroke-width="5"/>
+<rect x="512" y="190" width="96" height="410" fill="url(#brick)"/><path d="M506 192 L560 158 L614 192 Z" fill="#a84a32"/>
+<path d="M560 128 L560 160 M546 142 L574 142" stroke="#e7c98e" stroke-width="7"/>
+<circle cx="560" cy="370" r="24" fill="#f5ecd8" stroke="#7a3322" stroke-width="5"/><path d="M560 356 L560 371 L571 377" stroke="#3a2a22" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+<path d="M538 230 Q538 194 548 194 Q556 194 556 230 Z M564 230 Q564 194 574 194 Q582 194 582 230 Z" fill="#4a231b"/>
+<path d="M441 330 Q441 296 450 296 Q459 296 459 330 Z M661 330 Q661 296 670 296 Q679 296 679 330 Z" fill="#4a231b"/>
+<path d="M438 560 Q438 508 450 508 Q462 508 462 560 Z M658 560 Q658 508 670 508 Q682 508 682 560 Z" fill="#4a231b"/>
+<path d="M524 600 L524 548 Q524 504 560 504 Q596 504 596 548 L596 600 Z" fill="#4a231b"/>
+${[420, 450, 480, 510, 540, 570].map(y => `<path d="M410 ${y} L710 ${y}" stroke="#7a3322" stroke-opacity=".25" stroke-width="2"/>`).join("")}
+</g>`);
+
+// 한옥 지붕과 담
+const hanok = (x1, x2, y) => add(`<rect x="${x1 + 10}" y="${y + 18}" width="${x2 - x1 - 20}" height="72" fill="#f4ead6"/>
+${Array.from({ length: Math.floor((x2 - x1 - 40) / 46) }, (_, i) => `<rect x="${x1 + 24 + i * 46}" y="${y + 34}" width="30" height="40" fill="none" stroke="#b05a3a" stroke-width="5"/>`).join("")}
+<path d="M${x1 - 20} ${y + 22} Q${(x1 + x2) / 2} ${y + 6} ${x2 + 20} ${y + 22} L${x2 - 10} ${y} L${x1 + 10} ${y} Z" fill="#3b4256"/>`);
+hanok(0, 300, 570); hanok(820, 1180, 580); hanok(1440, 1600, 560);
+
+// 땅
+add(`<rect x="0" y="660" width="1600" height="240" fill="url(#ground)"/>
+${[[0, 700, 50], [80, 750, 120], [180, 805, 60], [340, 700, 100], [880, 760, 90], [1200, 800, 120], [1480, 750, 100]].map(([x, y, w]) => `<rect x="${x}" y="${y}" width="${w}" height="8" rx="4" fill="#9a7d5e" opacity=".35"/>`).join("")}`);
+
+// 미션 빛줄기: 사람보다 먼저 그려서 머리 뒤에 있게 한다
+add(`<rect x="730" y="150" width="60" height="500" fill="url(#beam)"/><rect x="753" y="150" width="14" height="500" fill="#fff8d6" opacity=".7"/><ellipse cx="760" cy="652" rx="70" ry="18" fill="url(#glow)"/>`);
+
+// 진행자 술래 분신 (뒤쪽, 흐리게)
+person({ x: 1030, y: 728, s: .5, shirt: "#6b6b6b", pants: "#555", skin: "#d9b99a", hair: "#555", style: "short", op: .85, label: "술래" });
+person({ x: 1125, y: 698, s: .44, shirt: "#6b6b6b", pants: "#555", skin: "#d9b99a", hair: "#555", style: "short", op: .85, label: "술래" });
+
+// 1조 비전포즈
+const team = [
+  { x: 150, y: 790, shirt: "#ecebe6", style: "short", glasses: true, arm: "phone" },
+  { x: 285, y: 815, shirt: "#262d45", style: "long" },
+  { x: 410, y: 795, shirt: "#8a4a30", style: "short", sun: true, arm: "point", skin: "#eec29a" },
+  { x: 540, y: 825, shirt: "#f3f0ea", style: "long", arm: "v" },
+  { x: 660, y: 800, shirt: "#3b4a6b", style: "long", glasses: true, arm: "point" },
+  { x: 785, y: 830, shirt: "#c84a68", style: "bun", hair: "#2a2422", arm: "v" },
+  { x: 905, y: 810, shirt: "#5f7a4a", style: "short", arm: "v", skin: "#e8b88e" },
+];
+team.forEach(p => person({ ...p, s: .82 }));
+person({ x: 1060, y: 860, s: .56, shirt: "#6b6b6b", pants: "#555", skin: "#d9b99a", hair: "#555", style: "short", op: .85, label: "술래" });
+
+add(`<g><rect x="948" y="462" width="220" height="48" rx="24" fill="#fff"/><text x="1058" y="494" font-size="20" fill="#1c2236" text-anchor="middle">분신 4명 중 진짜는?</text></g>`);
+
+if (!CARD) {
+  add(`<g><rect x="40" y="40" width="520" height="104" rx="22" fill="#1c2236" opacity=".96"/>
+<text x="68" y="84" font-size="18" fill="#ffc94d">2026.10.31 · 전주 한옥마을</text>
+<text x="68" y="122" font-size="31" fill="#fff">27명 · 5개 조 · 65분 실제 게임</text></g>
+<g><rect x="662" y="88" width="300" height="56" rx="28" fill="#1c2236" opacity=".96"/><circle cx="692" cy="116" r="15" fill="#ff7a59"/><rect x="686" y="110" width="12" height="12" rx="2" fill="none" stroke="#fff" stroke-width="2.5"/>
+<text x="714" y="124" font-size="21" fill="#fff">전동성당 비전포즈</text><text x="940" y="124" font-size="18" fill="#ffc94d" text-anchor="end">30점</text></g>`);
+  // 휴대폰 조준 카메라
+  add(`<g><rect x="1180" y="134" width="332" height="652" rx="44" fill="#141a2c"/><rect x="1196" y="150" width="300" height="620" rx="32" fill="#4b5568"/>
+<text x="1346" y="186" font-size="20" fill="#fff" text-anchor="middle">찾을 술래 · 진행자</text>
+<rect x="1272" y="200" width="148" height="30" rx="15" fill="#e53935"/><text x="1346" y="221" font-size="16" fill="#fff" text-anchor="middle">바로 근처!</text>
+<g clip-path="url(#vf)"><rect x="1196" y="238" width="300" height="452" fill="#cfe2f2"/><rect x="1196" y="450" width="300" height="240" fill="#a99273"/>
+<rect x="1210" y="320" width="160" height="120" fill="#f1e8d6"/><path d="M1196 330 L1380 330 L1360 300 L1210 300 Z" fill="#3b4256"/>
+<rect x="1400" y="300" width="110" height="140" fill="#f1e8d6"/><path d="M1386 304 L1510 304 L1500 280 L1400 280 Z" fill="#3b4256"/></g>
+<rect x="1196" y="690" width="300" height="80" fill="#2e3546"/><circle cx="1346" cy="730" r="24" fill="#fff"/><circle cx="1346" cy="730" r="19" fill="none" stroke="#2e3546" stroke-width="3"/></g>`);
+  add(`<g clip-path="url(#vf)">`);
+  person({ x: 1346, y: 600, s: 1.04, shirt: "#9aa3b5", pants: "#2b3247", style: "short", arm: "v" });
+  add(`<g transform="translate(1346 470)" opacity=".95"><rect x="-56" y="-58" width="112" height="116" fill="#9aa3b5" opacity="0"/>
+${[-34, -16, 2, 20].map(y => `<rect x="-50" y="${y}" width="100" height="6" fill="#2b3247" opacity=".7"/>`).join("")}</g></g>`);
+  add(`<g fill="none" stroke="#e53935" stroke-width="5"><circle cx="1346" cy="470" r="70"/><path d="M1346 384 L1346 420 M1346 520 L1346 556 M1260 470 L1296 470 M1396 470 L1432 470"/></g><circle cx="1346" cy="470" r="6" fill="#e53935"/>`);
+}
+
+svg.innerHTML = out.join("");
+</script>
+</body></html>

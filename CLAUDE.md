@@ -57,7 +57,8 @@ videos?[{src,poster?,label,wide?}](영상이 여럿일 때 video 대신, 적은 
 (그 길 = the-way-jesus.web.app 저장소, 비전 퀘스트 = team-esc 저장소. 화면은 실제 사이트를 Playwright로 캡처한다.
 비전 퀘스트는 https://team-esc.web.app/?demo 로 로그인 없이 가짜 참가자 화면을 볼 수 있다.
 비전 퀘스트 '실전 기록'은 2026-10-31 전주 한옥마을 게임 Q9A54의 실제 자료(`firebase database:get /games/Q9A54 --project team-esc`)에서 센 숫자다.
-참가자 사진은 쓰지 않고 그림으로 다시 그렸다: shots/visionquest-scene.jpg, gallery/visionquest-jeonju.jpg)
+참가자 사진은 쓰지 않고 그림으로 다시 그렸다: shots/visionquest-scene.jpg, gallery/visionquest-jeonju.jpg.
+장면 그림 원본은 design/visionquest-scene.html (Chrome 헤드리스로 1600×900 캡처, ?card 를 붙이면 카드용 1160×750))
 
 교구 레크리에이션 실전 운영 기록(record)은 2026-11-01 행사 서버 기록 요약(교구레크레이션 세션의 운영 기록 페이지)에서 가져왔다.
 평소에는 행사 뒤 데이터를 남기지 않는다(소개 글 그대로). 이 기록은 첫 운영이라 소개용으로 일부러 남긴 것이다.
