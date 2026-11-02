@@ -37,6 +37,7 @@ firebase deploy --only hosting
 ```
 
 `npm run deploy`는 앱 소개 페이지(public/apps)와 sitemap.xml을 다시 만든 뒤 배포한다. data.js를 고치면 `npm run apps`로 만든 페이지도 함께 커밋한다. 두 사이트에 함께 배포된다. html/js/png 등은 `no-cache` 헤더라 새로고침하면 바로 반영된다.
+**mp4에는 no-cache를 붙이지 않는다**: Firebase가 no-cache 파일은 Range 요청에 206으로 답하지 않아 아이폰 사파리에서 영상이 재생되지 않는다(2026-11 홍보 쇼츠 재생 안 됨). mp4는 `max-age=300`, 영상을 바꾸면 주소에 `?v=` 버전을 바꾼다.
 클라우드(GitHub)에서는 `main`에 push하면 `.github/workflows/deploy.yml`이 배포한다
 (배포 전에 sitemap.xml도 다시 만든다. 저장소 Secret `FIREBASE_SERVICE_ACCOUNT_SSSOFT_PORTFOLIO` 필요).
 

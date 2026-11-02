@@ -9,11 +9,20 @@
    ],
    "headers": [
     {
-     "source": "**/*.@(html|js|png|jpg|svg|mp4)",
+     "source": "**/*.@(html|js|png|jpg|svg)",
      "headers": [
       {
        "key": "Cache-Control",
        "value": "no-cache"
+      }
+     ]
+    },
+    {
+     "source": "**/*.mp4",
+     "headers": [
+      {
+       "key": "Cache-Control",
+       "value": "public, max-age=300"
       }
      ]
     }
@@ -28,11 +37,20 @@
    ],
    "headers": [
     {
-     "source": "**/*.@(html|js|png|jpg|svg|mp4)",
+     "source": "**/*.@(html|js|png|jpg|svg)",
      "headers": [
       {
        "key": "Cache-Control",
        "value": "no-cache"
+      }
+     ]
+    },
+    {
+     "source": "**/*.mp4",
+     "headers": [
+      {
+       "key": "Cache-Control",
+       "value": "public, max-age=300"
       }
      ]
     }
