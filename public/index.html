@@ -4,12 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>SSSOFT — 앱·웹 서비스 개발 스튜디오</title>
-<meta name="description" content="SSSOFT는 아이디어를 매일 쓰이는 서비스로 만드는 소프트웨어 스튜디오입니다. 캠프마스터, STARFARER, 다락방 기도앱, 교구 레크리에이션, 다정 리딩북, 케미몰, 보캐브스캔, 워드드롭, 부부 노후자금 시뮬레이터, 중심잡기, 큐티레이스, 열왕기 — 두 왕국의 연대기, 그 길 — 예수의 발자취, 비전 퀘스트를 직접 기획·개발해 운영합니다. 앱·웹 개발 의뢰: sssoft1004@gmail.com">
+<meta name="description" content="SSSOFT는 아이디어를 매일 쓰이는 서비스로 만드는 소프트웨어 스튜디오입니다. 캠프마스터, STARFARER, 다락방 기도앱, 교회 레크리에이션, 다정 리딩북, 케미몰, 보캐브스캔, 워드드롭, 부부 노후자금 시뮬레이터, 중심잡기, 큐티레이스, 열왕기 — 두 왕국의 연대기, 그 길 — 예수의 발자취, 비전 퀘스트를 직접 기획·개발해 운영합니다. 앱·웹 개발 의뢰: sssoft1004@gmail.com">
 <link rel="canonical" href="https://sssoft-idea.web.app/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="SSSOFT">
 <meta property="og:title" content="SSSOFT — 기발한 아이디어를, 매일 쓰이는 서비스로.">
-<meta property="og:description" content="SSSOFT는 아이디어를 매일 쓰이는 서비스로 만드는 소프트웨어 스튜디오입니다. 캠프마스터, STARFARER, 다락방 기도앱, 교구 레크리에이션, 다정 리딩북, 케미몰, 보캐브스캔, 워드드롭, 부부 노후자금 시뮬레이터, 중심잡기, 큐티레이스, 열왕기 — 두 왕국의 연대기, 그 길 — 예수의 발자취, 비전 퀘스트를 직접 기획·개발해 운영합니다. 앱·웹 개발 의뢰: sssoft1004@gmail.com">
+<meta property="og:description" content="SSSOFT는 아이디어를 매일 쓰이는 서비스로 만드는 소프트웨어 스튜디오입니다. 캠프마스터, STARFARER, 다락방 기도앱, 교회 레크리에이션, 다정 리딩북, 케미몰, 보캐브스캔, 워드드롭, 부부 노후자금 시뮬레이터, 중심잡기, 큐티레이스, 열왕기 — 두 왕국의 연대기, 그 길 — 예수의 발자취, 비전 퀘스트를 직접 기획·개발해 운영합니다. 앱·웹 개발 의뢰: sssoft1004@gmail.com">
 <meta property="og:url" content="https://sssoft-idea.web.app/">
 <meta property="og:image" content="https://sssoft-idea.web.app/og-image.png">
 <meta property="og:image:width" content="1200">
@@ -191,6 +191,10 @@ dialog::backdrop{background:rgba(8,9,14,.62);backdrop-filter:blur(4px)}
 @media (max-width:820px){.gal{grid-template-columns:repeat(2,1fr)}.gal.wide,.gal.tall{grid-template-columns:1fr}}
 .demo{display:inline-block;margin:-4px 0 14px;font-size:14px;font-weight:700;color:#fff;background:var(--c);padding:7px 14px;border-radius:999px;text-decoration:none;align-self:flex-start}
 .demo.share{cursor:pointer}
+.acts{display:flex;flex-wrap:wrap;gap:8px;margin:-4px 0 14px}
+.acts .demo{margin:0}
+.demo.ask,.btn.play.ask{background:transparent;color:var(--c);border:1.5px solid var(--c)}
+.demo.free,.btn.play.free{background:#16a34a;color:#fff;letter-spacing:.06em}
 .btn.share{border:0;cursor:pointer;font:inherit;font-weight:700}
 #shareMsg{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);z-index:100;background:#15161a;color:#fff;font-size:14px;font-weight:700;padding:10px 18px;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.3);opacity:0;transition:opacity .2s;pointer-events:none;max-width:calc(100% - 32px);text-align:center}
 #shareMsg.on{opacity:1}
@@ -414,6 +418,8 @@ function visual(p, big){
 }
 function stageBg(c){ return `background:radial-gradient(120% 90% at 50% 0%, color-mix(in srgb, ${c} 38%, transparent), color-mix(in srgb, ${c} 8%, var(--sunk)) 70%)`; }
 
+// 사용문의: 카톡 오픈채팅방을 연다.
+function askHref(){ return "https://open.kakao.com/o/ssPDUnSi"; }
 const grid = document.getElementById("grid");
 function render(f){
   grid.innerHTML = P.filter(p => f==="all" || p.cat===f).map(p => `
@@ -425,7 +431,7 @@ function render(f){
       <div class="tl">${esc(p.tagline)}</div>
       ${p.supports?`<div class="sup">${p.supports.map(x=>`<span>✓ ${esc(x)}</span>`).join("")}</div>`:""}
       <ul class="mini">${(p.flagship||p.features).slice(0,4).map(f=>`<li${f.hot?' class="hot"':""}>${esc(f.title)}${f.plus?` <span class="plus">${esc(f.plus)}</span>`:""}</li>`).join("")}</ul>
-      ${p.demo?`<a class="demo" href="${p.demo}" target="_blank" rel="noopener" onclick="event.stopPropagation()">▶ 샘플 페이지 바로가기</a>`:""}${p.share?`<span class="demo share" role="button" tabindex="0" data-share="${p.id}">앱 공유하기</span>`:""}<span class="more">${p.stages?`전체 기능 ${p.stages.reduce((n,s)=>n+s.items.length,0)}가지 자세히 보기 →`:`자세히 보기 →`}</span>
+      ${p.demo||p.share||p.inquiry||p.free?`<div class="acts">${p.free&&p.url?`<a class="demo free" href="${p.url}" target="_blank" rel="noopener" onclick="event.stopPropagation()">FREE</a>`:""}${p.demo?`<a class="demo" href="${p.demo}" target="_blank" rel="noopener" onclick="event.stopPropagation()">▶ 샘플 페이지 바로가기</a>`:""}${p.inquiry?`<a class="demo ask" href="${askHref(p)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">사용문의</a>`:""}${p.share?`<span class="demo share" role="button" tabindex="0" data-share="${p.id}">앱 공유하기</span>`:""}</div>`:""}<span class="more">${p.stages?`전체 기능 ${p.stages.reduce((n,s)=>n+s.items.length,0)}가지 자세히 보기 →`:`자세히 보기 →`}</span>
     </div>
   </button>`).join("");
 }
@@ -510,7 +516,9 @@ function open(id){
        ${p.supports?`<div class="sup">${p.supports.map(x=>`<span>✓ ${esc(x)}</span>`).join("")}</div>`:""}
        <p class="ov">${esc(p.overview)}</p>
        ${p.url?`<a class="btn" style="background:${p.color}" href="${p.url}" target="_blank" rel="noopener">${p.play?"웹에서 열기 →":"서비스 바로가기 →"}</a>`:""}
+       ${p.free&&p.url?`<a class="btn play free" href="${p.url}" target="_blank" rel="noopener">FREE</a>`:""}
        ${p.demo?`<a class="btn play" href="${p.demo}" target="_blank" rel="noopener">▶ 샘플 페이지 바로가기</a>`:""}
+       ${p.inquiry?`<a class="btn play ask" href="${askHref(p)}" target="_blank" rel="noopener">사용문의</a>`:""}
        ${p.share?`<button class="btn play share" type="button" data-share="${p.id}">앱 공유하기</button>`:""}
        ${p.play?`<a class="btn play" href="${p.play}" target="_blank" rel="noopener">▶ Google Play에서 받기</a>`:""}
      </div>

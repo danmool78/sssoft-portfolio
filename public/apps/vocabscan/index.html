@@ -187,6 +187,10 @@ dialog::backdrop{background:rgba(8,9,14,.62);backdrop-filter:blur(4px)}
 @media (max-width:820px){.gal{grid-template-columns:repeat(2,1fr)}.gal.wide,.gal.tall{grid-template-columns:1fr}}
 .demo{display:inline-block;margin:-4px 0 14px;font-size:14px;font-weight:700;color:#fff;background:var(--c);padding:7px 14px;border-radius:999px;text-decoration:none;align-self:flex-start}
 .demo.share{cursor:pointer}
+.acts{display:flex;flex-wrap:wrap;gap:8px;margin:-4px 0 14px}
+.acts .demo{margin:0}
+.demo.ask,.btn.play.ask{background:transparent;color:var(--c);border:1.5px solid var(--c)}
+.demo.free,.btn.play.free{background:#16a34a;color:#fff;letter-spacing:.06em}
 .btn.share{border:0;cursor:pointer;font:inherit;font-weight:700}
 #shareMsg{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);z-index:100;background:#15161a;color:#fff;font-size:14px;font-weight:700;padding:10px 18px;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.3);opacity:0;transition:opacity .2s;pointer-events:none;max-width:calc(100% - 32px);text-align:center}
 #shareMsg.on{opacity:1}
@@ -296,6 +300,8 @@ h1,h2,h3,.hero h1,.sec-head h2,.about h2,.process h2,.reeltxt h2,.contact h2,.bo
        <p class="ov">VocabScan은 교재나 문서를 카메라, 이미지, PDF로 찍기만 하면 AI가 단어를 뽑아 뜻, 예문, 동의어까지 붙여 단어장으로 만들어 주는 AI 기반 스마트 단어장입니다. 만든 단어장은 그대로 플래시카드, 단어맵, 연상 이미지, 고품질 TTS 반복 듣기, 3D 미로 탈출 게임, 다양한 유형의 테스트로 이어져 같은 단어를 여러 방식으로 익히게 합니다. 수능 제2외국어, JLPT, HSK, DELE, DELF, IELTS 같은 시험의 필수 단어 리스트를 빈출 순서로 목표일까지 하루치씩 나눠 주는 플랜 학습이 있고, 시험 지문을 올리면 AI가 실전형 연습 문제와 해설을 만들어 줍니다. 단어를 모으는 일부터 계획, 암기, 시험 점검까지 빠짐없이 한 흐름으로 이어지므로 학습자는 외우는 일에만 집중하면 됩니다.</p>
        <a class="btn" style="background:#c40000" href="https://vocascanner-app.web.app" target="_blank" rel="noopener">웹에서 열기 →</a>
        
+       
+       
        <a class="btn play" href="https://play.google.com/store/apps/details?id=com.vocascanner.app" target="_blank" rel="noopener">▶ Google Play에서 받기</a>
      </div>
      <div class="dshot"><div class="phone"><img src="/shots/vocabscan-m.png" alt="보캐브스캔 앱 화면"></div></div>
@@ -338,7 +344,7 @@ h1,h2,h3,.hero h1,.sec-head h2,.about h2,.process h2,.reeltxt h2,.contact h2,.bo
   </main>
   <section class="others" style="padding:0">
     <h2>SSSOFT의 다른 서비스</h2>
-    <ul class="olist"><li><a href="/apps/campmaster/" style="--c:#4f8cff"><b>캠프마스터</b><span>캠프·행사 운영 플랫폼</span></a></li><li><a href="/apps/starfarer/" style="--c:#ff9a2e"><b>STARFARER</b><span>3D 온라인 게임 · PC·태블릿·모바일</span></a></li><li><a href="/apps/darakbang/" style="--c:#7c5cff"><b>다락방 기도앱</b><span>소그룹 커뮤니티</span></a></li><li><a href="/apps/gyogurec/" style="--c:#ff8a3d"><b>교구 레크리에이션</b><span>교회 행사 레크리에이션</span></a></li><li><a href="/apps/readingbook/" style="--c:#5b7a62"><b>다정 리딩북</b><span>AI 오디오북</span></a></li><li><a href="/apps/chemimall/" style="--c:#b3172b"><b>케미몰</b><span>독립몰 구축</span></a></li><li><a href="/apps/worddrop/" style="--c:#8b5cf6"><b>워드드롭</b><span>암기 게임</span></a></li><li><a href="/apps/retire/" style="--c:#1d4ed8"><b>부부 노후자금 시뮬레이터</b><span>노후 재무 설계</span></a></li><li><a href="/apps/balance/" style="--c:#3f9b5a"><b>중심잡기</b><span>3D 캐주얼 게임</span></a></li><li><a href="/apps/qtrace/" style="--c:#ff6b6b"><b>큐티레이스</b><span>교회 이벤트 지원</span></a></li><li><a href="/apps/kings/" style="--c:#2f5d4f"><b>열왕기 — 두 왕국의 연대기</b><span>성경 인터랙티브 연대표</span></a></li><li><a href="/apps/theway/" style="--c:#8a6420"><b>그 길 — 예수의 발자취</b><span>3D 성경 지도 여정</span></a></li><li><a href="/apps/visionquest/" style="--c:#3d7be0"><b>비전 퀘스트</b><span>실시간 위치 팀 미션</span></a></li></ul>
+    <ul class="olist"><li><a href="/apps/campmaster/" style="--c:#4f8cff"><b>캠프마스터</b><span>캠프·행사 운영 플랫폼</span></a></li><li><a href="/apps/starfarer/" style="--c:#ff9a2e"><b>STARFARER</b><span>3D 온라인 게임 · PC·태블릿·모바일</span></a></li><li><a href="/apps/darakbang/" style="--c:#7c5cff"><b>다락방 기도앱</b><span>소그룹 커뮤니티</span></a></li><li><a href="/apps/gyogurec/" style="--c:#ff8a3d"><b>교회 레크리에이션</b><span>교회 행사 레크리에이션</span></a></li><li><a href="/apps/readingbook/" style="--c:#5b7a62"><b>다정 리딩북</b><span>AI 오디오북</span></a></li><li><a href="/apps/chemimall/" style="--c:#b3172b"><b>케미몰</b><span>독립몰 구축</span></a></li><li><a href="/apps/worddrop/" style="--c:#8b5cf6"><b>워드드롭</b><span>암기 게임</span></a></li><li><a href="/apps/retire/" style="--c:#1d4ed8"><b>부부 노후자금 시뮬레이터</b><span>노후 재무 설계</span></a></li><li><a href="/apps/balance/" style="--c:#3f9b5a"><b>중심잡기</b><span>3D 캐주얼 게임</span></a></li><li><a href="/apps/qtrace/" style="--c:#ff6b6b"><b>큐티레이스</b><span>교회 큐티 캠페인</span></a></li><li><a href="/apps/kings/" style="--c:#2f5d4f"><b>열왕기 — 두 왕국의 연대기</b><span>성경 인터랙티브 연대표</span></a></li><li><a href="/apps/theway/" style="--c:#8a6420"><b>그 길 — 예수의 발자취</b><span>3D 성경 지도 여정</span></a></li><li><a href="/apps/visionquest/" style="--c:#3d7be0"><b>비전 퀘스트</b><span>실시간 위치 팀 미션</span></a></li></ul>
   </section>
   <div class="contact">
     <h2>이런 서비스, 함께 만들어 볼까요?</h2>

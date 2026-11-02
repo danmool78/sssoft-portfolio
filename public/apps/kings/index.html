@@ -187,6 +187,10 @@ dialog::backdrop{background:rgba(8,9,14,.62);backdrop-filter:blur(4px)}
 @media (max-width:820px){.gal{grid-template-columns:repeat(2,1fr)}.gal.wide,.gal.tall{grid-template-columns:1fr}}
 .demo{display:inline-block;margin:-4px 0 14px;font-size:14px;font-weight:700;color:#fff;background:var(--c);padding:7px 14px;border-radius:999px;text-decoration:none;align-self:flex-start}
 .demo.share{cursor:pointer}
+.acts{display:flex;flex-wrap:wrap;gap:8px;margin:-4px 0 14px}
+.acts .demo{margin:0}
+.demo.ask,.btn.play.ask{background:transparent;color:var(--c);border:1.5px solid var(--c)}
+.demo.free,.btn.play.free{background:#16a34a;color:#fff;letter-spacing:.06em}
 .btn.share{border:0;cursor:pointer;font:inherit;font-weight:700}
 #shareMsg{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);z-index:100;background:#15161a;color:#fff;font-size:14px;font-weight:700;padding:10px 18px;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.3);opacity:0;transition:opacity .2s;pointer-events:none;max-width:calc(100% - 32px);text-align:center}
 #shareMsg.on{opacity:1}
@@ -295,6 +299,8 @@ h1,h2,h3,.hero h1,.sec-head h2,.about h2,.process h2,.reeltxt h2,.contact h2,.bo
        
        <p class="ov">열왕기는 북이스라엘과 남유다의 이야기가 번갈아 나와서, 지금 읽는 왕이 다른 왕국의 어느 왕과 같은 시대인지 따라가기 어렵습니다. 이 앱은 BC 931년 왕국 분열부터 BC 586년 남유다 멸망까지 통치자 39명의 재위를 한 장의 연대표에 나란히 놓고, 연도 슬라이더를 움직이면 그 해 두 왕국의 왕을 바로 보여 줍니다. 왕마다 즉위 과정, 주요 사건, 가문, 즉위 나이, 그리고 '여호와 보시기에' 어떠했는지에 대한 열왕기 본문의 평가를 근거 구절과 함께 정리했고, 선왕을 죽이고 왕위에 오른 7번의 찬탈은 붉은 화살표로 피해 왕과 이어 보여 줍니다. 휴대폰에서는 같은 해의 두 왕국을 카드로 비교하는 화면이 먼저 열리고, 홈 화면에 앱처럼 설치하면 한 번 열어 본 화면은 인터넷 없이도 다시 볼 수 있습니다.</p>
        <a class="btn" style="background:#2f5d4f" href="https://kings-chronicle-app.web.app" target="_blank" rel="noopener">서비스 바로가기 →</a>
+       <a class="btn play free" href="https://kings-chronicle-app.web.app" target="_blank" rel="noopener">FREE</a>
+       
        
        
      </div>
@@ -335,7 +341,7 @@ h1,h2,h3,.hero h1,.sec-head h2,.about h2,.process h2,.reeltxt h2,.contact h2,.bo
   </main>
   <section class="others" style="padding:0">
     <h2>SSSOFT의 다른 서비스</h2>
-    <ul class="olist"><li><a href="/apps/campmaster/" style="--c:#4f8cff"><b>캠프마스터</b><span>캠프·행사 운영 플랫폼</span></a></li><li><a href="/apps/starfarer/" style="--c:#ff9a2e"><b>STARFARER</b><span>3D 온라인 게임 · PC·태블릿·모바일</span></a></li><li><a href="/apps/darakbang/" style="--c:#7c5cff"><b>다락방 기도앱</b><span>소그룹 커뮤니티</span></a></li><li><a href="/apps/gyogurec/" style="--c:#ff8a3d"><b>교구 레크리에이션</b><span>교회 행사 레크리에이션</span></a></li><li><a href="/apps/readingbook/" style="--c:#5b7a62"><b>다정 리딩북</b><span>AI 오디오북</span></a></li><li><a href="/apps/chemimall/" style="--c:#b3172b"><b>케미몰</b><span>독립몰 구축</span></a></li><li><a href="/apps/vocabscan/" style="--c:#c40000"><b>보캐브스캔</b><span>AI 단어장</span></a></li><li><a href="/apps/worddrop/" style="--c:#8b5cf6"><b>워드드롭</b><span>암기 게임</span></a></li><li><a href="/apps/retire/" style="--c:#1d4ed8"><b>부부 노후자금 시뮬레이터</b><span>노후 재무 설계</span></a></li><li><a href="/apps/balance/" style="--c:#3f9b5a"><b>중심잡기</b><span>3D 캐주얼 게임</span></a></li><li><a href="/apps/qtrace/" style="--c:#ff6b6b"><b>큐티레이스</b><span>교회 이벤트 지원</span></a></li><li><a href="/apps/theway/" style="--c:#8a6420"><b>그 길 — 예수의 발자취</b><span>3D 성경 지도 여정</span></a></li><li><a href="/apps/visionquest/" style="--c:#3d7be0"><b>비전 퀘스트</b><span>실시간 위치 팀 미션</span></a></li></ul>
+    <ul class="olist"><li><a href="/apps/campmaster/" style="--c:#4f8cff"><b>캠프마스터</b><span>캠프·행사 운영 플랫폼</span></a></li><li><a href="/apps/starfarer/" style="--c:#ff9a2e"><b>STARFARER</b><span>3D 온라인 게임 · PC·태블릿·모바일</span></a></li><li><a href="/apps/darakbang/" style="--c:#7c5cff"><b>다락방 기도앱</b><span>소그룹 커뮤니티</span></a></li><li><a href="/apps/gyogurec/" style="--c:#ff8a3d"><b>교회 레크리에이션</b><span>교회 행사 레크리에이션</span></a></li><li><a href="/apps/readingbook/" style="--c:#5b7a62"><b>다정 리딩북</b><span>AI 오디오북</span></a></li><li><a href="/apps/chemimall/" style="--c:#b3172b"><b>케미몰</b><span>독립몰 구축</span></a></li><li><a href="/apps/vocabscan/" style="--c:#c40000"><b>보캐브스캔</b><span>AI 단어장</span></a></li><li><a href="/apps/worddrop/" style="--c:#8b5cf6"><b>워드드롭</b><span>암기 게임</span></a></li><li><a href="/apps/retire/" style="--c:#1d4ed8"><b>부부 노후자금 시뮬레이터</b><span>노후 재무 설계</span></a></li><li><a href="/apps/balance/" style="--c:#3f9b5a"><b>중심잡기</b><span>3D 캐주얼 게임</span></a></li><li><a href="/apps/qtrace/" style="--c:#ff6b6b"><b>큐티레이스</b><span>교회 큐티 캠페인</span></a></li><li><a href="/apps/theway/" style="--c:#8a6420"><b>그 길 — 예수의 발자취</b><span>3D 성경 지도 여정</span></a></li><li><a href="/apps/visionquest/" style="--c:#3d7be0"><b>비전 퀘스트</b><span>실시간 위치 팀 미션</span></a></li></ul>
   </section>
   <div class="contact">
     <h2>이런 서비스, 함께 만들어 볼까요?</h2>

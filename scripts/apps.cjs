@@ -138,7 +138,9 @@ function page(p) {
        ${p.supports ? `<div class="sup">${p.supports.map(x => `<span>✓ ${esc(x)}</span>`).join("")}</div>` : ""}
        <p class="ov">${esc(p.overview)}</p>
        ${p.url ? `<a class="btn" style="background:${p.color}" href="${p.url}" target="_blank" rel="noopener">${p.play ? "웹에서 열기 →" : "서비스 바로가기 →"}</a>` : ""}
+       ${p.free && p.url ? `<a class="btn play free" href="${p.url}" target="_blank" rel="noopener">FREE</a>` : ""}
        ${p.demo ? `<a class="btn play" href="${p.demo}" target="_blank" rel="noopener">▶ 샘플 페이지 바로가기</a>` : ""}
+       ${p.inquiry ? `<a class="btn play ask" href="https://open.kakao.com/o/ssPDUnSi" target="_blank" rel="noopener">사용문의</a>` : ""}
        ${p.play ? `<a class="btn play" href="${p.play}" target="_blank" rel="noopener">▶ Google Play에서 받기</a>` : ""}
      </div>
      <div class="dshot">${p.frame === "browser" ? (exists(`shots/${p.shot}-m.png`) ? `<div class="phone"><img src="/shots/${p.shot}-m.png" alt="${esc(p.title)} 모바일 화면"></div>` : "") : visual(p)}</div>

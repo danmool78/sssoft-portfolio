@@ -187,6 +187,10 @@ dialog::backdrop{background:rgba(8,9,14,.62);backdrop-filter:blur(4px)}
 @media (max-width:820px){.gal{grid-template-columns:repeat(2,1fr)}.gal.wide,.gal.tall{grid-template-columns:1fr}}
 .demo{display:inline-block;margin:-4px 0 14px;font-size:14px;font-weight:700;color:#fff;background:var(--c);padding:7px 14px;border-radius:999px;text-decoration:none;align-self:flex-start}
 .demo.share{cursor:pointer}
+.acts{display:flex;flex-wrap:wrap;gap:8px;margin:-4px 0 14px}
+.acts .demo{margin:0}
+.demo.ask,.btn.play.ask{background:transparent;color:var(--c);border:1.5px solid var(--c)}
+.demo.free,.btn.play.free{background:#16a34a;color:#fff;letter-spacing:.06em}
 .btn.share{border:0;cursor:pointer;font:inherit;font-weight:700}
 #shareMsg{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);z-index:100;background:#15161a;color:#fff;font-size:14px;font-weight:700;padding:10px 18px;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.3);opacity:0;transition:opacity .2s;pointer-events:none;max-width:calc(100% - 32px);text-align:center}
 #shareMsg.on{opacity:1}
@@ -295,7 +299,9 @@ h1,h2,h3,.hero h1,.sec-head h2,.about h2,.process h2,.reeltxt h2,.contact h2,.bo
        <div class="sup"><span>✓ 교회 수련회</span><span>✓ 학교 캠프</span><span>✓ 회사 워크숍</span></div>
        <p class="ov">캠프마스터는 교회 수련회는 물론 학교 수련회·체험학습, 회사 워크숍·연수까지 단체 캠프 운영에 필요한 일을 처음부터 끝까지 하나로 묶은 운영 플랫폼입니다. 참가자 직접 등록, 요청사항을 반영한 조·방·버스 자동 편성, 접는 양면 명찰 자동 출력, 명찰 QR 하나로 하는 입실·퇴실·버스 탑승·상벌점·방키 관리, 점호, 의무·방키·물품, 게임 점수판, 회계 정산까지 모두 들어 있습니다. 참가자 호칭과 소속 단위(부·학년·반, 부서·팀, 마을·구역 등)를 조직에 맞게 바꿀 수 있어 어떤 단체든 같은 방식으로 운영할 수 있습니다. 담당자는 각자 맡은 운영 도구 앱만 링크로 받아 쓰고, 운영진은 서류와 연락 대신 캠프 자체에 집중합니다.</p>
        <a class="btn" style="background:#4f8cff" href="https://srn-camp-master.web.app" target="_blank" rel="noopener">서비스 바로가기 →</a>
+       
        <a class="btn play" href="https://srn-camp-master.web.app/o/sample/admin" target="_blank" rel="noopener">▶ 샘플 페이지 바로가기</a>
+       <a class="btn play ask" href="https://open.kakao.com/o/ssPDUnSi" target="_blank" rel="noopener">사용문의</a>
        
      </div>
      <div class="dshot"><div class="phone"><img src="/shots/campmaster-m.png" alt="캠프마스터 앱 화면"></div></div>
@@ -338,7 +344,7 @@ h1,h2,h3,.hero h1,.sec-head h2,.about h2,.process h2,.reeltxt h2,.contact h2,.bo
   </main>
   <section class="others" style="padding:0">
     <h2>SSSOFT의 다른 서비스</h2>
-    <ul class="olist"><li><a href="/apps/starfarer/" style="--c:#ff9a2e"><b>STARFARER</b><span>3D 온라인 게임 · PC·태블릿·모바일</span></a></li><li><a href="/apps/darakbang/" style="--c:#7c5cff"><b>다락방 기도앱</b><span>소그룹 커뮤니티</span></a></li><li><a href="/apps/gyogurec/" style="--c:#ff8a3d"><b>교구 레크리에이션</b><span>교회 행사 레크리에이션</span></a></li><li><a href="/apps/readingbook/" style="--c:#5b7a62"><b>다정 리딩북</b><span>AI 오디오북</span></a></li><li><a href="/apps/chemimall/" style="--c:#b3172b"><b>케미몰</b><span>독립몰 구축</span></a></li><li><a href="/apps/vocabscan/" style="--c:#c40000"><b>보캐브스캔</b><span>AI 단어장</span></a></li><li><a href="/apps/worddrop/" style="--c:#8b5cf6"><b>워드드롭</b><span>암기 게임</span></a></li><li><a href="/apps/retire/" style="--c:#1d4ed8"><b>부부 노후자금 시뮬레이터</b><span>노후 재무 설계</span></a></li><li><a href="/apps/balance/" style="--c:#3f9b5a"><b>중심잡기</b><span>3D 캐주얼 게임</span></a></li><li><a href="/apps/qtrace/" style="--c:#ff6b6b"><b>큐티레이스</b><span>교회 이벤트 지원</span></a></li><li><a href="/apps/kings/" style="--c:#2f5d4f"><b>열왕기 — 두 왕국의 연대기</b><span>성경 인터랙티브 연대표</span></a></li><li><a href="/apps/theway/" style="--c:#8a6420"><b>그 길 — 예수의 발자취</b><span>3D 성경 지도 여정</span></a></li><li><a href="/apps/visionquest/" style="--c:#3d7be0"><b>비전 퀘스트</b><span>실시간 위치 팀 미션</span></a></li></ul>
+    <ul class="olist"><li><a href="/apps/starfarer/" style="--c:#ff9a2e"><b>STARFARER</b><span>3D 온라인 게임 · PC·태블릿·모바일</span></a></li><li><a href="/apps/darakbang/" style="--c:#7c5cff"><b>다락방 기도앱</b><span>소그룹 커뮤니티</span></a></li><li><a href="/apps/gyogurec/" style="--c:#ff8a3d"><b>교회 레크리에이션</b><span>교회 행사 레크리에이션</span></a></li><li><a href="/apps/readingbook/" style="--c:#5b7a62"><b>다정 리딩북</b><span>AI 오디오북</span></a></li><li><a href="/apps/chemimall/" style="--c:#b3172b"><b>케미몰</b><span>독립몰 구축</span></a></li><li><a href="/apps/vocabscan/" style="--c:#c40000"><b>보캐브스캔</b><span>AI 단어장</span></a></li><li><a href="/apps/worddrop/" style="--c:#8b5cf6"><b>워드드롭</b><span>암기 게임</span></a></li><li><a href="/apps/retire/" style="--c:#1d4ed8"><b>부부 노후자금 시뮬레이터</b><span>노후 재무 설계</span></a></li><li><a href="/apps/balance/" style="--c:#3f9b5a"><b>중심잡기</b><span>3D 캐주얼 게임</span></a></li><li><a href="/apps/qtrace/" style="--c:#ff6b6b"><b>큐티레이스</b><span>교회 큐티 캠페인</span></a></li><li><a href="/apps/kings/" style="--c:#2f5d4f"><b>열왕기 — 두 왕국의 연대기</b><span>성경 인터랙티브 연대표</span></a></li><li><a href="/apps/theway/" style="--c:#8a6420"><b>그 길 — 예수의 발자취</b><span>3D 성경 지도 여정</span></a></li><li><a href="/apps/visionquest/" style="--c:#3d7be0"><b>비전 퀘스트</b><span>실시간 위치 팀 미션</span></a></li></ul>
   </section>
   <div class="contact">
     <h2>이런 서비스, 함께 만들어 볼까요?</h2>
