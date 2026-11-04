@@ -92,4 +92,13 @@ for (const pg of pages) {
 out.push("</urlset>", "");
 
 fs.writeFileSync(path.join(PUB, "sitemap.xml"), out.join("\n"));
+// 서치 콘솔이 sitemap.xml을 한 달 넘게 "가져올 수 없음"으로 두어서, 확장(이미지·영상) 없는 기본형과
+// 주소만 적은 텍스트형도 함께 만든다. 같은 페이지 목록이라 어느 쪽으로 제출해도 된다
+fs.writeFileSync(path.join(PUB, "sitemap-pages.xml"), [
+  '<?xml version="1.0" encoding="UTF-8"?>',
+  '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+  ...pages.map(pg => `  <url><loc>${esc(pg.loc)}</loc><lastmod>${pg.lastmod}</lastmod></url>`),
+  "</urlset>", "",
+].join("\n"));
+fs.writeFileSync(path.join(PUB, "sitemap.txt"), pages.map(pg => pg.loc).join("\n") + "\n");
 console.log(`sitemap.xml: ${pages.length} pages, ${images.length} images`);

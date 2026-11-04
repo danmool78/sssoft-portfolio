@@ -19,7 +19,8 @@ public/            ← 배포되는 사이트. 이 폴더가 원본이다 (루�
   gallery/         상세 화면 미리보기 이미지
   sssoft-reel-720.mp4, sssoft-reel-poster.jpg  사이트용 릴스
   apps/{id}/       앱마다 검색에 걸리는 소개 페이지. scripts/apps.cjs가 data.js로 만든다 (직접 고치지 않는다)
-  sitemap.xml      scripts/sitemap.cjs가 만든다 (직접 고치지 않는다)
+  sitemap.xml      scripts/sitemap.cjs가 만든다 (직접 고치지 않는다). 같은 목록의 기본형 sitemap-pages.xml(확장 없음)과
+                   텍스트형 sitemap.txt도 함께 만든다 (서치 콘솔이 sitemap.xml을 계속 "가져올 수 없음"으로 두어서)
 scripts/apps.cjs     apps/{id}/index.html 생성: 상세 창과 같은 내용을 정적 HTML로(제목·설명·SoftwareApplication 구조화 데이터)
 scripts/sitemap.cjs  sitemap.xml 생성: 페이지별 lastmod(git 커밋 날짜), 홈 카드 이미지, 릴스 영상, 앱 소개 페이지
 reel/              홍보 릴스(32초, 1080×1920) 원본

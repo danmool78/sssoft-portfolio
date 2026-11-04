@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://sssoft-idea.web.app/sitemap.xml
+Sitemap: https://sssoft-idea.web.app/sitemap-pages.xml
