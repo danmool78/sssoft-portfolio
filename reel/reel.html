@@ -116,7 +116,7 @@ const APPS=[
  ["THE WAY","그 길","지도 위를 걸으며 만나는\n예수의 생애 61장면","theway.png","#a8792a"],
  ["VISION QUEST","비전 퀘스트","걸으며 푸는 팀 미션 6종,\n실시간 3D 지도 위에서","visionquest.png","#3d7be0"],
 ];
-const STATS=[["14","출시·운영 중인 서비스"],["490+","서비스에 담긴 기능"],["17+","지원 언어"]];
+const STATS=[["14","완성형 창작물"],["490+","창작물에 담긴 기능"],["17+","지원 언어"]];
 STATS.forEach((s,i)=>{const d=document.createElement("div");d.className="stat";d.id="st"+i;d.innerHTML=`<b class="grad"></b><small>${s[1]}</small>`;d.style.top=(330+i*450)+"px";$("s5").appendChild(d);});
 const T={s1:[0,2.2],s2:[2.2,4.8],s3:[4.8,7.0],s4:[7.0,25.5],s5:[25.5,28.1],s6:[28.1,32]};
 window.DURATION=32;
