@@ -201,6 +201,11 @@ dialog::backdrop{background:rgba(8,9,14,.62);backdrop-filter:blur(4px)}
 .nums b{display:block;font-family:"Space Grotesk","Noto Sans KR",sans-serif;font-size:28px;color:var(--c);line-height:1.2}
 .nums small{color:var(--muted);font-size:13px}
 .flag{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-bottom:36px}
+.uses{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:12px;margin-bottom:36px}
+.uses div{border:1px solid var(--line);border-left:4px solid var(--c);border-radius:14px;padding:14px 16px;background:var(--surface)}
+.uses b{display:block;font-size:16px;margin-bottom:4px}
+.uses span{color:var(--muted);font-size:14px}
+.usenote{margin:-24px 0 36px;font-size:14.5px;color:var(--c);font-weight:700}
 .rec{border:1.5px solid color-mix(in srgb,var(--c) 45%,var(--line));border-radius:18px;padding:22px 22px 8px;margin-bottom:36px;background:color-mix(in srgb,var(--c) 6%,var(--surface))}
 .rec .rd{font-size:14px;color:var(--muted);margin:-4px 0 14px}
 .rec .nums{margin-bottom:18px}
@@ -310,6 +315,7 @@ h1,h2,h3,.hero h1,.sec-head h2,.about h2,.process h2,.reeltxt h2,.contact h2,.bo
      
      
      <div class="nums"><div><b>7종</b><small>기본 기억 세트 (중등·수능·TOEIC·TOEFL·비즈니스·여행·생활)</small></div><div><b>5,000개</b><small>수능 핵심 영단어 세트 규모</small></div><div><b>5가지</b><small>목표 달성 후 열리는 보너스 게임</small></div><div><b>5단계</b><small>단어 정착 상태 (미학습~정착완료·이탈)</small></div></div>
+     
      
      <h4>★ 대표 기능</h4>
      <div class="flag"><div><em>01</em><b>낙하형 실시간 회상 게임</b><span>화면 위에서 떨어지는 단어가 바닥에 닿기 전에 뜻을 입력해야 하는 생명·콤보·점수제 게임입니다. 낙하 속도, 스폰 간격, 한 화면 최대 단어 수, 시작 생명까지 직접 조절할 수 있습니다.</span></div><div><em>02</em><b>음성 답변 + AI 의미 판정</b><span>키보드 대신 말로 답할 수 있고, GPT 기반 'AI 의미 판정'이 동의어와 유사 표현까지 정답으로 인정합니다. 채점 방식(보통/엄격)과 초성 힌트, 정답 자동 읽기(TTS)도 고를 수 있습니다.</span></div><div><em>03</em><b>목표일 기반 자동 학습 플랜</b><span>'며칠 안에 정복하시겠습니까?'라는 목표를 정하면 하루 활성화 단어 수와 Cycle 일정이 자동으로 계산됩니다. 계획보다 앞서거나 뒤처진 정도와 완료 예상일을 실시간으로 보여주고, 필요하면 플랜을 다시 맞춥니다.</span></div><div><em>04</em><b>회상강도·정착도 추적과 재활성화</b><span>단어마다 미학습, 불안정, 부분정착, 정착완료, 이탈 상태를 관리합니다. 정착에서 빠져나간 단어는 재활성화 모듈이 다시 불러내 완전히 기억될 때까지 반복합니다.</span></div><div><em>05</em><b>AI 학습 분석 대시보드</b><span>정착 현황 그래프, 도트맵, 워드클라우드, 3D 우주 뷰로 기억 상태를 시각화합니다. '효율 = 회상강도 × 단어수 × (1-이탈률)' 공식으로 최적 단어 수를 찾아 코멘트로 제안합니다.</span></div></div>

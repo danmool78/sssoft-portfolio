@@ -201,6 +201,11 @@ dialog::backdrop{background:rgba(8,9,14,.62);backdrop-filter:blur(4px)}
 .nums b{display:block;font-family:"Space Grotesk","Noto Sans KR",sans-serif;font-size:28px;color:var(--c);line-height:1.2}
 .nums small{color:var(--muted);font-size:13px}
 .flag{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-bottom:36px}
+.uses{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:12px;margin-bottom:36px}
+.uses div{border:1px solid var(--line);border-left:4px solid var(--c);border-radius:14px;padding:14px 16px;background:var(--surface)}
+.uses b{display:block;font-size:16px;margin-bottom:4px}
+.uses span{color:var(--muted);font-size:14px}
+.usenote{margin:-24px 0 36px;font-size:14.5px;color:var(--c);font-weight:700}
 .rec{border:1.5px solid color-mix(in srgb,var(--c) 45%,var(--line));border-radius:18px;padding:22px 22px 8px;margin-bottom:36px;background:color-mix(in srgb,var(--c) 6%,var(--surface))}
 .rec .rd{font-size:14px;color:var(--muted);margin:-4px 0 14px}
 .rec .nums{margin-bottom:18px}
@@ -336,6 +341,7 @@ h1,h2,h3,.hero h1,.sec-head h2,.about h2,.process h2,.reeltxt h2,.contact h2,.bo
      
      
      <div class="nums"><div><b>10개</b><small>운영 화면 (입력·관리·발표·리포트)</small></div><div><b>20초</b><small>대형 화면 누적 레이스 발표</small></div><div><b>0~10%</b><small>인증사진 가산점 (1% 단위)</small></div><div><b>11단계</b><small>큐티카드 성장 레벨</small></div></div>
+     
      
      <h4>★ 대표 기능</h4>
      <div class="flag"><div><em>01</em><b>대형 화면 레이스 발표</b><span>확정된 주차 점수와 가산점을 100점으로 환산해, 반별 막대가 20초 동안 달려 순위가 정해집니다. 1~3위 금·은·동, 4·5위까지 메달과 선생님 이름이 붙고 폭죽으로 마무리합니다.</span></div><div><em>02</em><b>주간 MVP 슬롯머신</b><span>확정된 주차의 1위 반을 학년 릴과 반 릴이 차례로 돌며 공개합니다. 멈추는 순간 담당 선생님 이름과 폭죽이 터집니다.</span></div><div><em>03</em><b>1분 주간 입력</b><span>선생님이 학생마다 0~6 버튼만 누르면 '총 큐티 횟수 / 최대 횟수 = 주간 점수'가 바로 계산됩니다. 인증사진은 주마다 8장까지 자동 압축해 올립니다.</span></div><div><em>04</em><b>우리반 큐티카드</b><span>학생별 레이더 차트에 이번 주·이전 평균·전체 평균을 겹쳐 그리고 참여율, 순위 변동, 축복 말씀, 선생님 한마디를 담은 카드를 이미지로 만들어 공유합니다. 누적 참여에 따라 11단계 레벨이 붙습니다.</span></div><div><em>05</em><b>성장 챔피언과 결산 리포트</b><span>고른 기간 동안 점수가 가장 많이 오른 반을 꺾은선 애니메이션으로 발표하고, 캠페인이 끝나면 핵심 지표·반 순위·큐티왕·명예의 전당을 담은 A4 3쪽 리포트를 인쇄하거나 PDF로 저장합니다.</span></div></div>

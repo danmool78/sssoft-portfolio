@@ -201,6 +201,11 @@ dialog::backdrop{background:rgba(8,9,14,.62);backdrop-filter:blur(4px)}
 .nums b{display:block;font-family:"Space Grotesk","Noto Sans KR",sans-serif;font-size:28px;color:var(--c);line-height:1.2}
 .nums small{color:var(--muted);font-size:13px}
 .flag{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-bottom:36px}
+.uses{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:12px;margin-bottom:36px}
+.uses div{border:1px solid var(--line);border-left:4px solid var(--c);border-radius:14px;padding:14px 16px;background:var(--surface)}
+.uses b{display:block;font-size:16px;margin-bottom:4px}
+.uses span{color:var(--muted);font-size:14px}
+.usenote{margin:-24px 0 36px;font-size:14.5px;color:var(--c);font-weight:700}
 .rec{border:1.5px solid color-mix(in srgb,var(--c) 45%,var(--line));border-radius:18px;padding:22px 22px 8px;margin-bottom:36px;background:color-mix(in srgb,var(--c) 6%,var(--surface))}
 .rec .rd{font-size:14px;color:var(--muted);margin:-4px 0 14px}
 .rec .nums{margin-bottom:18px}
@@ -310,6 +315,7 @@ h1,h2,h3,.hero h1,.sec-head h2,.about h2,.process h2,.reeltxt h2,.contact h2,.bo
      
      
      <div class="nums"><div><b>3종</b><small>현장용 관리자 전용 앱</small></div><div><b>4개사</b><small>배송 조회 연동 (CJ·대신·경동·우체국)</small></div><div><b>12종</b><small>기술 가이드 콘텐츠</small></div><div><b>70+</b><small>서버 자동화 함수</small></div></div>
+     
      
      <h4>★ 대표 기능</h4>
      <div class="flag"><div><em>01</em><b>현장용 관리자 앱 3종</b><span>주문 확인 앱(새 주문 실시간 알림, 송장 조회), 바코드 상품 조회 앱(스캔하면 매입가·판매가·예상 마진·상세설명 표시), 제품사진 앱(모바일로 촬영·업로드, AI 이미지 정리, 바코드 등록)을 홈 화면에 설치해 씁니다. 관리자 화면의 QR 코드로 바로 접속합니다.</span></div><div><em>02</em><b>SEO·AEO 기본 내장</b><span>상품·카테고리·제조사 페이지를 서버에서 미리 만들어 구글과 네이버가 바로 읽고, 구조화 데이터와 사이트맵으로 검색 결과에 상품 정보가 풍부하게 노출됩니다. ChatGPT·Claude 같은 AI 검색을 위한 안내서(llms.txt)와 전문 가이드 콘텐츠로 AI 답변에서도 먼저 추천되도록 설계했습니다.</span></div><div><em>03</em><b>결제부터 배송 추적까지 자동 연결</b><span>KCP 카드 결제와 네이버페이(결제형·주문형)의 승인, 취소, 재시도를 서버에서 처리합니다. 결제가 끝나면 관리자에게 알림이 가고, CJ·대신·경동·우체국 배송 조회와 출고 안내 메일이 이어서 진행됩니다.</span></div><div><em>04</em><b>매출·이익·구매 퍼널 분석</b><span>오늘과 어제의 매출·주문, 매입원가와 수수료를 뺀 영업이익, 월별 유입 그래프를 보여 줍니다. 결제수단별 구매 전환 퍼널, 고객 이동 경로와 체류시간 지도, 결제 오류 로그도 함께 확인할 수 있습니다.</span></div><div><em>05</em><b>업종 맞춤 고객 경험</b><span>케미몰은 B2B 고객에 맞춰 견적서 미리보기·출력, 사업자 정보 저장, 제품찾기 마법사, 상품 비교, 기술 가이드 12종을 갖췄습니다. 실시간 톡 상담과 AI 상품 추천, 브랜드 미니게임도 들어 있습니다.</span></div></div>
