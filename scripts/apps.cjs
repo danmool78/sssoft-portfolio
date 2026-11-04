@@ -126,7 +126,7 @@ function page(p) {
 <div class="wrap">
   <header class="top">
     <a class="logo" href="/"><img src="/logo-mark.svg" alt="" width="34" height="34"><span class="lw"><b>SSS</b>OFT</span></a>
-    <nav><a href="/#work">프로젝트</a><a href="/#about">회사소개</a><a href="/#process">의뢰·계약</a><a href="/#contact">문의</a></nav>
+    <nav><a href="/#work">프로젝트</a><a href="/#about">회사소개</a><a href="/#process">의뢰·계약</a><a href="/#lab">실험실</a><a href="/#contact">문의</a></nav>
   </header>
   <nav class="crumb" aria-label="현재 위치"><a href="/">SSSOFT</a> › <a href="/#work">프로젝트</a> › ${esc(p.title)}</nav>
   <main class="app" style="--c:${p.color}">
