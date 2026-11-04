@@ -57,16 +57,16 @@ button.ghost{background:var(--panel);color:var(--ink);font-size:14px;padding:10p
   <div class="cam"><video id="vid" playsinline muted></video><i id="face">얼굴 찾는 중</i></div>
   <div class="side">
     <div class="dir"><span id="dL">왼쪽</span><span id="dC">가운데</span><span id="dR">오른쪽</span></div>
-    <p id="help">수비: 캐릭터가 "참!" 하며 가리키는 쪽과 <b>반대로</b> 고개를 돌리세요. 공격: "참!"에 맞춰 고개를 돌려 캐릭터와 <b>같은 쪽</b>이면 이깁니다.</p>
+    <p id="help">수비: 캐릭터가 "참!" 하며 가리키는 쪽과 <b>반대로</b> 고개를 돌리세요. 공격: "참!"에 맞춰 <b>손가락</b>으로 한쪽을 가리켜 캐릭터 고개와 <b>같은 쪽</b>이면 이깁니다.</p>
     <button id="start">카메라 켜고 시작</button>
   </div>
 </footer>
 <script type="module">
-import { FaceLandmarker, FilesetResolver } from "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14/vision_bundle.mjs";
+import { FaceLandmarker, HandLandmarker, FilesetResolver } from "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14/vision_bundle.mjs";
 
 const $ = id => document.getElementById(id);
 const cv = $("cv"), ctx = cv.getContext("2d"), vid = $("vid");
-let landmarker = null, headDir = "C", lastSeen = 0;
+let landmarker = null, hander = null, headDir = "C", handDir = "C", lastSeen = 0, lastHand = 0, attacking = false;
 let state = { score: 0, lives: 3, best: 0, round: 0, phase: "idle" };
 try { state.best = +localStorage.getItem("ccc-best") || 0; } catch (e) {}
 $("best").textContent = state.best;
@@ -82,8 +82,18 @@ function readDir(lm) {
   if (t < -TH) return "R";
   return "C";
 }
+// 공격할 때는 손가락: 검지 끝(8)이 검지 뿌리(5)에서 옆으로 얼마나 뻗었는지로 본다.
+// 원본 영상에서 오른쪽으로 뻗으면 거울 화면에서는 왼쪽(L)
+const HT = 0.06;
+function readHand(lm) {
+  const dx = lm[8].x - lm[5].x;
+  if (dx > HT) return "L";
+  if (dx < -HT) return "R";
+  return "C";
+}
 function showDir() {
-  for (const k of ["L", "C", "R"]) $("d" + k).classList.toggle("on", headDir === k);
+  const d = attacking ? handDir : headDir;
+  for (const k of ["L", "C", "R"]) $("d" + k).classList.toggle("on", d === k);
 }
 async function loop() {
   if (landmarker && vid.readyState >= 2) {
@@ -93,6 +103,12 @@ async function loop() {
       $("face").textContent = "얼굴 인식 중";
     } else if (performance.now() - lastSeen > 600) {
       headDir = "C"; $("face").textContent = "얼굴이 안 보여요";
+    }
+    // 손 인식은 공격 판에서만 돌려 폰 부담을 줄인다
+    if (attacking && hander) {
+      const h = hander.detectForVideo(vid, performance.now() + 0.5);
+      if (h.landmarks && h.landmarks.length) { handDir = readHand(h.landmarks[0]); lastHand = performance.now(); $("face").textContent = "손 인식 중"; }
+      else if (performance.now() - lastHand > 400) { handDir = "C"; $("face").textContent = "손을 보여 주세요"; }
     }
     showDir();
   }
@@ -181,8 +197,9 @@ async function round() {
   state.round++;
   const attack = state.round % 2 === 0; // 홀수 판은 수비, 짝수 판은 공격
   const beat = Math.max(330, 620 - state.score * 18); // 이길수록 빨라짐
-  $("mode").textContent = attack ? "공격: 캐릭터와 같은 쪽!" : "수비: 손가락 반대쪽으로!";
-  say(attack ? "참!에 맞춰 고개를 돌려 같은 쪽을 맞히세요" : "참!에 맞춰 손가락 반대쪽으로 고개를 돌리세요", "var(--muted)");
+  attacking = attack; handDir = "C";
+  $("mode").textContent = attack ? "공격: 손가락으로 가리키기!" : "수비: 손가락 반대쪽으로!";
+  say(attack ? "카메라에 손을 보이고, 참!에 맞춰 손가락으로 한쪽을 가리키세요" : "참!에 맞춰 손가락 반대쪽으로 고개를 돌리세요", "var(--muted)");
   ch.faceGoal = 0; ch.handGoal = 0; ch.mood = "idle";
   await wait(900);
   call("참", 520); await wait(beat);
@@ -194,9 +211,9 @@ async function round() {
   if (attack) ch.faceGoal = sgn(go); else ch.handGoal = sgn(go);
   // 사람 반응 시간을 봐서 박자 뒤 조금 있다가 읽는다
   await wait(380);
-  const me = headDir;
+  const me = attack ? handDir : headDir;
   let win;
-  if (me === "C") { say("늦었어요! 고개를 돌려야 해요", "var(--hot)"); win = false; }
+  if (me === "C") { say(attack ? "늦었어요! 손가락으로 한쪽을 가리켜야 해요" : "늦었어요! 고개를 돌려야 해요", "var(--hot)"); win = false; }
   else if (attack) { win = me === go; say(win ? "맞혔다! +1" : "빗나갔어요", win ? "var(--good)" : "var(--hot)"); }
   else { win = me !== go; say(win ? "피했다! +1" : "걸렸다!", win ? "var(--good)" : "var(--hot)"); }
   ch.mood = win ? "lose" : "win"; // 캐릭터는 내가 이기면 억울해한다
@@ -204,7 +221,7 @@ async function round() {
   else { state.lives--; beep(180, .3, "sawtooth", .1); }
   hud();
   await wait(1100);
-  $("call").textContent = "";
+  $("call").textContent = ""; attacking = false;
 }
 async function play() {
   state.score = 0; state.lives = 3; state.round = 0; hud();
@@ -233,12 +250,16 @@ $("start").addEventListener("click", async () => {
         baseOptions: { modelAssetPath: "https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/1/face_landmarker.task", delegate: "GPU" },
         runningMode: "VIDEO", numFaces: 1,
       });
+      hander = await HandLandmarker.createFromOptions(files, {
+        baseOptions: { modelAssetPath: "https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/1/hand_landmarker.task", delegate: "GPU" },
+        runningMode: "VIDEO", numHands: 1,
+      });
     } catch (e) {
       say("얼굴 인식을 불러오지 못했어요. 새로고침해 주세요", "var(--hot)");
       $("start").disabled = false; $("start").textContent = "다시 시도"; return;
     }
     $("start").disabled = false;
-    say("좌우로 고개를 돌려 보세요. 아래 칸이 따라 바뀌면 준비 끝", "var(--muted)");
+    say("좌우로 고개를 돌려 보세요. 아래 칸이 따라 바뀌면 준비 끝 (공격 판에서는 손가락을 봅니다)", "var(--muted)");
     await wait(2200);
   }
   play();
