@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>참참참 — SSSOFT 실험실</title>
+<link rel="icon" href="/logo-mark.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard.css">
+<style>
+@font-face{font-family:Jalnan;src:url(https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff) format("woff")}
+/* 한 화면 게임: 위는 캐릭터 무대, 아래는 내 카메라와 점수 */
+:root{--bg:#141224;--panel:#1f1c36;--ink:#f6f3ff;--muted:#a9a3c9;--hot:#ff6b4a;--good:#3ddc97;--accent:#ffd34e;color-scheme:dark}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{background:var(--bg);color:var(--ink);font-family:Pretendard,system-ui,sans-serif;display:flex;flex-direction:column;
+  padding:env(safe-area-inset-top,0px) max(12px,env(safe-area-inset-right,0px)) env(safe-area-inset-bottom,0px) max(12px,env(safe-area-inset-left,0px));overflow:hidden}
+header{display:flex;justify-content:space-between;align-items:center;padding:10px 4px 6px;gap:8px}
+header b{font-family:Jalnan,Pretendard,sans-serif;font-weight:400;font-size:22px;letter-spacing:.02em}
+header small{color:var(--muted);font-size:12px}
+.hud{display:flex;gap:10px;font-variant-numeric:tabular-nums;font-size:14px;color:var(--muted)}
+.hud span b{color:var(--ink);font-size:16px}
+#stage{position:relative;flex:1;min-height:0;display:flex;align-items:center;justify-content:center}
+#stage canvas{width:100%;height:100%;display:block}
+#call{position:absolute;top:6%;left:0;right:0;text-align:center;font-family:Jalnan,Pretendard,sans-serif;font-size:clamp(48px,14vw,120px);
+  color:var(--accent);text-shadow:0 6px 0 rgba(0,0,0,.35);pointer-events:none;transition:transform .08s}
+#call.pop{transform:scale(1.18)}
+#msg{position:absolute;bottom:6%;left:0;right:0;text-align:center;font-size:clamp(18px,4.6vw,28px);font-weight:800;pointer-events:none;min-height:1.3em}
+#mode{position:absolute;top:2%;left:4px;font-size:13px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--panel);color:var(--muted)}
+footer{display:flex;gap:10px;align-items:stretch;padding:8px 0 12px}
+.cam{position:relative;width:34%;max-width:200px;aspect-ratio:3/4;border-radius:14px;overflow:hidden;background:#000;flex:none}
+.cam video{width:100%;height:100%;object-fit:cover;transform:scaleX(-1)}
+.cam i{position:absolute;bottom:6px;left:50%;transform:translateX(-50%);font-style:normal;font-size:13px;font-weight:800;background:rgba(0,0,0,.6);padding:2px 10px;border-radius:999px;white-space:nowrap}
+.side{flex:1;min-width:0;display:flex;flex-direction:column;gap:8px;justify-content:center}
+.side p{margin:0;color:var(--muted);font-size:13.5px;line-height:1.5;word-break:keep-all}
+button{font:inherit;font-weight:800;font-size:17px;border:0;border-radius:14px;padding:14px;background:var(--hot);color:#fff;cursor:pointer}
+button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+button.ghost{background:var(--panel);color:var(--ink);font-size:14px;padding:10px}
+.dir{display:flex;gap:4px}
+.dir span{flex:1;text-align:center;padding:6px 0;border-radius:8px;background:var(--panel);color:var(--muted);font-weight:800;font-size:13px}
+.dir span.on{background:var(--good);color:#0b1a12}
+@media (prefers-reduced-motion:reduce){#call{transition:none}}
+</style>
+</head>
+<body>
+<header>
+  <div><b>참참참</b> <small>SSSOFT 실험실</small></div>
+  <div class="hud"><span>점수 <b id="score">0</b></span><span>목숨 <b id="lives">3</b></span><span>최고 <b id="best">0</b></span></div>
+</header>
+<div id="stage">
+  <canvas id="cv"></canvas>
+  <div id="mode">준비</div>
+  <div id="call"></div>
+  <div id="msg">카메라를 켜고 시작하세요</div>
+</div>
+<footer>
+  <div class="cam"><video id="vid" playsinline muted></video><i id="face">얼굴 찾는 중</i></div>
+  <div class="side">
+    <div class="dir"><span id="dL">왼쪽</span><span id="dC">가운데</span><span id="dR">오른쪽</span></div>
+    <p id="help">수비: 캐릭터가 "참!" 하며 가리키는 쪽과 <b>반대로</b> 고개를 돌리세요. 공격: "참!"에 맞춰 고개를 돌려 캐릭터와 <b>같은 쪽</b>이면 이깁니다.</p>
+    <button id="start">카메라 켜고 시작</button>
+  </div>
+</footer>
+<script type="module">
+import { FaceLandmarker, FilesetResolver } from "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14/vision_bundle.mjs";
+
+const $ = id => document.getElementById(id);
+const cv = $("cv"), ctx = cv.getContext("2d"), vid = $("vid");
+let landmarker = null, headDir = "C", lastSeen = 0;
+let state = { score: 0, lives: 3, best: 0, round: 0, phase: "idle" };
+try { state.best = +localStorage.getItem("ccc-best") || 0; } catch (e) {}
+$("best").textContent = state.best;
+
+/* ---------- 고개 방향 읽기 ---------- */
+// 코끝(1)이 양 볼(234, 454) 사이 어디에 있는지로 좌우를 본다. 화면은 거울처럼 보여 주므로
+// 내가 내 왼쪽으로 고개를 돌리면 화면에서도 왼쪽(L)이 되게 맞춘다
+const TH = 0.14;
+function readDir(lm) {
+  const nose = lm[1], a = lm[234], b = lm[454];
+  const t = (nose.x - a.x) / (b.x - a.x) - 0.5; // 원본 영상 기준 -0.5~0.5
+  if (t > TH) return "L";
+  if (t < -TH) return "R";
+  return "C";
+}
+function showDir() {
+  for (const k of ["L", "C", "R"]) $("d" + k).classList.toggle("on", headDir === k);
+}
+async function loop() {
+  if (landmarker && vid.readyState >= 2) {
+    const r = landmarker.detectForVideo(vid, performance.now());
+    if (r.faceLandmarks && r.faceLandmarks.length) {
+      headDir = readDir(r.faceLandmarks[0]); lastSeen = performance.now();
+      $("face").textContent = "얼굴 인식 중";
+    } else if (performance.now() - lastSeen > 600) {
+      headDir = "C"; $("face").textContent = "얼굴이 안 보여요";
+    }
+    showDir();
+  }
+  draw();
+  requestAnimationFrame(loop);
+}
+
+/* ---------- 소리 ---------- */
+let ac = null;
+function beep(f, d = 0.12, type = "square", vol = 0.12) {
+  if (!ac) return;
+  const o = ac.createOscillator(), g = ac.createGain();
+  o.type = type; o.frequency.value = f; g.gain.value = vol;
+  g.gain.exponentialRampToValueAtTime(0.0001, ac.currentTime + d);
+  o.connect(g).connect(ac.destination); o.start(); o.stop(ac.currentTime + d);
+}
+
+/* ---------- 캐릭터 ---------- */
+// face: 캐릭터 얼굴이 향하는 쪽(-1 왼쪽 … 1 오른쪽), hand: 가리키는 쪽, mood: 표정
+const ch = { face: 0, faceGoal: 0, hand: 0, handGoal: 0, mood: "idle", bounce: 0 };
+function fit() {
+  const r = cv.getBoundingClientRect(), d = Math.min(2, devicePixelRatio || 1);
+  cv.width = r.width * d; cv.height = r.height * d; ctx.setTransform(d, 0, 0, d, 0, 0);
+}
+addEventListener("resize", fit);
+function draw() {
+  const W = cv.clientWidth, H = cv.clientHeight;
+  ctx.clearRect(0, 0, W, H);
+  ch.face += (ch.faceGoal - ch.face) * 0.35;
+  ch.hand += (ch.handGoal - ch.hand) * 0.35;
+  ch.bounce *= 0.85;
+  const R = Math.min(W, H) * 0.24, cx = W / 2, cy = H * 0.52 - ch.bounce * 12;
+  // 몸
+  ctx.fillStyle = "#7c5cff";
+  ctx.beginPath(); ctx.ellipse(cx, cy + R * 1.35, R * 0.8, R * 0.55, 0, Math.PI, 0); ctx.fill();
+  // 머리
+  ctx.save(); ctx.translate(cx + ch.face * R * 0.18, cy);
+  ctx.fillStyle = "#ffd9b8"; ctx.beginPath(); ctx.arc(0, 0, R, 0, Math.PI * 2); ctx.fill();
+  ctx.fillStyle = "#3b2a5c"; ctx.beginPath(); ctx.arc(0, -R * 0.15, R * 1.02, Math.PI * 1.05, Math.PI * 1.95); ctx.fill();
+  // 눈 (얼굴 방향으로 쏠림)
+  const ex = ch.face * R * 0.28;
+  ctx.fillStyle = "#1c1430";
+  for (const s of [-1, 1]) {
+    ctx.beginPath();
+    if (ch.mood === "win") { ctx.lineWidth = R * 0.07; ctx.strokeStyle = "#1c1430"; ctx.arc(ex + s * R * 0.36, R * 0.05, R * 0.12, Math.PI * 1.1, Math.PI * 1.9); ctx.stroke(); }
+    else if (ch.mood === "lose") { ctx.lineWidth = R * 0.06; ctx.strokeStyle = "#1c1430"; const x = ex + s * R * 0.36; ctx.moveTo(x - R * 0.1, -R * 0.02); ctx.lineTo(x + R * 0.1, R * 0.12); ctx.moveTo(x + R * 0.1, -R * 0.02); ctx.lineTo(x - R * 0.1, R * 0.12); ctx.stroke(); }
+    else { ctx.arc(ex + s * R * 0.36, R * 0.05, R * 0.11, 0, Math.PI * 2); ctx.fill(); }
+  }
+  // 볼
+  ctx.fillStyle = "rgba(255,120,120,.45)";
+  for (const s of [-1, 1]) { ctx.beginPath(); ctx.ellipse(ex + s * R * 0.58, R * 0.3, R * 0.13, R * 0.08, 0, 0, Math.PI * 2); ctx.fill(); }
+  // 입
+  ctx.fillStyle = "#1c1430"; ctx.beginPath();
+  if (ch.mood === "call") ctx.ellipse(ex, R * 0.45, R * 0.13, R * 0.16, 0, 0, Math.PI * 2);
+  else if (ch.mood === "lose") ctx.ellipse(ex, R * 0.5, R * 0.15, R * 0.06, 0, 0, Math.PI * 2);
+  else { ctx.lineWidth = R * 0.06; ctx.strokeStyle = "#1c1430"; ctx.arc(ex, R * 0.35, R * 0.18, 0.15 * Math.PI, 0.85 * Math.PI); ctx.stroke(); }
+  ctx.fill();
+  ctx.restore();
+  // 손 (가리키기)
+  if (Math.abs(ch.hand) > 0.05) {
+    const hx = cx + ch.hand * R * 1.55, hy = cy + R * 0.2;
+    ctx.strokeStyle = "#ffd9b8"; ctx.lineWidth = R * 0.22; ctx.lineCap = "round";
+    ctx.beginPath(); ctx.moveTo(cx + Math.sign(ch.hand) * R * 0.6, cy + R * 0.95); ctx.lineTo(hx, hy); ctx.stroke();
+    ctx.fillStyle = "#ffd9b8"; ctx.beginPath(); ctx.arc(hx, hy, R * 0.2, 0, Math.PI * 2); ctx.fill();
+    ctx.lineWidth = R * 0.09;
+    ctx.beginPath(); ctx.moveTo(hx, hy); ctx.lineTo(hx + Math.sign(ch.hand) * R * 0.42, hy - R * 0.05); ctx.stroke();
+  }
+}
+
+/* ---------- 게임 진행 ---------- */
+const wait = ms => new Promise(r => setTimeout(r, ms));
+function call(text, f) {
+  const c = $("call"); c.textContent = text; c.classList.add("pop");
+  setTimeout(() => c.classList.remove("pop"), 90);
+  ch.mood = "call"; ch.bounce = 1; beep(f);
+}
+function say(t, color) { const m = $("msg"); m.textContent = t; m.style.color = color || "var(--ink)"; }
+function hud() {
+  $("score").textContent = state.score; $("lives").textContent = state.lives;
+  if (state.score > state.best) { state.best = state.score; $("best").textContent = state.best; try { localStorage.setItem("ccc-best", state.best); } catch (e) {} }
+}
+const pick = () => (Math.random() < 0.5 ? "L" : "R");
+const sgn = d => (d === "L" ? -1 : d === "R" ? 1 : 0);
+
+async function round() {
+  state.round++;
+  const attack = state.round % 2 === 0; // 홀수 판은 수비, 짝수 판은 공격
+  const beat = Math.max(330, 620 - state.score * 18); // 이길수록 빨라짐
+  $("mode").textContent = attack ? "공격: 캐릭터와 같은 쪽!" : "수비: 손가락 반대쪽으로!";
+  say(attack ? "참!에 맞춰 고개를 돌려 같은 쪽을 맞히세요" : "참!에 맞춰 손가락 반대쪽으로 고개를 돌리세요", "var(--muted)");
+  ch.faceGoal = 0; ch.handGoal = 0; ch.mood = "idle";
+  await wait(900);
+  call("참", 520); await wait(beat);
+  call("참", 520); await wait(beat);
+  // 수비 판은 가끔 손이 한쪽으로 가는 척한다
+  const go = pick();
+  if (!attack && Math.random() < Math.min(0.5, state.score * 0.05)) { ch.handGoal = -sgn(go) * 0.5; await wait(120); }
+  call("참!", 780);
+  if (attack) ch.faceGoal = sgn(go); else ch.handGoal = sgn(go);
+  // 사람 반응 시간을 봐서 박자 뒤 조금 있다가 읽는다
+  await wait(380);
+  const me = headDir;
+  let win;
+  if (me === "C") { say("늦었어요! 고개를 돌려야 해요", "var(--hot)"); win = false; }
+  else if (attack) { win = me === go; say(win ? "맞혔다! +1" : "빗나갔어요", win ? "var(--good)" : "var(--hot)"); }
+  else { win = me !== go; say(win ? "피했다! +1" : "걸렸다!", win ? "var(--good)" : "var(--hot)"); }
+  ch.mood = win ? "lose" : "win"; // 캐릭터는 내가 이기면 억울해한다
+  if (win) { state.score++; beep(880, .1, "triangle"); setTimeout(() => beep(1180, .14, "triangle"), 110); }
+  else { state.lives--; beep(180, .3, "sawtooth", .1); }
+  hud();
+  await wait(1100);
+  $("call").textContent = "";
+}
+async function play() {
+  state.score = 0; state.lives = 3; state.round = 0; hud();
+  $("start").hidden = true;
+  while (state.lives > 0) await round();
+  $("mode").textContent = "끝";
+  say(`끝! 점수 ${state.score}`, "var(--accent)");
+  ch.faceGoal = 0; ch.handGoal = 0; ch.mood = "win";
+  $("start").textContent = "다시 하기"; $("start").hidden = false;
+}
+
+$("start").addEventListener("click", async () => {
+  if (!ac) { try { ac = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) {} }
+  if (!landmarker) {
+    $("start").disabled = true; $("start").textContent = "준비 중…";
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "user", width: 640, height: 480 }, audio: false });
+      vid.srcObject = stream; await vid.play();
+    } catch (e) {
+      say("카메라를 켤 수 없어요. 브라우저에서 카메라 권한을 허용해 주세요", "var(--hot)");
+      $("start").disabled = false; $("start").textContent = "카메라 켜고 시작"; return;
+    }
+    try {
+      const files = await FilesetResolver.forVisionTasks("https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14/wasm");
+      landmarker = await FaceLandmarker.createFromOptions(files, {
+        baseOptions: { modelAssetPath: "https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/1/face_landmarker.task", delegate: "GPU" },
+        runningMode: "VIDEO", numFaces: 1,
+      });
+    } catch (e) {
+      say("얼굴 인식을 불러오지 못했어요. 새로고침해 주세요", "var(--hot)");
+      $("start").disabled = false; $("start").textContent = "다시 시도"; return;
+    }
+    $("start").disabled = false;
+    say("좌우로 고개를 돌려 보세요. 아래 칸이 따라 바뀌면 준비 끝", "var(--muted)");
+    await wait(2200);
+  }
+  play();
+});
+
+fit();
+requestAnimationFrame(loop);
+</script>
+</body>
+</html>
