@@ -3594,7 +3594,7 @@ window.PROJECTS=[
   "cat": "church",
   "tag": "3D 성경 지도 여정",
   "color": "#8a6420",
-  "url": "https://the-way-jesus.web.app",
+  "url": "https://the-way-jesus.web.app/jesus/",
   "shot": "theway",
   "frame": "browser",
   "tagline": "사복음서를 일어난 때와 장소의 순서로 엮어, 실제 지형 위를 걸으며 예수의 생애 61개 장면을 만나는 3D 지도 여정",
