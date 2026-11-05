@@ -3896,7 +3896,7 @@ window.PROJECTS=[
   "cat": "church",
   "tag": "3D 성경 지도 여정 2편",
   "color": "#b0652f",
-  "url": "https://the-way-jesus.web.app/?j=moses",
+  "url": "https://the-way-jesus.web.app/moses/",
   "shot": "theway-moses",
   "frame": "browser",
   "tagline": "애굽의 종살이에서 홍해와 시내산, 광야 사십 년을 지나 요단을 건너 약속의 땅까지. 지도 위에서 모세와 여호수아의 40장면을 걷습니다",
