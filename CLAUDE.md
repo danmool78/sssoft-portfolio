@@ -48,6 +48,7 @@ firebase deploy --only hosting
 shot, frame(phone|browser|svg), tagline, overview, flagship[], stages[{stage,summary,items[]}],
 roles[], rolesTitle?, numbers[{value,label}], gallery?[{src,cap}], galleryWide?, supports?, audience, tech[],
 next?{badge,title,lede,items[{title,desc}]}(다음 편 후원 모집: 대표 기능 바로 위, 카톡·메일 문의 단추, badge는 카드 오른쪽 위), uses?[{title,desc}](적용 가능 분야: 상세 화면 대표 기능 바로 위),
+downloads?{title,lede?,items[{label,desc,href}]}(내려받기: 상세 화면 대표 기능 바로 위 — 그 길의 '왜 기독교인가' 소책자 PDF 두 가지, 파일은 the-way-jesus.web.app/assets에 있다),
 record?{title,badge,date,stats[{value,label}],items[{title,desc}],timeline[{time,text}]}(실전 운영 기록: 상세 화면 숫자 바로 아래, badge는 카드 오른쪽 위),
 scene?{src,cap,card?}, video?(.mp4면 세로 영상 플레이어), videoPoster?, videoLabel?,
 videos?[{src,poster?,label,wide?}](영상이 여럿일 때 video 대신, 적은 순서대로 나온다. wide: 가로 mp4)`
