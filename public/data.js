@@ -3606,12 +3606,12 @@ window.PROJECTS=[
     {
      "label": "보기용 PDF",
      "desc": "휴대폰으로 보내거나 집에서 인쇄",
-     "href": "https://the-way-jesus.web.app/assets/why-booklet.pdf"
+     "href": "https://the-way-jesus.web.app/assets/why-booklet.pdf?v=1107b"
     },
     {
      "label": "인쇄소용 PDF",
      "desc": "3mm 재단 여유와 재단선 포함",
-     "href": "https://the-way-jesus.web.app/assets/why-booklet-print.pdf"
+     "href": "https://the-way-jesus.web.app/assets/why-booklet-print.pdf?v=1107b"
     }
    ]
   },
