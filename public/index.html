@@ -220,7 +220,12 @@ dialog::backdrop{background:rgba(8,9,14,.62);backdrop-filter:blur(4px)}
 .nextx h5{font-size:20px;margin:0 0 6px;font-family:GmarketSans,Pretendard,sans-serif}
 .nextx>p{color:var(--muted);font-size:15px;margin:0 0 14px}
 .nextx .ng{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr));gap:10px;margin-bottom:14px}
-.nextx .ng div{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.nextx .ng div,.nextx .ng a{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;text-decoration:none;color:inherit;display:block}
+.nextx .ng a.ready{border:1.5px solid var(--c)}
+.nextx .ng a.ready:hover{background:color-mix(in srgb,var(--c) 10%,var(--surface))}
+.nextx .ng i{display:inline-block;font-style:normal;font-size:11.5px;font-weight:800;padding:1px 8px;border-radius:999px;margin-bottom:6px;background:var(--sunk);color:var(--muted)}
+.nextx .ng a.ready i{background:var(--c);color:#fff}
+.nextx .ng em{display:block;margin-top:6px;font-style:normal;font-weight:800;font-size:13.5px;color:var(--c)}
 .nextx .ng b{display:block;font-size:15.5px;color:var(--c);margin-bottom:2px}
 .nextx .ng span{color:var(--muted);font-size:13.5px}
 .nextx .nb{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
@@ -596,7 +601,7 @@ function open(id){
      ${p.numbers&&p.numbers.length?`<div class="nums">${p.numbers.map(n=>`<div><b>${esc(n.value)}</b><small>${esc(n.label)}</small></div>`).join("")}</div>`:""}
      ${p.record?`<h4>● ${esc(p.record.title||"실전 운영 기록")}</h4><div class="rec">${p.record.date?`<p class="rd">${esc(p.record.date)}</p>`:""}${p.record.stats?`<div class="nums">${p.record.stats.map(n=>`<div><b>${esc(n.value)}</b><small>${esc(n.label)}</small></div>`).join("")}</div>`:""}${p.record.items?`<div class="rg">${p.record.items.map(r=>`<div><b>${esc(r.title)}</b><span>${esc(r.desc)}</span></div>`).join("")}</div>`:""}${p.record.timeline?`<ol class="tlx">${p.record.timeline.map(t=>`<li><time>${esc(t.time)}</time><span>${esc(t.text)}</span></li>`).join("")}</ol>`:""}</div>`:""}
      ${p.uses?`<h4>◎ 적용 가능 분야</h4><div class="uses">${p.uses.map(u=>`<div><b>${esc(u.title)}</b><span>${esc(u.desc)}</span></div>`).join("")}</div><p class="usenote">${esc(p.usesNote||"여기에 없는 행사나 목적도 요청하시면 그에 맞게 새로 만들어 드립니다.")}</p>`:""}
-     ${p.next?`<div class="nextx"><h5>${esc(p.next.title)}</h5>${p.next.lede?`<p>${esc(p.next.lede)}</p>`:""}<div class="ng">${p.next.items.map(n=>`<div><b>${esc(n.title)}</b><span>${esc(n.desc)}</span></div>`).join("")}</div><div class="nb"><a href="https://open.kakao.com/o/ssPDUnSi" target="_blank" rel="noopener">후원 문의 (카카오톡)</a><a class="ml" href="mailto:sssoft1004@gmail.com?subject=${encodeURIComponent(p.title+" 다음 여정 후원 문의")}">메일로 문의</a></div></div>`:""}
+     ${p.next?`<div class="nextx"><h5>${esc(p.next.title)}</h5>${p.next.lede?`<p>${esc(p.next.lede)}</p>`:""}<div class="ng">${p.next.items.map(n=>n.url?`<a class="ready" href="${n.url}" target="_blank" rel="noopener"><i>공개</i><b>${esc(n.title)}</b><span>${esc(n.desc)}</span><em>여정 걷기 →</em></a>`:`<div><i>준비 중</i><b>${esc(n.title)}</b><span>${esc(n.desc)}</span></div>`).join("")}</div><div class="nb"><a href="https://open.kakao.com/o/ssPDUnSi" target="_blank" rel="noopener">후원 문의 (카카오톡)</a><a class="ml" href="mailto:sssoft1004@gmail.com?subject=${encodeURIComponent(p.title+" 다음 여정 후원 문의")}">메일로 문의</a></div></div>`:""}
      ${p.downloads?`<h4>↓ ${esc(p.downloads.title)}</h4>${p.downloads.lede?`<p class="usenote">${esc(p.downloads.lede)}</p>`:""}<div class="dls">${p.downloads.items.map(d=>`<a href="${d.href}" target="_blank" rel="noopener" download><b>${esc(d.label)}</b><span>${esc(d.desc)}</span></a>`).join("")}</div>`:""}
      <h4>★ 대표 기능</h4>
      <div class="flag">${(p.flagship||p.features).map((f,i)=>`<div><em>${String(i+1).padStart(2,"0")}</em><b>${esc(f.title)}</b><span>${esc(f.desc)}</span></div>`).join("")}</div>
