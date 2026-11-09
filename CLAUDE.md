@@ -47,7 +47,7 @@ firebase deploy --only hosting
 각 프로젝트 필드: `id, title, en, cat(church|ai|game|biz|life), tag, color, url, play?, demo?, share?(true면 카드·상세에 "앱 공유하기" 버튼: 휴대폰은 공유 창, PC는 url 복사),
 shot, frame(phone|browser|svg), tagline, overview, flagship[], stages[{stage,summary,items[]}],
 roles[], rolesTitle?, numbers[{value,label}], gallery?[{src,cap}], galleryWide?, supports?, audience, tech[],
-next?{badge,title,lede,items[{title,desc,url?}]}(시리즈·다음 편 후원 모집, url이 있는 항목은 공개된 편: 대표 기능 바로 위, 카톡·메일 문의 단추, badge는 카드 오른쪽 위), uses?[{title,desc}](적용 가능 분야: 상세 화면 대표 기능 바로 위),
+next?{badge,title,lede,items[{title,desc,url?,go?}]}(시리즈·다음 편 후원 모집, url이 있는 항목은 공개된 편: 대표 기능 바로 위, 카톡·메일 문의 단추, badge는 카드 오른쪽 위), uses?[{title,desc}](적용 가능 분야: 상세 화면 대표 기능 바로 위),
 downloads?{title,lede?,items[{label,desc,href}]}(내려받기: 상세 화면 대표 기능 바로 위 — 그 길의 '왜 기독교인가' 소책자 PDF 두 가지, 파일은 the-way-jesus.web.app/assets에 있다),
 record?{title,badge,date,stats[{value,label}],items[{title,desc}],timeline[{time,text}]}(실전 운영 기록: 상세 화면 숫자 바로 아래, badge는 카드 오른쪽 위),
 scene?{src,cap,card?}, video?(.mp4면 세로 영상 플레이어), videoPoster?, videoLabel?,
