@@ -47,7 +47,7 @@ firebase deploy --only hosting
 각 프로젝트 필드: `id, title, en, cat(church|ai|game|biz|life), tag, color, url, play?, demo?, share?(true면 카드·상세에 "앱 공유하기" 버튼: 휴대폰은 공유 창, PC는 url 복사),
 shot, frame(phone|browser|svg), tagline, overview, flagship[], stages[{stage,summary,items[]}],
 roles[], rolesTitle?, numbers[{value,label}], gallery?[{src,cap}], galleryWide?, supports?, audience, tech[],
-next?{badge,title,lede,items[{title,desc}]}(다음 편 후원 모집: 대표 기능 바로 위, 카톡·메일 문의 단추, badge는 카드 오른쪽 위), uses?[{title,desc}](적용 가능 분야: 상세 화면 대표 기능 바로 위),
+next?{badge,title,lede,items[{title,desc,url?}]}(시리즈·다음 편 후원 모집, url이 있는 항목은 공개된 편: 대표 기능 바로 위, 카톡·메일 문의 단추, badge는 카드 오른쪽 위), uses?[{title,desc}](적용 가능 분야: 상세 화면 대표 기능 바로 위),
 downloads?{title,lede?,items[{label,desc,href}]}(내려받기: 상세 화면 대표 기능 바로 위 — 그 길의 '왜 기독교인가' 소책자 PDF 두 가지, 파일은 the-way-jesus.web.app/assets에 있다),
 record?{title,badge,date,stats[{value,label}],items[{title,desc}],timeline[{time,text}]}(실전 운영 기록: 상세 화면 숫자 바로 아래, badge는 카드 오른쪽 위),
 scene?{src,cap,card?}, video?(.mp4면 세로 영상 플레이어), videoPoster?, videoLabel?,
@@ -57,7 +57,9 @@ videos?[{src,poster?,label,wide?}](영상이 여럿일 때 video 대신, 적은 
 상세 화면은 영상 → 사용 장면 → 숫자 → 대표 기능 → 미리보기 순서. 영상을 보면 앱이 다 이해되므로 맨 위에 둔다)
 
 순서: 캠프마스터, STARFARER, 다락방 기도앱, 교회 레크리에이션, 다정 리딩북, 케미몰(독립몰), 보캐브스캔, 워드드롭,
-노후자금 시뮬레이터, 중심잡기, 큐티레이스, 열왕기 — 두 왕국의 연대기, 그 길 — 예수의 발자취, 그 길 — 모세와 여호수아, 비전 퀘스트.
+노후자금 시뮬레이터, 중심잡기, 큐티레이스, 열왕기 — 두 왕국의 연대기, 그 길(시리즈 하나로), 비전 퀘스트.
+(그 길은 여정마다 카드를 따로 만들지 않고 한 카드로 소개한다. 여정 목록·공개 여부는 theway의 `next.items`: `url`이 있으면 공개(여정 걷기 단추), 없으면 준비 중(후원 모집).
+새 여정이 나오면 그 항목에 url을 넣고 숫자·미리보기를 더한다. 여정 주소는 /jesus/ · /moses/ 처럼 여정마다 따로)
 (그 길 = the-way-jesus.web.app 저장소, 비전 퀘스트 = team-esc 저장소. 화면은 실제 사이트를 Playwright로 캡처한다.
 비전 퀘스트는 https://team-esc.web.app/?demo 로 로그인 없이 가짜 참가자 화면을 볼 수 있다.
 비전 퀘스트 '실전 기록'은 2026-10-31 전주 한옥마을 게임 Q9A54의 실제 자료(`firebase database:get /games/Q9A54 --project team-esc`)에서 센 숫자다.
