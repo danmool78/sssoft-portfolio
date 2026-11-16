@@ -12,7 +12,11 @@ if (!KEY) { console.error('GEMINI_API_KEY가 없습니다'); process.exit(1); }
 
 // 칠판 목록은 index.html의 BOARD 한 곳에만 둔다
 const html = await readFile('public/index.html', 'utf8');
-const board = [...html.matchAll(/\{\s*name:\s*"([^"]+)",\s*repo:\s*"([^"]+)"/g)].map(m => ({ name: m[1], repo: m[2] }));
+// 항목: { name, repo, only?, skip? } — only/skip은 PR 제목 정규식(같은 저장소를 작품별로 나눌 때)
+const board = [...html.matchAll(/\{\s*name:\s*"([^"]+)",\s*repo:\s*"([^"]+)"([^}]*)\}/g)].map(m => {
+  const rx = k => { const v = m[3].match(new RegExp(`${k}:\\s*"([^"]+)"`)); return v && new RegExp(v[1].replace(/\\\\/g, '\\'), 'i'); };
+  return { name: m[1], repo: m[2], only: rx('only'), skip: rx('skip') };
+});
 if (!board.length) { console.error('index.html에서 BOARD를 찾지 못했습니다'); process.exit(1); }
 
 let old = { entries: [] };
@@ -23,7 +27,9 @@ const kst = t => new Date(t + 9 * 3600e3).toISOString().slice(0, 10);
 const today = kst(Date.now()), yesterday = kst(Date.now() - 864e5);
 const since = Date.now() - KEEP_DAYS * 864e5;
 
-async function merged(repo) {
+const cache = {};
+const merged = repo => cache[repo] ||= mergedRaw(repo);
+async function mergedRaw(repo) {
   const out = [];
   for (let page = 1; page <= 5; page++) {
     const r = await fetch(`https://api.github.com/repos/${repo}/pulls?state=closed&sort=updated&direction=desc&per_page=100&page=${page}`,
@@ -43,7 +49,7 @@ async function write(name, date, prs) {
 - 1~2문장, 110자 안쪽, '~했다'로 끝나는 짧은 일기체. 가장 큰 일 두세 가지만 골라 압축한다.
 - 제목에 있는 일만 쓴다. 없는 일·감정·결과를 지어내지 말 것.
 - 비슷한 작업은 묶어서 "무엇을 어떻게 다듬었다"로 말하고, 파일 이름·코드 용어는 쉬운 말로 바꾼다.
-- 'e33' 같은 장면 번호는 '예수 여정 33번 장면'처럼, Psalms·Paul·Kings·David·Moses·Proverbs는 시편·바울·열왕기·다윗·모세·잠언으로.
+- 'Game:'으로 시작하는 제목은 순례 게임 작업이다(일기에 'Game'이라 쓰지 말 것). 'e33' 같은 장면 번호는 '예수 여정 33번 장면'처럼, Psalms·Paul·Kings·David·Moses·Proverbs는 시편·바울·열왕기·다윗·모세·잠언으로.
 - 이모티콘을 쓰지 말 것. 일기 본문만 답하라.
 
 ${lines}`;
@@ -62,12 +68,12 @@ ${lines}`;
 
 const entries = [];
 for (const b of board) {
-  const prs = await merged(b.repo);
+  const prs = (await merged(b.repo)).filter(p => (!b.only || b.only.test(p.title)) && (!b.skip || !b.skip.test(p.title)));
   const byDay = {};
   for (const p of prs) (byDay[kst(p.at)] ||= []).push(p);
   for (const [date, list] of Object.entries(byDay)) {
     const hash = createHash('sha1').update('v2:' + list.map(p => p.n).sort((a, z) => a - z).join(',')).digest('hex').slice(0, 12);
-    const prev = old.entries.find(e => e.repo === b.repo && e.date === date);
+    const prev = old.entries.find(e => e.name === b.name && e.date === date);
     if (prev && (prev.hash === hash || (date !== today && date !== yesterday))) { entries.push(prev); continue; }
     if (date !== today && date !== yesterday && !prev) continue; // 처음 돌 때 지난 날을 한꺼번에 쓰지 않는다
     const text = await write(b.name, date, list);

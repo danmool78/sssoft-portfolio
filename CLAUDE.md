@@ -66,7 +66,7 @@ videos?[{src,poster?,label,wide?}](영상이 여럿일 때 video 대신, 적은 
 참가자 사진은 쓰지 않고 그림으로 다시 그렸다: shots/visionquest-scene.jpg, gallery/visionquest-jeonju.jpg.
 장면 그림 원본은 design/visionquest-scene.html (Chrome 헤드리스로 1600×900 캡처, ?card 를 붙이면 카드용 1160×750))
 
-최근 작업 내용(index.html `BOARD`, 첫 화면 소개 바로 아래 코드 편집기 모양 창): 지금 만드는 중인 작품만 적는다(완성작은 data.js 카드). 항목은 {name, repo(공개 저장소), url, now(지금 하는 일 한 줄)}.
+최근 작업 내용(index.html `BOARD`, 첫 화면 소개 바로 아래 코드 편집기 모양 창): 지금 만드는 중인 작품만 적는다(완성작은 data.js 카드). 항목은 {name, repo(공개 저장소), url, now(지금 하는 일 한 줄), only?/skip?(PR 제목 정규식 — 같은 저장소를 작품별로 나눈다. 그 길의 "Game:" 작업은 "그 길 순례 게임" 줄로)}. 창은 흰 바탕(GitHub 밝은 테마 색).
 최근 작업은 방문자 브라우저가 GitHub API에서 병합된 PR을 바로 읽는다(5분 캐시, 30분 안에 작업하면 초록 불). 작품이 완성되면 BOARD에서 빼고 카드로 옮긴다.
 일기: `.github/workflows/board-diary.yml`이 한 시간마다 `scripts/diary.mjs`로 그날 병합된 PR 제목을 모아 Gemini(비밀값 `GEMINI_API_KEY`)가 우리말 일기로 정리한다.
 일기는 main이 아니라 `board-data` 가지의 diary.json 한 파일에만 둔다(main 기록이 쌓이지 않게) — 배포 작업들은 배포 직전에 그 파일을 public/live/diary.json으로 가져온다.
