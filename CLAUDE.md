@@ -66,11 +66,11 @@ videos?[{src,poster?,label,wide?}](영상이 여럿일 때 video 대신, 적은 
 참가자 사진은 쓰지 않고 그림으로 다시 그렸다: shots/visionquest-scene.jpg, gallery/visionquest-jeonju.jpg.
 장면 그림 원본은 design/visionquest-scene.html (Chrome 헤드리스로 1600×900 캡처, ?card 를 붙이면 카드용 1160×750))
 
-작업 칠판(index.html `BOARD`, 릴스 위 '지금 칠판에 있는 것'): 지금 만드는 중인 작품만 적는다(완성작은 data.js 카드). 항목은 {name, repo(공개 저장소), url, now(지금 하는 일 한 줄)}.
+최근 작업 내용(index.html `BOARD`, 릴스 위 코드 편집기 모양 창): 지금 만드는 중인 작품만 적는다(완성작은 data.js 카드). 항목은 {name, repo(공개 저장소), url, now(지금 하는 일 한 줄)}.
 최근 작업은 방문자 브라우저가 GitHub API에서 병합된 PR을 바로 읽는다(5분 캐시, 30분 안에 작업하면 초록 불). 작품이 완성되면 BOARD에서 빼고 카드로 옮긴다.
 일기: `.github/workflows/board-diary.yml`이 한 시간마다 `scripts/diary.mjs`로 그날 병합된 PR 제목을 모아 Gemini(비밀값 `GEMINI_API_KEY`)가 우리말 일기로 정리한다.
 일기는 main이 아니라 `board-data` 가지의 diary.json 한 파일에만 둔다(main 기록이 쌓이지 않게) — 배포 작업들은 배포 직전에 그 파일을 public/live/diary.json으로 가져온다.
-칠판은 일기가 있으면 최근 3일 일기를, 없으면 작업 제목 목록을 보여 준다. 오늘·어제만 다시 쓰고 지난 일기는 고치지 않는다.
+창은 일기가 있으면 최근 3일 일기를, 없으면 작업 제목 목록을 보여 준다. 오늘·어제만 다시 쓰고 지난 일기는 고치지 않는다.
 
 교구 레크리에이션 실전 운영 기록(record)은 2026-11-01 행사 서버 기록 요약(교구레크레이션 세션의 운영 기록 페이지)에서 가져왔다.
 평소에는 행사 뒤 데이터를 남기지 않는다(소개 글 그대로). 이 기록은 첫 운영이라 소개용으로 일부러 남긴 것이다.
