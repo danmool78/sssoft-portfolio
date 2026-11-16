@@ -133,8 +133,8 @@ section{padding:72px 0}
 @media (max-width:820px){.featured{grid-template-columns:1fr;gap:24px}}
 /* 최근 작업 내용: 코드 편집기 창처럼. 시각·숫자는 GitHub 활동에서 바로, 일기는 Actions가 정리한 live/diary.json */
 .boardsec{padding:0}
-.term{--tb:#0d1117;--tp:#161b22;--tl:#30363d;--tx:#e6edf3;--tm:#8b949e;--tg:#3fb950;--ty:#e3b341;--tc:#79c0ff;--tk:#ff7b72;--tv:#d2a8ff;
-  background:var(--tb);color:var(--tx);border:1px solid var(--tl);border-radius:14px;overflow:hidden;box-shadow:0 24px 60px rgba(13,17,23,.28);font-family:Pretendard,"Noto Sans KR",sans-serif}
+.term{--tb:#ffffff;--tp:#f6f8fa;--tl:#d0d7de;--tx:#1f2328;--tm:#656d76;--tg:#1a7f37;--ty:#9a6700;--tc:#0969da;--tk:#cf222e;--tv:#8250df;
+  background:var(--tb);color:var(--tx);border:1px solid var(--tl);border-radius:14px;overflow:hidden;box-shadow:0 18px 44px rgba(31,35,40,.10);font-family:Pretendard,"Noto Sans KR",sans-serif}
 .term .bar{display:flex;align-items:center;gap:8px;padding:11px 14px;background:var(--tp);border-bottom:1px solid var(--tl)}
 .term .bar i{width:12px;height:12px;border-radius:50%;background:#ff5f57}.term .bar i:nth-child(2){background:#febc2e}.term .bar i:nth-child(3){background:#28c840}
 .term .bar span{margin-left:10px;font:600 13px "JetBrains Mono",ui-monospace,monospace;color:var(--tm)}
@@ -147,18 +147,18 @@ section{padding:72px 0}
 .bitem h5 a{color:inherit;text-decoration:none}
 .bitem h5 a:hover{text-decoration:underline}
 .bitem .now{margin-top:3px;font-size:13px;color:var(--tm);word-break:keep-all}
-.bitem .now::before{content:"// ";font-family:"JetBrains Mono",ui-monospace,monospace;color:#6e7681}
+.bitem .now::before{content:"// ";font-family:"JetBrains Mono",ui-monospace,monospace;color:#8c959f}
 .bitem .stat{text-align:right;font:11.5px "JetBrains Mono",ui-monospace,monospace;color:var(--tm);white-space:nowrap}
 .bitem .stat b{display:block;font:700 24px "JetBrains Mono",ui-monospace,monospace;color:var(--tg);line-height:1.1}
 .bitem .live{display:inline-flex;align-items:center;gap:6px;margin-left:10px;font:600 12px "JetBrains Mono",ui-monospace,monospace;color:var(--tg);vertical-align:middle}
-.bitem .live::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--tg);box-shadow:0 0 8px var(--tg);animation:blink 1.6s infinite}
+.bitem .live::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--tg);box-shadow:0 0 6px rgba(26,127,55,.5);animation:blink 1.6s infinite}
 @keyframes blink{50%{opacity:.25}}
 @media (prefers-reduced-motion:reduce){.bitem .live::before{animation:none}}
 .bitem .diary{grid-column:1/-1;margin-top:8px;display:grid;gap:6px;max-height:168px;overflow-y:auto;overscroll-behavior:contain;padding-right:6px;scrollbar-width:thin;scrollbar-color:var(--tl) transparent}
 .bitem .diary::-webkit-scrollbar{width:6px}.bitem .diary::-webkit-scrollbar-thumb{background:var(--tl);border-radius:3px}
-.bitem .diary p{margin:0;padding:7px 11px;border-left:3px solid var(--tv);background:rgba(110,118,129,.08);border-radius:0 8px 8px 0;font-size:13px;line-height:1.6;color:var(--tx);word-break:keep-all}
+.bitem .diary p{margin:0;padding:7px 11px;border-left:3px solid var(--tv);background:var(--tp);border-radius:0 8px 8px 0;font-size:13px;line-height:1.6;color:var(--tx);word-break:keep-all}
 .bitem .diary p time{margin-right:8px;font:600 11.5px "JetBrains Mono",ui-monospace,monospace;color:var(--ty)}
-.bitem .diary p.old{border-left-color:var(--tl);color:#adbac7}
+.bitem .diary p.old{border-left-color:var(--tl);color:#424a53}
 .bitem .diary p.old time{color:var(--tm)}
 .bitem ul{grid-column:1/-1;list-style:none;margin:8px 0 0;padding:0;display:grid;gap:4px;font:12px "JetBrains Mono",ui-monospace,monospace;max-height:168px;overflow-y:auto}
 .bitem li{color:var(--tx);word-break:break-word}
@@ -691,8 +691,10 @@ imgv.addEventListener("close", () => { imgvImg.removeAttribute("src"); });
 // 작업 칠판: 지금 만드는 중인 작품의 최근 작업을 GitHub(공개 저장소)에서 바로 읽는다.
 // 작품이 완성되면 여기서 빼고 data.js의 완성작으로 옮긴다
 const BOARD = [
-  { name: "그 길", repo: "danmool78/the-way-jesus.web.app", url: "https://thewaymap.org",
+  { name: "그 길", repo: "danmool78/the-way-jesus.web.app", url: "https://thewaymap.org", skip: "^Game\\b",
     now: "성경을 걷는 여덟 여정 시리즈 · 장면을 3D 모형으로 다시 세우고, 시편 노래를 한 편씩 더하는 중" },
+  { name: "그 길 순례 게임", repo: "danmool78/the-way-jesus.web.app", url: "https://thewaymap.org/game.html", only: "^Game\\b",
+    now: "나만의 순례자로 지도를 걸어 다음 장면을 찾아가는 게임 · 바울 여정의 항해와 숨겨진 보물, 3D 인물 모델을 더하는 중" },
 ];
 (function(){
   const box = document.getElementById("boardList"); if (!box) return;
@@ -705,7 +707,7 @@ const BOARD = [
   const wk = ["일","월","화","수","목","금","토"];
   const dayName = s => { const [y, m, d] = s.split("-").map(Number); return `${m}월 ${d}일 (${wk[new Date(Date.UTC(y, m - 1, d)).getUTCDay()]})`; }; // 날짜 글자 그대로(보는 사람 시간대와 상관없이)
   const draw = (b, d) => {
-    const mine = diary.filter(e => e.repo === b.repo).slice(0, 14);
+    const mine = diary.filter(e => (e.name || "") === b.name).slice(0, 14);
     const fresh = d && Date.now() - d.last < 30 * 60000;
     return `<div class="bitem"><div><h5><a href="${b.url}" target="_blank" rel="noopener">${esc(b.name)}</a>${fresh?'<span class="live" title="30분 안에 작업함">작업 중</span>':""}</h5><div class="now">${esc(b.now)}</div></div>
       <div class="stat">${d?`<b>${d.today}</b>commits today · ${d.week} this week`:"&nbsp;"}</div>
@@ -713,22 +715,28 @@ const BOARD = [
         :d&&d.recent.length?`<ul>${d.recent.map(r=>`<li><time>${ago(r.at)}</time>${esc(kTitle(r.title))}</li>`).join("")}</ul>`:""}</div>`;
   };
   box.innerHTML = BOARD.map(b => draw(b, null)).join("");
-  const load = async b => {
-    const key = "board-" + b.repo;
+  // 같은 저장소는 한 번만 읽고, 항목마다 제목 규칙(only/skip)으로 나눈다 (예: 그 길의 "Game:" 작업은 순례 게임으로)
+  const lists = {};
+  const prsOf = repo => lists[repo] ||= (async () => {
+    const key = "board2-" + repo;
     try { const c = JSON.parse(sessionStorage.getItem(key) || "null"); if (c && Date.now() - c.t < 5 * 60000) return c.d; } catch (e) {}
-    const r = await fetch(`https://api.github.com/repos/${b.repo}/pulls?state=closed&sort=updated&direction=desc&per_page=60`);
+    const r = await fetch(`https://api.github.com/repos/${repo}/pulls?state=closed&sort=updated&direction=desc&per_page=100`);
     if (!r.ok) throw new Error(r.status);
     const prs = (await r.json()).filter(p => p.merged_at).map(p => ({ title: p.title, at: Date.parse(p.merged_at) })).sort((a, z) => z.at - a.at);
+    try { sessionStorage.setItem(key, JSON.stringify({ t: Date.now(), d: prs })); } catch (e) {}
+    return prs;
+  })();
+  const load = async b => {
+    const only = b.only && new RegExp(b.only, "i"), skip = b.skip && new RegExp(b.skip, "i");
+    const prs = (await prsOf(b.repo)).filter(p => (!only || only.test(p.title)) && (!skip || !skip.test(p.title)));
     const day0 = new Date(); day0.setHours(0, 0, 0, 0);
-    const d = { last: prs[0]?.at || 0, today: prs.filter(p => p.at >= day0).length, week: prs.filter(p => p.at >= Date.now() - 7 * 864e5).length, recent: prs.slice(0, 5) };
-    try { sessionStorage.setItem(key, JSON.stringify({ t: Date.now(), d })); } catch (e) {}
-    return d;
+    return { last: prs[0]?.at || 0, today: prs.filter(p => p.at >= day0).length, week: prs.filter(p => p.at >= Date.now() - 7 * 864e5).length, recent: prs.slice(0, 5) };
   };
-  const refresh = () => Promise.all(BOARD.map(b => load(b).catch(() => null))).then(ds => {
+  const refresh = () => { for (const k in lists) delete lists[k]; return Promise.all(BOARD.map(b => load(b).catch(() => null))).then(ds => {
     box.innerHTML = BOARD.map((b, i) => draw(b, ds[i])).join("");
     const last = Math.max(0, ...ds.filter(Boolean).map(d => d.last));
     document.getElementById("bUpd").textContent = last ? `마지막 작업 ${ago(last)}` : "작업 기록을 지금 불러올 수 없어요";
-  });
+  }); };
   // 일기는 한 시간마다 Actions가 정리해 올린다(live/diary.json)
   fetch("live/diary.json", { cache: "no-cache" }).then(r => r.ok ? r.json() : null).then(j => { if (j && Array.isArray(j.entries)) { diary = j.entries; refresh(); } }).catch(() => {});
   refresh(); setInterval(refresh, 5 * 60000);
