@@ -143,6 +143,11 @@ section{padding:72px 0}
 .bitem .now{font-size:25px;color:#ffe08a;line-height:1.25}
 .bitem .stat{text-align:right;font-size:24px;line-height:1.2;color:rgba(238,243,234,.85);white-space:nowrap}
 .bitem .stat b{display:block;font-size:40px;font-weight:400;color:#fff}
+.bitem .diary{grid-column:1/-1;margin-top:8px}
+.bitem .diary p{margin:0 0 10px;font-size:27px;line-height:1.35;color:#f4f7f1;word-break:keep-all}
+.bitem .diary p time{display:block;font-size:22px;color:#ffd166}
+.bitem .diary p.old{font-size:23px;color:rgba(238,243,234,.72)}
+.bitem .diary p.old time{color:rgba(255,209,102,.7)}
 .bitem ul{grid-column:1/-1;list-style:none;margin:6px 0 0;padding:0;display:grid;gap:2px}
 .bitem li{font-size:22px;color:rgba(238,243,234,.82);word-break:break-word}
 .bitem li time{color:#9fd8b5;margin-right:8px}
@@ -678,7 +683,7 @@ imgv.addEventListener("close", () => { imgvImg.removeAttribute("src"); });
 // 작업 칠판: 지금 만드는 중인 작품의 최근 작업을 GitHub(공개 저장소)에서 바로 읽는다.
 // 작품이 완성되면 여기서 빼고 data.js의 완성작으로 옮긴다
 const BOARD = [
-  { name: "그 길", repo: "danmool78/the-way-jesus.web.app", url: "https://the-way-jesus.web.app",
+  { name: "그 길", repo: "danmool78/the-way-jesus.web.app", url: "https://thewaymap.org",
     now: "성경을 걷는 여덟 여정 시리즈 · 장면을 3D 모형으로 다시 세우고, 시편 노래를 한 편씩 더하는 중" },
 ];
 (function(){
@@ -688,11 +693,16 @@ const BOARD = [
   const kTitle = s => s.replace(/^([A-Za-z]+)(?=[: ])/, w => NAMES[w] || w).replace(/^e(\d+):/, (m, n) => `예수 ${+n}장면:`);
   const ago = t => { const m = Math.max(0, Math.round((Date.now() - t) / 60000));
     return m < 1 ? "방금" : m < 60 ? `${m}분 전` : m < 1440 ? `${Math.round(m/60)}시간 전` : `${Math.round(m/1440)}일 전`; };
+  let diary = [];
+  const wk = ["일","월","화","수","목","금","토"];
+  const dayName = s => { const [y, m, d] = s.split("-").map(Number); return `${m}월 ${d}일 (${wk[new Date(Date.UTC(y, m - 1, d)).getUTCDay()]})`; }; // 날짜 글자 그대로(보는 사람 시간대와 상관없이)
   const draw = (b, d) => {
+    const mine = diary.filter(e => e.repo === b.repo).slice(0, 3);
     const fresh = d && Date.now() - d.last < 30 * 60000;
     return `<div class="bitem"><div><h5><a href="${b.url}" target="_blank" rel="noopener">${esc(b.name)}</a>${fresh?'<span class="live" title="30분 안에 작업함"></span>':""}</h5><div class="now">${esc(b.now)}</div></div>
       <div class="stat">${d?`<b>${d.today}</b>오늘 작업 · 이번 주 ${d.week}`:"&nbsp;"}</div>
-      ${d&&d.recent.length?`<ul>${d.recent.map(r=>`<li><time>${ago(r.at)}</time>${esc(kTitle(r.title))}</li>`).join("")}</ul>`:""}</div>`;
+      ${mine.length?`<div class="diary">${mine.map((e,i)=>`<p class="${i?"old":""}"><time>${dayName(e.date)} · 작업 ${e.count}번</time>${esc(e.text)}</p>`).join("")}</div>`
+        :d&&d.recent.length?`<ul>${d.recent.map(r=>`<li><time>${ago(r.at)}</time>${esc(kTitle(r.title))}</li>`).join("")}</ul>`:""}</div>`;
   };
   box.innerHTML = BOARD.map(b => draw(b, null)).join("");
   const load = async b => {
@@ -711,6 +721,8 @@ const BOARD = [
     const last = Math.max(0, ...ds.filter(Boolean).map(d => d.last));
     document.getElementById("bUpd").textContent = last ? `마지막 작업 ${ago(last)}` : "작업 기록을 지금 불러올 수 없어요";
   });
+  // 일기는 한 시간마다 Actions가 정리해 올린다(live/diary.json)
+  fetch("live/diary.json", { cache: "no-cache" }).then(r => r.ok ? r.json() : null).then(j => { if (j && Array.isArray(j.entries)) { diary = j.entries; refresh(); } }).catch(() => {});
   refresh(); setInterval(refresh, 5 * 60000);
 })();
 </script>

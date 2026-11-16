@@ -60,7 +60,7 @@ videos?[{src,poster?,label,wide?}](영상이 여럿일 때 video 대신, 적은 
 노후자금 시뮬레이터, 중심잡기, 큐티레이스, 열왕기 — 두 왕국의 연대기, 그 길(시리즈 하나로), 비전 퀘스트.
 (그 길은 여정마다 카드를 따로 만들지 않고 한 카드로 소개한다. 여정 목록·공개 여부는 theway의 `next.items`: `url`이 있으면 공개(여정 걷기 단추), 없으면 준비 중(후원 모집).
 새 여정이 나오면 그 항목에 url을 넣고 숫자·미리보기를 더한다. 여정 주소는 /jesus/ · /moses/ 처럼 여정마다 따로)
-(그 길 = the-way-jesus.web.app 저장소, 비전 퀘스트 = team-esc 저장소. 화면은 실제 사이트를 Playwright로 캡처한다.
+(그 길 = the-way-jesus.web.app 저장소, 사이트 주소는 https://thewaymap.org, 비전 퀘스트 = team-esc 저장소. 화면은 실제 사이트를 Playwright로 캡처한다.
 비전 퀘스트는 https://team-esc.web.app/?demo 로 로그인 없이 가짜 참가자 화면을 볼 수 있다.
 비전 퀘스트 '실전 기록'은 2026-10-31 전주 한옥마을 게임 Q9A54의 실제 자료(`firebase database:get /games/Q9A54 --project team-esc`)에서 센 숫자다.
 참가자 사진은 쓰지 않고 그림으로 다시 그렸다: shots/visionquest-scene.jpg, gallery/visionquest-jeonju.jpg.
@@ -68,6 +68,9 @@ videos?[{src,poster?,label,wide?}](영상이 여럿일 때 video 대신, 적은 
 
 작업 칠판(index.html `BOARD`, 릴스 위 '지금 칠판에 있는 것'): 지금 만드는 중인 작품만 적는다(완성작은 data.js 카드). 항목은 {name, repo(공개 저장소), url, now(지금 하는 일 한 줄)}.
 최근 작업은 방문자 브라우저가 GitHub API에서 병합된 PR을 바로 읽는다(5분 캐시, 30분 안에 작업하면 초록 불). 작품이 완성되면 BOARD에서 빼고 카드로 옮긴다.
+일기: `.github/workflows/board-diary.yml`이 한 시간마다 `scripts/diary.mjs`로 그날 병합된 PR 제목을 모아 Gemini(비밀값 `GEMINI_API_KEY`)가 우리말 일기로 정리한다.
+일기는 main이 아니라 `board-data` 가지의 diary.json 한 파일에만 둔다(main 기록이 쌓이지 않게) — 배포 작업들은 배포 직전에 그 파일을 public/live/diary.json으로 가져온다.
+칠판은 일기가 있으면 최근 3일 일기를, 없으면 작업 제목 목록을 보여 준다. 오늘·어제만 다시 쓰고 지난 일기는 고치지 않는다.
 
 교구 레크리에이션 실전 운영 기록(record)은 2026-11-01 행사 서버 기록 요약(교구레크레이션 세션의 운영 기록 페이지)에서 가져왔다.
 평소에는 행사 뒤 데이터를 남기지 않는다(소개 글 그대로). 이 기록은 첫 운영이라 소개용으로 일부러 남긴 것이다.

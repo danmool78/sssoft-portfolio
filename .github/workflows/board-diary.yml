@@ -1,0 +1,58 @@
+name: Board diary
+
+# 작업 칠판의 일기: 한 시간마다 칠판(index.html BOARD)에 적힌 작품의 그날 병합된 PR을 모아
+# Gemini가 우리말 일기로 정리한다(scripts/diary.mjs). 일기는 main이 아니라 board-data 가지의
+# diary.json 한 파일에만 둔다(main 기록이 한 시간마다 쌓이지 않게). 바뀌었을 때만 그 가지를 바꾸고 배포한다.
+# 필요한 비밀값: GEMINI_API_KEY(Google AI Studio), FIREBASE_SERVICE_ACCOUNT_SSSOFT_PORTFOLIO
+on:
+  schedule:
+    - cron: "11 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: board-diary
+  cancel-in-progress: false
+
+jobs:
+  diary:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0   # sitemap.xml lastmod용
+      - name: Bring the current diary
+        run: |
+          git fetch -q origin board-data && git show FETCH_HEAD:diary.json > public/live/diary.json || echo "no diary yet"
+          cp public/live/diary.json "$RUNNER_TEMP/before.json" 2>/dev/null || echo '{}' > "$RUNNER_TEMP/before.json"
+      - name: Write the diary
+        id: diary
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          if [ -z "$GEMINI_API_KEY" ]; then echo "GEMINI_API_KEY secret is not set; skipping."; echo "changed=false" >> "$GITHUB_OUTPUT"; exit 0; fi
+          node scripts/diary.mjs
+          if cmp -s public/live/diary.json "$RUNNER_TEMP/before.json"; then echo "changed=false" >> "$GITHUB_OUTPUT"; else echo "changed=true" >> "$GITHUB_OUTPUT"; fi
+      - name: Save to board-data
+        if: steps.diary.outputs.changed == 'true'
+        run: |
+          d="$RUNNER_TEMP/bd"; mkdir -p "$d"; cp public/live/diary.json "$d/"
+          cd "$d" && git init -q && git checkout -q -b board-data
+          git add diary.json
+          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -qm "Board diary $(date -u +%FT%TZ)"
+          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" board-data
+      - name: Build pages
+        if: steps.diary.outputs.changed == 'true'
+        run: node scripts/apps.cjs && node scripts/sitemap.cjs
+      - name: Deploy
+        if: steps.diary.outputs.changed == 'true'
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_SSSOFT_PORTFOLIO }}
+          projectId: sssoft-portfolio
+          channelId: live

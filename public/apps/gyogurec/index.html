@@ -127,6 +127,34 @@ section{padding:72px 0}
 .featured .vid{margin:0;box-shadow:var(--shadow)}
 .featured .cbtns .btn{border:none;cursor:pointer;font:inherit;font-weight:700}
 @media (max-width:820px){.featured{grid-template-columns:1fr;gap:24px}}
+/* 작업 칠판: 지금 만드는 중인 작품. 칠판 초록 바탕에 분필 글씨, 시각은 GitHub 활동에서 바로 읽는다 */
+.boardsec{padding:56px 24px 8px}
+.board{position:relative;background:radial-gradient(120% 140% at 30% 0%,#2f4a3d,#1f3329 70%);border:14px solid #8a6a46;border-radius:10px;box-shadow:inset 0 0 60px rgba(0,0,0,.45),0 18px 40px rgba(20,20,40,.18);padding:26px 30px 40px;color:#eef3ea;font-family:"Nanum Pen Script",Pretendard,cursive}
+.bhead{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:6px 16px;margin-bottom:14px}
+.bhead b{font-size:38px;font-weight:400;letter-spacing:.02em;text-shadow:0 0 1px rgba(255,255,255,.4)}
+.bhead small{font-size:22px;color:rgba(238,243,234,.7)}
+.bitem{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 18px;padding:12px 0;border-top:1px dashed rgba(238,243,234,.25)}
+.bitem h5{margin:0;font-size:34px;font-weight:400;line-height:1.1}
+.bitem h5 a{color:inherit;text-decoration:none;border-bottom:2px solid rgba(255,214,102,.6)}
+.bitem .now{font-size:25px;color:#ffe08a;line-height:1.25}
+.bitem .stat{text-align:right;font-size:24px;line-height:1.2;color:rgba(238,243,234,.85);white-space:nowrap}
+.bitem .stat b{display:block;font-size:40px;font-weight:400;color:#fff}
+.bitem .diary{grid-column:1/-1;margin-top:8px}
+.bitem .diary p{margin:0 0 10px;font-size:27px;line-height:1.35;color:#f4f7f1;word-break:keep-all}
+.bitem .diary p time{display:block;font-size:22px;color:#ffd166}
+.bitem .diary p.old{font-size:23px;color:rgba(238,243,234,.72)}
+.bitem .diary p.old time{color:rgba(255,209,102,.7)}
+.bitem ul{grid-column:1/-1;list-style:none;margin:6px 0 0;padding:0;display:grid;gap:2px}
+.bitem li{font-size:22px;color:rgba(238,243,234,.82);word-break:break-word}
+.bitem li time{color:#9fd8b5;margin-right:8px}
+.bitem .live{display:inline-block;width:12px;height:12px;border-radius:50%;background:#7CFFB2;margin-left:8px;box-shadow:0 0 10px #7CFFB2;animation:blink 1.6s infinite}
+@keyframes blink{50%{opacity:.25}}
+@media (prefers-reduced-motion:reduce){.bitem .live{animation:none}}
+.chalk-tray{position:absolute;left:0;right:0;bottom:-14px;height:12px;background:#6e5236;display:flex;gap:10px;padding-left:40px;align-items:center}
+.chalk-tray i{display:block;width:34px;height:7px;border-radius:3px;background:#f4f1e8}
+.chalk-tray i:nth-child(2){background:#ffd166;width:22px}
+.chalk-tray i:nth-child(3){background:#9fd8b5;width:28px}
+@media (max-width:820px){.boardsec{padding:44px 16px 4px}.board{padding:20px 18px 34px;border-width:10px}.bitem{grid-template-columns:1fr}.bitem .stat{text-align:left}.bitem .stat b{display:inline;margin-right:6px}}
 .reelsec{display:grid;grid-template-columns:1fr 360px;gap:48px;align-items:center;padding:72px 24px;border-top:1px solid var(--line)}
 .reeltxt h2{font-size:32px;font-weight:900;margin:8px 0 12px}
 .reeltxt p{color:var(--muted);margin-bottom:22px;max-width:46ch}
