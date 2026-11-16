@@ -38,9 +38,9 @@ async function merged(repo) {
 
 async function write(name, date, prs) {
   const lines = prs.sort((a, b) => a.at - b.at).map(p => `- ${p.title}`).join('\n');
-  const prompt = `너는 SSSOFT 작업실 칠판에 그날의 작업 일기를 분필로 적는 사람이다.
+  const prompt = `너는 SSSOFT 작업 기록에 그날의 작업 일기를 짧게 적는 사람이다.
 아래는 ${date}에 '${name}' 작품에서 병합된 작업 제목들이다(영어). 이것만 보고 우리말 일기를 써라.
-- 2~4문장, 200자 안쪽, '~했다'로 끝나는 일기체.
+- 1~2문장, 110자 안쪽, '~했다'로 끝나는 짧은 일기체. 가장 큰 일 두세 가지만 골라 압축한다.
 - 제목에 있는 일만 쓴다. 없는 일·감정·결과를 지어내지 말 것.
 - 비슷한 작업은 묶어서 "무엇을 어떻게 다듬었다"로 말하고, 파일 이름·코드 용어는 쉬운 말로 바꾼다.
 - 'e33' 같은 장면 번호는 '예수 여정 33번 장면'처럼, Psalms·Paul·Kings·David·Moses·Proverbs는 시편·바울·열왕기·다윗·모세·잠언으로.
@@ -66,7 +66,7 @@ for (const b of board) {
   const byDay = {};
   for (const p of prs) (byDay[kst(p.at)] ||= []).push(p);
   for (const [date, list] of Object.entries(byDay)) {
-    const hash = createHash('sha1').update(list.map(p => p.n).sort((a, z) => a - z).join(',')).digest('hex').slice(0, 12);
+    const hash = createHash('sha1').update('v2:' + list.map(p => p.n).sort((a, z) => a - z).join(',')).digest('hex').slice(0, 12);
     const prev = old.entries.find(e => e.repo === b.repo && e.date === date);
     if (prev && (prev.hash === hash || (date !== today && date !== yesterday))) { entries.push(prev); continue; }
     if (date !== today && date !== yesterday && !prev) continue; // 처음 돌 때 지난 날을 한꺼번에 쓰지 않는다
