@@ -129,8 +129,11 @@ section{padding:72px 0}
 @media (max-width:820px){.featured{grid-template-columns:1fr;gap:24px}}
 /* 최근 작업 내용: 코드 편집기 창처럼. 시각·숫자는 GitHub 활동에서 바로, 일기는 Actions가 정리한 live/diary.json */
 .boardsec{padding:0}
-.term{--tb:#ffffff;--tp:#f6f8fa;--tl:#d0d7de;--tx:#1f2328;--tm:#656d76;--tg:#1a7f37;--ty:#9a6700;--tc:#0969da;--tk:#cf222e;--tv:#8250df;
+.term{--tb:#ffffff;--tp:#f6f8fa;--tl:#d0d7de;--tx:#1f2328;--tm:#656d76;--tg:#1a7f37;--ty:#9a6700;--tc:#0969da;--tk:#cf222e;--tv:#8250df;--tq:#424a53;--tn:#8c959f;
   background:var(--tb);color:var(--tx);border:1px solid var(--tl);border-radius:14px;overflow:hidden;box-shadow:0 18px 44px rgba(31,35,40,.10);font-family:Pretendard,"Noto Sans KR",sans-serif}
+/* 사이트가 어두운 화면이면 창도 어둡게 (GitHub 어두운 테마 색) */
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .term{--tb:#0d1117;--tp:#161b22;--tl:#30363d;--tx:#e6edf3;--tm:#8b949e;--tg:#3fb950;--ty:#e3b341;--tc:#79c0ff;--tk:#ff7b72;--tv:#d2a8ff;--tq:#adbac7;--tn:#6e7681;box-shadow:0 20px 50px rgba(0,0,0,.45)}}
+:root[data-theme="dark"] .term{--tb:#0d1117;--tp:#161b22;--tl:#30363d;--tx:#e6edf3;--tm:#8b949e;--tg:#3fb950;--ty:#e3b341;--tc:#79c0ff;--tk:#ff7b72;--tv:#d2a8ff;--tq:#adbac7;--tn:#6e7681;box-shadow:0 20px 50px rgba(0,0,0,.45)}
 .term .bar{display:flex;align-items:center;gap:8px;padding:11px 14px;background:var(--tp);border-bottom:1px solid var(--tl)}
 .term .bar i{width:12px;height:12px;border-radius:50%;background:#ff5f57}.term .bar i:nth-child(2){background:#febc2e}.term .bar i:nth-child(3){background:#28c840}
 .term .bar span{margin-left:10px;font:600 13px "JetBrains Mono",ui-monospace,monospace;color:var(--tm)}
@@ -143,7 +146,7 @@ section{padding:72px 0}
 .bitem h5 a{color:inherit;text-decoration:none}
 .bitem h5 a:hover{text-decoration:underline}
 .bitem .now{margin-top:3px;font-size:13px;color:var(--tm);word-break:keep-all}
-.bitem .now::before{content:"// ";font-family:"JetBrains Mono",ui-monospace,monospace;color:#8c959f}
+.bitem .now::before{content:"// ";font-family:"JetBrains Mono",ui-monospace,monospace;color:var(--tn)}
 .bitem .stat{text-align:right;font:11.5px "JetBrains Mono",ui-monospace,monospace;color:var(--tm);white-space:nowrap}
 .bitem .stat b{display:block;font:700 24px "JetBrains Mono",ui-monospace,monospace;color:var(--tg);line-height:1.1}
 .bitem .live{display:inline-flex;align-items:center;gap:6px;margin-left:10px;font:600 12px "JetBrains Mono",ui-monospace,monospace;color:var(--tg);vertical-align:middle}
@@ -154,7 +157,7 @@ section{padding:72px 0}
 .bitem .diary::-webkit-scrollbar{width:6px}.bitem .diary::-webkit-scrollbar-thumb{background:var(--tl);border-radius:3px}
 .bitem .diary p{margin:0;padding:7px 11px;border-left:3px solid var(--tv);background:var(--tp);border-radius:0 8px 8px 0;font-size:13px;line-height:1.6;color:var(--tx);word-break:keep-all}
 .bitem .diary p time{margin-right:8px;font:600 11.5px "JetBrains Mono",ui-monospace,monospace;color:var(--ty)}
-.bitem .diary p.old{border-left-color:var(--tl);color:#424a53}
+.bitem .diary p.old{border-left-color:var(--tl);color:var(--tq)}
 .bitem .diary p.old time{color:var(--tm)}
 .bitem ul{grid-column:1/-1;list-style:none;margin:8px 0 0;padding:0;display:grid;gap:4px;font:12px "JetBrains Mono",ui-monospace,monospace;max-height:168px;overflow-y:auto}
 .bitem li{color:var(--tx);word-break:break-word}
