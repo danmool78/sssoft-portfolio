@@ -41,6 +41,9 @@ jobs:
           git add public/live/readingbook-classics.json public/apps
           git commit -m "다정 리딩북 고전 권수 갱신: ${{ steps.count.outputs.total }}권"
           git push origin HEAD:main
+      - name: Bring the board diary
+        if: steps.count.outputs.changed == 'true'
+        run: git fetch -q origin board-data && git show FETCH_HEAD:diary.json > public/live/diary.json || echo "no diary yet"
       - name: Check secret
         id: secret
         if: steps.count.outputs.changed == 'true'

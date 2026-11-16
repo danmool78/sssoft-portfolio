@@ -3594,7 +3594,7 @@ window.PROJECTS=[
   "cat": "church",
   "tag": "3D 성경 지도 여정 시리즈",
   "color": "#8a6420",
-  "url": "https://the-way-jesus.web.app",
+  "url": "https://thewaymap.org",
   "shot": "theway",
   "frame": "browser",
   "tagline": "지도 위에서 걷는 성경의 길. 예수, 모세와 여호수아, 다윗, 열왕기, 바울, 시편, 잠언, GoodNews(복음) 여덟 여정과 '왜 기독교인가' 단원을 걷습니다",
@@ -3606,12 +3606,12 @@ window.PROJECTS=[
     {
      "label": "보기용 PDF",
      "desc": "휴대폰으로 보내거나 집에서 인쇄",
-     "href": "https://the-way-jesus.web.app/assets/why-booklet.pdf?v=1107b"
+     "href": "https://thewaymap.org/assets/why-booklet.pdf?v=1107b"
     },
     {
      "label": "인쇄소용 PDF",
      "desc": "3mm 재단 여유와 재단선 포함",
-     "href": "https://the-way-jesus.web.app/assets/why-booklet-print.pdf?v=1107b"
+     "href": "https://thewaymap.org/assets/why-booklet-print.pdf?v=1107b"
     }
    ]
   },
@@ -3935,48 +3935,48 @@ window.PROJECTS=[
     {
      "title": "예수의 발자취",
      "desc": "사복음서로 걷는 탄생부터 승천까지 61장면",
-     "url": "https://the-way-jesus.web.app/jesus/"
+     "url": "https://thewaymap.org/jesus/"
     },
     {
      "title": "모세와 여호수아",
      "desc": "애굽에서 광야를 지나 가나안까지 40장면",
-     "url": "https://the-way-jesus.web.app/moses/"
+     "url": "https://thewaymap.org/moses/"
     },
     {
      "title": "다윗",
      "desc": "베들레헴의 목동에서 예루살렘의 왕으로 39장면",
-     "url": "https://the-way-jesus.web.app/david/"
+     "url": "https://thewaymap.org/david/"
     },
     {
      "title": "열왕기",
      "desc": "선지자를 따라 걷는 두 왕국 41장면",
-     "url": "https://the-way-jesus.web.app/kings/"
+     "url": "https://thewaymap.org/kings/"
     },
     {
      "title": "바울",
      "desc": "다메섹 길에서 로마까지, 복음이 땅끝까지 42장면과 서신 13편",
-     "url": "https://the-way-jesus.web.app/paul/"
+     "url": "https://thewaymap.org/paul/"
     },
     {
      "title": "시편",
      "desc": "광야와 왕궁에서 부른 노래와 기도, 그 자리에서. 62편, 노래를 한 편씩 더하는 중 (한국어)",
-     "url": "https://the-way-jesus.web.app/psalms/"
+     "url": "https://thewaymap.org/psalms/"
     },
     {
      "title": "잠언",
      "desc": "솔로몬의 지혜를 오늘의 길 위에서. 거리를 걷는 하루 8장면과 하루 한 장 31일",
-     "url": "https://the-way-jesus.web.app/proverbs/"
+     "url": "https://thewaymap.org/proverbs/"
     },
     {
      "title": "GoodNews (복음)",
      "desc": "하나님의 사랑과 구원, 네 가지 영적 원리. 처음 만나는 분께 네 장면으로",
-     "url": "https://the-way-jesus.web.app/goodnews/",
+     "url": "https://thewaymap.org/goodnews/",
      "go": "GoodNews 보기"
     },
     {
      "title": "왜 기독교인가",
      "desc": "올라가는 종교, 내려오신 하나님, 그리고 교회. 그림과 도표로 읽는 단원",
-     "url": "https://the-way-jesus.web.app/why.html",
+     "url": "https://thewaymap.org/why.html",
      "go": "읽어 보기"
     }
    ]
