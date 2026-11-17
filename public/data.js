@@ -4385,7 +4385,7 @@ window.PROJECTS=[
   "tag": "실험 동아리 연구 관리",
   "color": "#1e8f59",
   "url": "https://gaji-lab.web.app",
-  "inquiry": true,
+  "free": true,
   "shot": "gaji",
   "frame": "phone",
   "tagline": "실험이 가지를 치며 이어지는 곳. 계획서부터 보고서, 그리고 다음 실험까지 한 줄기로 기록하는 고등학교 실험 동아리 연구 관리 도구",
