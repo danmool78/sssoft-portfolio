@@ -15,7 +15,7 @@ const html = await readFile('public/index.html', 'utf8');
 // 항목: { name, repo, only?, skip? } — only/skip은 PR 제목 정규식(같은 저장소를 작품별로 나눌 때)
 const board = [...html.matchAll(/\{\s*name:\s*"([^"]+)",\s*repo:\s*"([^"]+)"([^}]*)\}/g)].map(m => {
   const rx = k => { const v = m[3].match(new RegExp(`${k}:\\s*"([^"]+)"`)); return v && new RegExp(v[1].replace(/\\\\/g, '\\'), 'i'); };
-  return { name: m[1], repo: m[2], only: rx('only'), skip: rx('skip') };
+  return { name: m[1], repo: m[2], only: rx('only'), skip: rx('skip'), commits: /src:\s*"commits"/.test(m[3]) };
 });
 if (!board.length) { console.error('index.html에서 BOARD를 찾지 못했습니다'); process.exit(1); }
 
@@ -28,7 +28,20 @@ const today = kst(Date.now()), yesterday = kst(Date.now() - 864e5);
 const since = Date.now() - KEEP_DAYS * 864e5;
 
 const cache = {};
-const merged = repo => cache[repo] ||= mergedRaw(repo);
+const merged = (repo, commits) => cache[repo] ||= commits ? commitsRaw(repo) : mergedRaw(repo);
+// PR 없이 main에 바로 올리는 저장소: 커밋 제목을 쓴다(병합 커밋은 뺀다)
+async function commitsRaw(repo) {
+  const out = [];
+  for (let page = 1; page <= 5; page++) {
+    const r = await fetch(`https://api.github.com/repos/${repo}/commits?per_page=100&page=${page}&since=${new Date(since).toISOString()}`,
+      { headers: { accept: 'application/vnd.github+json', ...(GH ? { authorization: `Bearer ${GH}` } : {}) } });
+    if (!r.ok) throw Error(`${repo}: GitHub ${r.status}`);
+    const list = await r.json();
+    for (const c of list) if ((c.parents || []).length < 2) out.push({ n: c.sha, title: c.commit.message.split('\n')[0], at: Date.parse(c.commit.committer.date) });
+    if (list.length < 100) break;
+  }
+  return out;
+}
 async function mergedRaw(repo) {
   const out = [];
   for (let page = 1; page <= 5; page++) {
@@ -45,7 +58,7 @@ async function mergedRaw(repo) {
 async function write(name, date, prs) {
   const lines = prs.sort((a, b) => a.at - b.at).map(p => `- ${p.title}`).join('\n');
   const prompt = `너는 SSSOFT 작업 기록에 그날의 작업 일기를 짧게 적는 사람이다.
-아래는 ${date}에 '${name}' 작품에서 병합된 작업 제목들이다(영어). 이것만 보고 우리말 일기를 써라.
+아래는 ${date}에 '${name}' 작품에서 병합된 작업 제목들이다. 이것만 보고 우리말 일기를 써라.
 - 1~2문장, 110자 안쪽, '~했다'로 끝나는 짧은 일기체. 가장 큰 일 두세 가지만 골라 압축한다.
 - 제목에 있는 일만 쓴다. 없는 일·감정·결과를 지어내지 말 것.
 - 비슷한 작업은 묶어서 "무엇을 어떻게 다듬었다"로 말하고, 파일 이름·코드 용어는 쉬운 말로 바꾼다.
@@ -68,11 +81,11 @@ ${lines}`;
 
 const entries = [];
 for (const b of board) {
-  const prs = (await merged(b.repo)).filter(p => (!b.only || b.only.test(p.title)) && (!b.skip || !b.skip.test(p.title)));
+  const prs = (await merged(b.repo, b.commits)).filter(p => (!b.only || b.only.test(p.title)) && (!b.skip || !b.skip.test(p.title)));
   const byDay = {};
   for (const p of prs) (byDay[kst(p.at)] ||= []).push(p);
   for (const [date, list] of Object.entries(byDay)) {
-    const hash = createHash('sha1').update('v2:' + list.map(p => p.n).sort((a, z) => a - z).join(',')).digest('hex').slice(0, 12);
+    const hash = createHash('sha1').update('v2:' + list.map(p => String(p.n)).sort().join(',')).digest('hex').slice(0, 12);
     const prev = old.entries.find(e => e.name === b.name && e.date === date);
     if (prev && (prev.hash === hash || (date !== today && date !== yesterday))) { entries.push(prev); continue; }
     if (date !== today && date !== yesterday && !prev) continue; // 처음 돌 때 지난 날을 한꺼번에 쓰지 않는다

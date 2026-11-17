@@ -698,6 +698,8 @@ const BOARD = [
     now: "성경을 걷는 여덟 여정 시리즈 · 장면을 3D 모형으로 다시 세우고, 시편 노래를 한 편씩 더하는 중" },
   { name: "그 길 순례 게임", repo: "danmool78/the-way-jesus.web.app", url: "https://thewaymap.org/game.html", only: "^Game\\b",
     now: "나만의 순례자로 지도를 걸어 다음 장면을 찾아가는 게임 · 바울 여정의 항해와 숨겨진 보물, 3D 인물 모델을 더하는 중" },
+  { name: "가지", repo: "danmool78/gaji", url: "https://gaji-lab.web.app", src: "commits",
+    now: "고등학교 실험 동아리 연구 관리 도구 · 실험별 사진 · 그래프 올리기와 보고서를 구글 문서로 저장하기를 더하는 중" },
 ];
 (function(){
   const box = document.getElementById("boardList"); if (!box) return;
@@ -720,18 +722,21 @@ const BOARD = [
   box.innerHTML = BOARD.map(b => draw(b, null)).join("");
   // 같은 저장소는 한 번만 읽고, 항목마다 제목 규칙(only/skip)으로 나눈다 (예: 그 길의 "Game:" 작업은 순례 게임으로)
   const lists = {};
-  const prsOf = repo => lists[repo] ||= (async () => {
+  const prsOf = (repo, commits) => lists[repo] ||= (async () => {
     const key = "board2-" + repo;
     try { const c = JSON.parse(sessionStorage.getItem(key) || "null"); if (c && Date.now() - c.t < 5 * 60000) return c.d; } catch (e) {}
-    const r = await fetch(`https://api.github.com/repos/${repo}/pulls?state=closed&sort=updated&direction=desc&per_page=100`);
+    // PR 없이 main에 바로 올리는 저장소(src: "commits")는 커밋 목록을 읽는다
+    const r = await fetch(commits ? `https://api.github.com/repos/${repo}/commits?per_page=100` : `https://api.github.com/repos/${repo}/pulls?state=closed&sort=updated&direction=desc&per_page=100`);
     if (!r.ok) throw new Error(r.status);
-    const prs = (await r.json()).filter(p => p.merged_at).map(p => ({ title: p.title, at: Date.parse(p.merged_at) })).sort((a, z) => z.at - a.at);
+    const j = await r.json();
+    const prs = (commits ? j.filter(c => (c.parents || []).length < 2).map(c => ({ title: c.commit.message.split("\n")[0], at: Date.parse(c.commit.committer.date) }))
+      : j.filter(p => p.merged_at).map(p => ({ title: p.title, at: Date.parse(p.merged_at) }))).sort((a, z) => z.at - a.at);
     try { sessionStorage.setItem(key, JSON.stringify({ t: Date.now(), d: prs })); } catch (e) {}
     return prs;
   })();
   const load = async b => {
     const only = b.only && new RegExp(b.only, "i"), skip = b.skip && new RegExp(b.skip, "i");
-    const prs = (await prsOf(b.repo)).filter(p => (!only || only.test(p.title)) && (!skip || !skip.test(p.title)));
+    const prs = (await prsOf(b.repo, b.src === "commits")).filter(p => (!only || only.test(p.title)) && (!skip || !skip.test(p.title)));
     const day0 = new Date(); day0.setHours(0, 0, 0, 0);
     return { last: prs[0]?.at || 0, today: prs.filter(p => p.at >= day0).length, week: prs.filter(p => p.at >= Date.now() - 7 * 864e5).length, recent: prs.slice(0, 5) };
   };
