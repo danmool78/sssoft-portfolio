@@ -57,16 +57,17 @@ videos?[{src,poster?,label,wide?}](영상이 여럿일 때 video 대신, 적은 
 상세 화면은 영상 → 사용 장면 → 숫자 → 대표 기능 → 미리보기 순서. 영상을 보면 앱이 다 이해되므로 맨 위에 둔다)
 
 순서: 캠프마스터, STARFARER, 다락방 기도앱, 교회 레크리에이션, 다정 리딩북, 케미몰(독립몰), 보캐브스캔, 워드드롭,
-노후자금 시뮬레이터, 중심잡기, 큐티레이스, 열왕기 — 두 왕국의 연대기, 그 길(시리즈 하나로), 비전 퀘스트.
+노후자금 시뮬레이터, 중심잡기, 큐티레이스, 열왕기 — 두 왕국의 연대기, 그 길(시리즈 하나로), 비전 퀘스트, 가지.
 (그 길은 여정마다 카드를 따로 만들지 않고 한 카드로 소개한다. 여정 목록·공개 여부는 theway의 `next.items`: `url`이 있으면 공개(여정 걷기 단추), 없으면 준비 중(후원 모집).
 새 여정이 나오면 그 항목에 url을 넣고 숫자·미리보기를 더한다. 여정 주소는 /jesus/ · /moses/ 처럼 여정마다 따로)
+(가지 = gaji 저장소, 사이트 https://gaji-lab.web.app — 고등학교 실험 동아리 연구 관리 도구, 첫 화면 '체험해 보기'로 예시 동아리를 캡처, 영상은 저장소 public/intro의 소개·쇼츠 mp4를 줄여 public/gaji-*.mp4로.
 (그 길 = the-way-jesus.web.app 저장소, 사이트 주소는 https://thewaymap.org, 비전 퀘스트 = team-esc 저장소. 화면은 실제 사이트를 Playwright로 캡처한다.
 비전 퀘스트는 https://team-esc.web.app/?demo 로 로그인 없이 가짜 참가자 화면을 볼 수 있다.
 비전 퀘스트 '실전 기록'은 2026-10-31 전주 한옥마을 게임 Q9A54의 실제 자료(`firebase database:get /games/Q9A54 --project team-esc`)에서 센 숫자다.
 참가자 사진은 쓰지 않고 그림으로 다시 그렸다: shots/visionquest-scene.jpg, gallery/visionquest-jeonju.jpg.
 장면 그림 원본은 design/visionquest-scene.html (Chrome 헤드리스로 1600×900 캡처, ?card 를 붙이면 카드용 1160×750))
 
-최근 작업 내용(index.html `BOARD`, 첫 화면 소개 바로 아래 코드 편집기 모양 창): 지금 만드는 중인 작품만 적는다(완성작은 data.js 카드). 항목은 {name, repo(공개 저장소), url, now(지금 하는 일 한 줄), only?/skip?(PR 제목 정규식 — 같은 저장소를 작품별로 나눈다. 그 길의 "Game:" 작업은 "그 길 순례 게임" 줄로)}. 창은 사이트 색에 따라 밝게/어둡게(GitHub 밝은·어두운 테마 색).
+최근 작업 내용(index.html `BOARD`, 첫 화면 소개 바로 아래 코드 편집기 모양 창): 지금 만드는 중인 작품만 적는다(완성작은 data.js 카드). 항목은 {name, repo(공개 저장소), url, now(지금 하는 일 한 줄), src?("commits"면 PR 대신 커밋 목록을 읽는다 — 가지처럼 main에 바로 올리는 저장소), only?/skip?(PR 제목 정규식 — 같은 저장소를 작품별로 나눈다. 그 길의 "Game:" 작업은 "그 길 순례 게임" 줄로)}. 창은 사이트 색에 따라 밝게/어둡게(GitHub 밝은·어두운 테마 색).
 최근 작업은 방문자 브라우저가 GitHub API에서 병합된 PR을 바로 읽는다(5분 캐시, 30분 안에 작업하면 초록 불). 작품이 완성되면 BOARD에서 빼고 카드로 옮긴다.
 일기: `.github/workflows/board-diary.yml`이 한 시간마다 `scripts/diary.mjs`로 그날 병합된 PR 제목을 모아 Gemini(비밀값 `GEMINI_API_KEY`)가 우리말 일기로 정리한다.
 일기는 main이 아니라 `board-data` 가지의 diary.json 한 파일에만 둔다(main 기록이 쌓이지 않게) — 배포 작업들은 배포 직전에 그 파일을 public/live/diary.json으로 가져온다.
