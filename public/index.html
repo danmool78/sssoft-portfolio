@@ -296,6 +296,12 @@ dialog::backdrop{background:rgba(8,9,14,.62);backdrop-filter:blur(4px)}
 .roles div{border:1px dashed var(--c);border-radius:14px;padding:16px 18px}
 .roles b{display:block;margin-bottom:4px}
 .roles span{color:var(--muted);font-size:14px}
+.faq{display:grid;gap:8px;margin-bottom:34px}
+.faq details{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:0 16px}
+.faq summary{cursor:pointer;padding:13px 0;font-weight:700;font-size:15px;list-style:none}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::before{content:"Q ";color:var(--c,var(--accent))}
+.faq p{margin:0 0 14px;color:var(--muted);font-size:14.5px;line-height:1.75;word-break:keep-all}
 .meta2{display:grid;grid-template-columns:1fr 1fr;gap:28px}
 .meta2 p{color:var(--muted);font-size:15px}
 .chips{display:flex;flex-wrap:wrap;gap:6px}
@@ -620,6 +626,7 @@ function open(id){
        <div class="feats">${s.items.map(f=>`<div class="feat"><b>${esc(f.title)}</b><span>${esc(f.desc)}</span></div>`).join("")}</div>
      </details>`).join("")}</div>`:""}
      ${p.roles&&p.roles.length?`<h4>● ${esc(p.rolesTitle||"사용자별 전용 도구")}</h4><div class="roles">${p.roles.map(r=>`<div><b>${esc(r.role)}</b><span>${esc(r.desc)}</span></div>`).join("")}</div>`:""}
+     ${p.faq?`<h4>? 자주 묻는 질문</h4><div class="faq">${p.faq.map(f=>`<details><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`).join("")}</div>`:""}
      <div class="meta2">
        <div><h4>이런 분들을 위해</h4><p>${esc(p.audience)}</p></div>
        <div><h4>기술 스택</h4><div class="chips">${(p.tech||[]).map(t=>`<span>${esc(t)}</span>`).join("")}</div></div>

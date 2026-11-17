@@ -292,6 +292,12 @@ dialog::backdrop{background:rgba(8,9,14,.62);backdrop-filter:blur(4px)}
 .roles div{border:1px dashed var(--c);border-radius:14px;padding:16px 18px}
 .roles b{display:block;margin-bottom:4px}
 .roles span{color:var(--muted);font-size:14px}
+.faq{display:grid;gap:8px;margin-bottom:34px}
+.faq details{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:0 16px}
+.faq summary{cursor:pointer;padding:13px 0;font-weight:700;font-size:15px;list-style:none}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::before{content:"Q ";color:var(--c,var(--accent))}
+.faq p{margin:0 0 14px;color:var(--muted);font-size:14.5px;line-height:1.75;word-break:keep-all}
 .meta2{display:grid;grid-template-columns:1fr 1fr;gap:28px}
 .meta2 p{color:var(--muted);font-size:15px}
 .chips{display:flex;flex-wrap:wrap;gap:6px}
@@ -407,6 +413,7 @@ h1,h2,h3,.hero h1,.sec-head h2,.about h2,.process h2,.reeltxt h2,.contact h2,.bo
        <summary><i>7</i><div><b>현장 배려</b><span>걸으며 쓰는 폰에 맞춘 설계</span></div><small>7</small></summary>
        <div class="feats"><div class="feat"><b>흔들림 없는 위치</b><span>튀는 GPS 값을 거르고 최근 4초를 평균해 인형이 떨지 않게 하며, 빠르게 움직일 때는 방금 위치를 바로 씁니다.</span></div><div class="feat"><b>전송 상태 표시</b><span>내 위치가 서버에 닿을 때마다 제목 줄의 전파 아이콘이 초록으로 퍼지고, 끊기면 빨갛게 깜빡입니다.</span></div><div class="feat"><b>위치 다시 잡기</b><span>내비 같은 다른 앱에 다녀오거나 위치가 조용해지면 위치 받기를 새로 겁니다.</span></div><div class="feat"><b>주머니 모드</b><span>화면을 까맣게 덮고 3D 그리기를 멈춰 배터리를 아끼면서 위치는 계속 보냅니다.</span></div><div class="feat"><b>화면 켜 두기</b><span>위치가 끊기지 않게 게임 중에는 화면을 켜 둡니다.</span></div><div class="feat"><b>설치 없음</b><span>앱을 받지 않고 휴대폰 브라우저에서 바로 씁니다.</span></div><div class="feat"><b>데모 모드</b><span>로그인 없이 가짜 참가자들이 걸어 다니는 데모로 미리 체험합니다.</span></div></div>
      </details></div>
+     
      
      <div class="meta2">
        <div><h4>이런 분들을 위해</h4><p>지자체·관광지의 도시 홍보와 지역 축제, 교회 수련회·캠프, 학교와 회사의 야외 팀 빌딩을 여는 진행자와 참가자</p></div>

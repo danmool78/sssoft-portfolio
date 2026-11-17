@@ -22,6 +22,7 @@ public/            ← 배포되는 사이트. 이 폴더가 원본이다 (루�
   sitemap.xml      scripts/sitemap.cjs가 만든다 (직접 고치지 않는다). 같은 목록의 기본형 sitemap-pages.xml(확장 없음)과
                    텍스트형 sitemap.txt도 함께 만든다 (서치 콘솔이 sitemap.xml을 계속 "가져올 수 없음"으로 두어서)
 scripts/apps.cjs     apps/{id}/index.html 생성: 상세 창과 같은 내용을 정적 HTML로(제목·설명·SoftwareApplication 구조화 데이터)
+                     같은 스크립트가 public/llms.txt(AI 답변 엔진용 서비스 목록 + faq)도 만든다. free면 구조화 데이터에 무료(price 0)
 scripts/sitemap.cjs  sitemap.xml 생성: 페이지별 lastmod(git 커밋 날짜), 홈 카드 이미지, 릴스 영상, 앱 소개 페이지
 reel/              홍보 릴스(32초, 1080×1920) 원본
   reel.html        프레임 단위 애니메이션 (window.render(t))
@@ -50,7 +51,7 @@ roles[], rolesTitle?, numbers[{value,label}], gallery?[{src,cap}], galleryWide?,
 next?{badge,title,lede,items[{title,desc,url?,go?}]}(시리즈·다음 편 후원 모집, url이 있는 항목은 공개된 편: 대표 기능 바로 위, 카톡·메일 문의 단추, badge는 카드 오른쪽 위), uses?[{title,desc}](적용 가능 분야: 상세 화면 대표 기능 바로 위),
 downloads?{title,lede?,items[{label,desc,href}]}(내려받기: 상세 화면 대표 기능 바로 위 — 그 길의 '왜 기독교인가' 소책자 PDF 두 가지, 파일은 the-way-jesus.web.app/assets에 있다),
 record?{title,badge,date,stats[{value,label}],items[{title,desc}],timeline[{time,text}]}(실전 운영 기록: 상세 화면 숫자 바로 아래, badge는 카드 오른쪽 위),
-scene?{src,cap,card?}, cardBg?(카드 배경 그림만 — 상세 화면에는 안 나온다. 가지는 3D 전체 지도), video?(.mp4면 세로 영상 플레이어), videoPoster?, videoLabel?,
+scene?{src,cap,card?}, faq?[{q,a}](자주 묻는 질문 — 상세 화면·앱 소개 페이지 끝에 보이고, 앱 소개 페이지에는 FAQPage 구조화 데이터로도 들어간다. AI 답변 엔진(AEO)이 "○○ 프로그램 뭐 쓰면 좋을까"에 이 작품을 추천하게 질문을 쓴다), aka?[](다른 이름·검색어 — 구조화 데이터 alternateName), cardBg?(카드 배경 그림만 — 상세 화면에는 안 나온다. 가지는 3D 전체 지도), video?(.mp4면 세로 영상 플레이어), videoPoster?, videoLabel?,
 videos?[{src,poster?,label,wide?}](영상이 여럿일 때 video 대신, 적은 순서대로 나온다. wide: 가로 mp4)`
 (사이트에 올리는 mp4는 ffmpeg로 1280px·CRF 26 정도로 줄여 public/에 영문 파일명으로 둔다)
 (scene: 실제 사용 장면 사진. 카드 배경(card가 있으면 그 이미지)과 상세 화면 영상 바로 아래에 나온다.

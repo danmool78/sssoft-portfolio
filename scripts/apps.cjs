@@ -61,13 +61,15 @@ function page(p) {
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "SoftwareApplication", "@id": url + "#app", name: p.title, alternateName: p.en,
+        "@type": "SoftwareApplication", "@id": url + "#app", name: p.title, alternateName: p.aka ? [p.en, ...p.aka] : p.en,
         description: p.overview, url: p.url || url, image: SITE + image,
         applicationCategory: CATEGORY[p.cat] || "WebApplication",
         operatingSystem: p.play ? "Web, Android" : "Web", inLanguage: "ko",
         author: { "@id": SITE + "#org" }, publisher: { "@id": SITE + "#org" },
         ...(p.play ? { installUrl: p.play } : {}),
+        ...(p.free ? { isAccessibleForFree: true, offers: { "@type": "Offer", price: "0", priceCurrency: "KRW" } } : {}),
       },
+      ...(p.faq ? [{ "@type": "FAQPage", "@id": url + "#faq", inLanguage: "ko", mainEntity: p.faq.map(f => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) }] : []),
       {
         "@type": "WebPage", "@id": url, url, name: `${p.title} — ${p.tag}`, description: desc, inLanguage: "ko",
         isPartOf: { "@id": SITE + "#site" }, about: { "@id": url + "#app" }, primaryImageOfPage: SITE + image,
@@ -164,6 +166,7 @@ function page(p) {
        <div class="feats">${s.items.map(f => `<div class="feat"><b>${esc(f.title)}</b><span>${esc(f.desc)}</span></div>`).join("")}</div>
      </details>`).join("")}</div>` : ""}
      ${p.roles && p.roles.length ? `<h4>● ${esc(p.rolesTitle || "사용자별 전용 도구")}</h4><div class="roles">${p.roles.map(r => `<div><b>${esc(r.role)}</b><span>${esc(r.desc)}</span></div>`).join("")}</div>` : ""}
+     ${p.faq ? `<h4>? 자주 묻는 질문</h4><div class="faq">${p.faq.map(f => `<details open><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`).join("")}</div>` : ""}
      <div class="meta2">
        <div><h4>이런 분들을 위해</h4><p>${esc(p.audience)}</p></div>
        <div><h4>기술 스택</h4><div class="chips">${(p.tech || []).map(t => `<span>${esc(t)}</span>`).join("")}</div></div>
@@ -196,4 +199,16 @@ for (const p of P) {
   fs.mkdirSync(path.join(OUT, p.id), { recursive: true });
   fs.writeFileSync(path.join(OUT, p.id, "index.html"), page(p));
 }
+// AI 답변 엔진용 llms.txt: 서비스마다 한 줄 소개와 소개 페이지, 자주 묻는 질문은 그대로
+const llms = [
+  "# SSSOFT",
+  "",
+  "> 아이디어를 매일 쓰이는 서비스로 만드는 소프트웨어 스튜디오. 모든 서비스를 직접 기획 · 개발 · 운영합니다. 문의: sssoft1004@gmail.com",
+  "",
+  "## 서비스",
+  "",
+  ...P.map(p => `- [${p.title}](${SITE}apps/${p.id}/): ${p.tag}${p.free ? " · 무료" : ""}. ${p.tagline}${p.url ? ` (바로가기: ${p.url})` : ""}`),
+  ...P.filter(p => p.faq).flatMap(p => ["", `## ${p.title} — 자주 묻는 질문`, "", ...p.faq.flatMap(f => [`### ${f.q}`, "", f.a, ""])]),
+].join("\n").replace(/\n+$/, "") + "\n";
+fs.writeFileSync(path.join(OUT, "..", "llms.txt"), llms);
 console.log(`apps/: ${P.length} pages`);

@@ -292,6 +292,12 @@ dialog::backdrop{background:rgba(8,9,14,.62);backdrop-filter:blur(4px)}
 .roles div{border:1px dashed var(--c);border-radius:14px;padding:16px 18px}
 .roles b{display:block;margin-bottom:4px}
 .roles span{color:var(--muted);font-size:14px}
+.faq{display:grid;gap:8px;margin-bottom:34px}
+.faq details{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:0 16px}
+.faq summary{cursor:pointer;padding:13px 0;font-weight:700;font-size:15px;list-style:none}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::before{content:"Q ";color:var(--c,var(--accent))}
+.faq p{margin:0 0 14px;color:var(--muted);font-size:14.5px;line-height:1.75;word-break:keep-all}
 .meta2{display:grid;grid-template-columns:1fr 1fr;gap:28px}
 .meta2 p{color:var(--muted);font-size:15px}
 .chips{display:flex;flex-wrap:wrap;gap:6px}
@@ -405,6 +411,7 @@ h1,h2,h3,.hero h1,.sec-head h2,.about h2,.process h2,.reeltxt h2,.contact h2,.bo
        <div class="feats"><div class="feat"><b>공지 + 푸시 알림</b><span>공지를 올리고 순원에게 알림을 보냅니다.</span></div><div class="feat"><b>큐티 생성·예약</b><span>날짜를 지정해 큐티를 생성하거나 직접 작성하고, 발행 시각을 예약합니다.</span></div><div class="feat"><b>비밀번호 초기화</b><span>순원 비밀번호를 생일로 한 번에 초기화합니다.</span></div><div class="feat"><b>관리자 모드</b><span>숨은 터치 동작으로 관리자 모드를 켜며, 켜지면 빨간 점이 표시됩니다.</span></div><div class="feat"><b>다락방 영구 삭제</b><span>다락방을 삭제하면 관련 데이터가 모두 함께 지워집니다.</span></div><div class="feat"><b>개인정보 보호</b><span>개인정보처리방침이 있고, Firebase 보안 규칙과 암호화 통신으로 데이터를 보호합니다.</span></div></div>
      </details></div>
      <h4>● 사용자별 전용 도구</h4><div class="roles"><div><b>순장(관리자)</b><span>구글 로그인으로 다락방을 개설하고 관리합니다. 주소록 등록, 순원 초대, 공지·푸시 알림, 큐티 생성·예약·직접 작성, 순장 전용 깊은 묵상, 비밀번호 초기화, 다락방 삭제를 맡습니다.</span></div><div><b>순원(회원)</b><span>이름을 고르고 생일 4자리로 로그인합니다. 오늘의 큐티와 읽어주기, 기도제목 나눔과 AI 정리, 공지 알림, 생일 확인, 내 정보 수정, 홈 화면 설치를 할 수 있습니다.</span></div></div>
+     
      <div class="meta2">
        <div><h4>이런 분들을 위해</h4><p>교회 다락방·구역·셀 같은 소그룹의 순장(리더)과 순원</p></div>
        <div><h4>기술 스택</h4><div class="chips"><span>React (Vite) PWA</span><span>Firebase Firestore / Auth</span><span>Firebase Cloud Messaging 푸시 알림</span><span>Firebase Cloud Functions</span><span>OpenAI API</span><span>Web Speech API (speechSynthesis)</span></div></div>
