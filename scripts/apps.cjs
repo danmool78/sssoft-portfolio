@@ -148,7 +148,7 @@ function page(p) {
      <div class="dshot">${p.frame === "browser" ? (exists(`shots/${p.shot}-m.png`) ? `<div class="phone"><img src="/shots/${p.shot}-m.png" alt="${esc(p.title)} 모바일 화면"></div>` : "") : visual(p)}</div>
    </div>
    <div class="dbody">
-     ${videos.map(v => `<h4>▶ ${esc(v.label || "플레이 영상")}</h4>${/\.mp4$/.test(v.src)
+     ${videos.map(v => `<h4>▶ ${esc(v.label || "플레이 영상")}</h4>${/\.mp4(\?|$)/.test(v.src)
        ? `<div class="vid ${v.wide ? "wv" : "tall"}"><video src="${u(v.src)}" ${v.poster ? `poster="${u(v.poster)}"` : ""} controls playsinline preload="none"></video></div>`
        : `<div class="vid"><iframe src="${v.src}" title="${esc(p.title)} ${esc(v.label || "플레이 영상")}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>`}`).join("")}
      ${p.scene ? `<figure class="scene"><img src="${u(p.scene.src)}" alt="${esc(p.title)} ${esc(p.scene.cap || "사용 장면")}" loading="lazy">${p.scene.cap ? `<figcaption>${esc(p.scene.cap)}</figcaption>` : ""}</figure>` : ""}

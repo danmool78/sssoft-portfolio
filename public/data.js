@@ -4554,13 +4554,13 @@ window.PROJECTS=[
   ],
   "videos": [
    {
-    "src": "gaji-intro.mp4",
+    "src": "gaji-intro.mp4?v=20261117",
     "poster": "gaji-intro-poster.jpg",
     "label": "가지 소개 영상",
     "wide": true
    },
    {
-    "src": "gaji-shorts.mp4",
+    "src": "gaji-shorts.mp4?v=20261117",
     "poster": "gaji-shorts-poster.jpg",
     "label": "세로 영상 (쇼츠)"
    }
