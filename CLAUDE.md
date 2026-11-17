@@ -50,7 +50,7 @@ roles[], rolesTitle?, numbers[{value,label}], gallery?[{src,cap}], galleryWide?,
 next?{badge,title,lede,items[{title,desc,url?,go?}]}(시리즈·다음 편 후원 모집, url이 있는 항목은 공개된 편: 대표 기능 바로 위, 카톡·메일 문의 단추, badge는 카드 오른쪽 위), uses?[{title,desc}](적용 가능 분야: 상세 화면 대표 기능 바로 위),
 downloads?{title,lede?,items[{label,desc,href}]}(내려받기: 상세 화면 대표 기능 바로 위 — 그 길의 '왜 기독교인가' 소책자 PDF 두 가지, 파일은 the-way-jesus.web.app/assets에 있다),
 record?{title,badge,date,stats[{value,label}],items[{title,desc}],timeline[{time,text}]}(실전 운영 기록: 상세 화면 숫자 바로 아래, badge는 카드 오른쪽 위),
-scene?{src,cap,card?}, video?(.mp4면 세로 영상 플레이어), videoPoster?, videoLabel?,
+scene?{src,cap,card?}, cardBg?(카드 배경 그림만 — 상세 화면에는 안 나온다. 가지는 3D 전체 지도), video?(.mp4면 세로 영상 플레이어), videoPoster?, videoLabel?,
 videos?[{src,poster?,label,wide?}](영상이 여럿일 때 video 대신, 적은 순서대로 나온다. wide: 가로 mp4)`
 (사이트에 올리는 mp4는 ffmpeg로 1280px·CRF 26 정도로 줄여 public/에 영문 파일명으로 둔다)
 (scene: 실제 사용 장면 사진. 카드 배경(card가 있으면 그 이미지)과 상세 화면 영상 바로 아래에 나온다.

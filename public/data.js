@@ -4601,6 +4601,7 @@ window.PROJECTS=[
    "Google Apps Script",
    "Google Sheets · Drive",
    "PWA"
-  ]
+  ],
+  "cardBg": "shots/gaji-card.jpg"
  }
 ];

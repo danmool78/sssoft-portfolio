@@ -501,7 +501,7 @@ const grid = document.getElementById("grid");
 function render(f){
   grid.innerHTML = P.filter(p => f==="all" || p.cat===f).map(p => `
   <button class="card" style="--c:${p.color}" data-id="${p.id}" aria-label="${esc(p.title)} 상세 보기">
-    <div class="stage${p.scene?" scn":""}" style="${p.scene?`background:url(${p.scene.card||p.scene.src}) center/cover`:stageBg(p.color)}"><span class="tag">${esc(p.tag)}</span>${p.play?`<span class="tag gp">▶ Google Play</span>`:p.record&&p.record.badge?`<span class="tag gp">${esc(p.record.badge)}</span>`:p.next&&p.next.badge?`<span class="tag gp">${esc(p.next.badge)}</span>`:""}${visual(p)}</div>
+    <div class="stage${p.scene||p.cardBg?" scn":""}" style="${p.scene||p.cardBg?`background:url(${p.cardBg||p.scene.card||p.scene.src}) center/cover`:stageBg(p.color)}"><span class="tag">${esc(p.tag)}</span>${p.play?`<span class="tag gp">▶ Google Play</span>`:p.record&&p.record.badge?`<span class="tag gp">${esc(p.record.badge)}</span>`:p.next&&p.next.badge?`<span class="tag gp">${esc(p.next.badge)}</span>`:""}${visual(p)}</div>
     <div class="body">
       <div class="en">${esc(p.en)}</div>
       <h3>${esc(p.title)}</h3>
