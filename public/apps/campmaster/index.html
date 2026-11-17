@@ -292,6 +292,12 @@ dialog::backdrop{background:rgba(8,9,14,.62);backdrop-filter:blur(4px)}
 .roles div{border:1px dashed var(--c);border-radius:14px;padding:16px 18px}
 .roles b{display:block;margin-bottom:4px}
 .roles span{color:var(--muted);font-size:14px}
+.faq{display:grid;gap:8px;margin-bottom:34px}
+.faq details{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:0 16px}
+.faq summary{cursor:pointer;padding:13px 0;font-weight:700;font-size:15px;list-style:none}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::before{content:"Q ";color:var(--c,var(--accent))}
+.faq p{margin:0 0 14px;color:var(--muted);font-size:14.5px;line-height:1.75;word-break:keep-all}
 .meta2{display:grid;grid-template-columns:1fr 1fr;gap:28px}
 .meta2 p{color:var(--muted);font-size:15px}
 .chips{display:flex;flex-wrap:wrap;gap:6px}
@@ -405,6 +411,7 @@ h1,h2,h3,.hero h1,.sec-head h2,.about h2,.process h2,.reeltxt h2,.contact h2,.bo
        <div class="feats"><div class="feat"><b>회계 대시보드</b><span>수입, 지출, 예산 집행률을 한눈에 보여 줍니다.</span></div><div class="feat"><b>영수증 OCR</b><span>영수증을 찍으면 금액, 사용처, 날짜를 읽어 오고 AI가 분류합니다.</span></div><div class="feat"><b>찬조금·기타수입</b><span>찬조자와 금액을 기록하고 입금자·찬조자 명단을 인쇄합니다.</span></div><div class="feat"><b>정산 점검·보고서</b><span>정산을 점검하고 전체 회계 보고서를 엑셀이나 PDF로 확정합니다.</span></div><div class="feat"><b>영수증 일괄인쇄</b><span>분류별 리스트와 영수증을 한꺼번에 출력합니다.</span></div><div class="feat"><b>백업·개인정보 파기</b><span>명단을 엑셀이나 zip으로 백업한 뒤 개인정보를 파기합니다.</span></div><div class="feat"><b>전시 모드</b><span>전원의 캐릭터를 모자이크로 모아 현수막, 엔딩영상, 굿즈용으로 출력합니다.</span></div></div>
      </details></div>
      <h4>● 운영 도구 앱 13개 — 담당자에게 링크만 보내면 끝</h4><div class="roles"><div><b>캠프 등록</b><span>참가자·선생님이 직접 등록하는 링크. 단톡방에 가장 먼저 공유합니다.</span></div><div><b>등록 안내(인쇄)</b><span>QR·앱 설치·등록 순서를 담은 A4 안내문을 학부모에게 배포합니다.</span></div><div><b>입금 확인</b><span>회계 담당이 입금 여부를 확인합니다.</span></div><div><b>신청현황 공유</b><span>부→학년→반으로 눌러 보는 읽기 전용 현황. 누구에게 공유해도 안전합니다.</span></div><div><b>우리 조 관리</b><span>조를 맡은 스탭이 자기 조의 입퇴실·환자·특이사항·보고를 현장에서 처리합니다.</span></div><div><b>조·차 조회</b><span>전체 인원을 가나다순으로 보고 각자의 조와 호차·카풀을 확인합니다.</span></div><div><b>캐릭터 갤러리</b><span>전원의 캐릭터를 한 화면에 모아 전시용으로 인쇄하고 미생성 인원을 점검합니다.</span></div><div><b>지출 입력</b><span>영수증 사진·PDF를 올리면 회계 담당이 승인·반려하고, 반려 사유와 재제출까지 관리합니다.</span></div><div><b>QR 관리</b><span>입구 담당이 명찰 QR을 스캔해 입실·퇴실·상점·벌점을 처리합니다. 여러 기기로 동시에 스캔해도 충돌이 없습니다.</span></div><div><b>버스 탑승체크</b><span>인솔 교사가 호차별 탑승을 체크합니다.</span></div><div><b>환자 관리</b><span>의무팀이 증상·경과·처방을 기록합니다.</span></div><div><b>방키 관리</b><span>숙소 담당이 방키 대출과 반납을 처리합니다.</span></div><div><b>인원 점호</b><span>조장·담당 교사가 조별·방별로 점호합니다.</span></div></div>
+     
      <div class="meta2">
        <div><h4>이런 분들을 위해</h4><p>교회 수련회·여름성경학교 운영진, 학교 수련회·체험학습 담당 교사, 회사 워크숍·연수·MT 담당자 등 단체 캠프를 준비하는 모든 운영팀</p></div>
        <div><h4>기술 스택</h4><div class="chips"><span>React</span><span>Firebase (Firestore·Auth·Hosting)</span><span>PWA·웹 푸시</span><span>AI API (OpenAI 참조 존재)</span><span>QR 스캔 (ZXing 계열)</span><span>SheetJS 엑셀 입출력</span></div></div>

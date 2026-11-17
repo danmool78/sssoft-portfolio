@@ -292,6 +292,12 @@ dialog::backdrop{background:rgba(8,9,14,.62);backdrop-filter:blur(4px)}
 .roles div{border:1px dashed var(--c);border-radius:14px;padding:16px 18px}
 .roles b{display:block;margin-bottom:4px}
 .roles span{color:var(--muted);font-size:14px}
+.faq{display:grid;gap:8px;margin-bottom:34px}
+.faq details{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:0 16px}
+.faq summary{cursor:pointer;padding:13px 0;font-weight:700;font-size:15px;list-style:none}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::before{content:"Q ";color:var(--c,var(--accent))}
+.faq p{margin:0 0 14px;color:var(--muted);font-size:14.5px;line-height:1.75;word-break:keep-all}
 .meta2{display:grid;grid-template-columns:1fr 1fr;gap:28px}
 .meta2 p{color:var(--muted);font-size:15px}
 .chips{display:flex;flex-wrap:wrap;gap:6px}
@@ -405,6 +411,7 @@ h1,h2,h3,.hero h1,.sec-head h2,.about h2,.process h2,.reeltxt h2,.contact h2,.bo
        <div class="feats"><div class="feat"><b>5가지 보너스 게임</b><span>Cycle 완료 후 워드레인, 스타 레이서, 기억력 대결, 술래잡기(미로), 댕댕이 탈출이 열립니다.</span></div><div class="feat"><b>글로벌 리더보드</b><span>게임별 점수와 속도 순위를 리더보드에서 겨룹니다.</span></div><div class="feat"><b>정착 현황 그래프</b><span>Cycle별 정착, 이탈, 회상강도 추이를 그래프와 표로 보여줍니다.</span></div><div class="feat"><b>도트맵·3D 우주</b><span>전체 단어의 기억 상태를 도트맵과 3D 우주 뷰로 한눈에 보여줍니다.</span></div><div class="feat"><b>워드클라우드</b><span>취약 단어를 워드클라우드로 시각화합니다.</span></div><div class="feat"><b>AI 코멘트·최적 범위</b><span>효율 공식으로 최적 단어 수를 계산하고, 페이스와 이탈 경고를 코멘트로 알려줍니다.</span></div></div>
      </details></div>
      <h4>● 사용자별 전용 도구</h4><div class="roles"><div><b>학습자</b><span>기억 세트 선택, 플랜 설정, 낙하 게임, 재활성화, 보너스 게임, 분석까지 모든 기능을 씁니다.</span></div><div><b>체험(게스트) 사용자</b><span>로그인 없이 체험판 1레벨과 게스트 미로게임을 해볼 수 있습니다.</span></div><div><b>관리자</b><span>Google Sheets 공개 링크로 단어장을 추가하거나 업데이트하고, 가격을 설정하며, 무제한 추가 모듈을 쓸 수 있습니다.</span></div></div>
+     
      <div class="meta2">
        <div><h4>이런 분들을 위해</h4><p>TOEIC·TOEFL 등 영어 시험을 준비하는 수험생, 게임처럼 단어를 외우고 싶은 학습자</p></div>
        <div><h4>기술 스택</h4><div class="chips"><span>React + Vite</span><span>Firebase Auth / Firestore / Hosting</span><span>IndexedDB 오프라인 캐시</span><span>Web Speech API 음성 인식·TTS</span><span>OpenAI GPT 의미 판정</span><span>PWA</span></div></div>

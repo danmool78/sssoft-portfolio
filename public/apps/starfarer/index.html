@@ -292,6 +292,12 @@ dialog::backdrop{background:rgba(8,9,14,.62);backdrop-filter:blur(4px)}
 .roles div{border:1px dashed var(--c);border-radius:14px;padding:16px 18px}
 .roles b{display:block;margin-bottom:4px}
 .roles span{color:var(--muted);font-size:14px}
+.faq{display:grid;gap:8px;margin-bottom:34px}
+.faq details{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:0 16px}
+.faq summary{cursor:pointer;padding:13px 0;font-weight:700;font-size:15px;list-style:none}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::before{content:"Q ";color:var(--c,var(--accent))}
+.faq p{margin:0 0 14px;color:var(--muted);font-size:14.5px;line-height:1.75;word-break:keep-all}
 .meta2{display:grid;grid-template-columns:1fr 1fr;gap:28px}
 .meta2 p{color:var(--muted);font-size:15px}
 .chips{display:flex;flex-wrap:wrap;gap:6px}
@@ -408,6 +414,7 @@ h1,h2,h3,.hero h1,.sec-head h2,.about h2,.process h2,.reeltxt h2,.contact h2,.bo
        <div class="feats"><div class="feat"><b>기체 상점·도감</b><span>기체를 구매하고 플레이 가능한 기체 도감을 봅니다.</span></div><div class="feat"><b>능력치 강화</b><span>함선별 능력치를 골라 강화합니다.</span></div><div class="feat"><b>커스텀 도색</b><span>브러시, 영역 선택, 색상 변경 도구로 직접 도색합니다.</span></div><div class="feat"><b>AI 3D 파일럿</b><span>내 사진으로 닮은꼴 파일럿을 생성합니다.</span></div><div class="feat"><b>랭킹·명예의 전당</b><span>리더보드, 계급 점수, 명예의 전당을 제공합니다.</span></div><div class="feat"><b>채팅·우주 속보</b><span>전체·길드·편대 채팅과 격추 속보를 실시간으로 알립니다.</span></div><div class="feat"><b>고객센터·신고</b><span>버그 신고, 공지사항, 고객센터를 갖췄습니다.</span></div></div>
      </details></div>
      <h4>● 사용자별 전용 도구</h4><div class="roles"><div><b>레이서 / 파일럿</b><span>레이스·전투 실전, 기체 강화와 도색, 랭킹 경쟁을 합니다.</span></div><div><b>광부·무역상</b><span>딥 스페이스에서 채굴하고 거래소와 보급소에서 거래합니다.</span></div><div><b>길드장·간부</b><span>치안권 입찰, 금고·회원·마크 관리, 보급 수송 출항을 예약합니다.</span></div><div><b>호위기</b><span>치안권 운영 길드원이 CSTA 수송선을 호위하고 보상을 받습니다.</span></div><div><b>해적(중앙 해적 연합)</b><span>수송선을 약탈하고 밀수품을 판매하며 지명수배 대상이 됩니다.</span></div></div>
+     
      <div class="meta2">
        <div><h4>이런 분들을 위해</h4><p>설치 없이 브라우저에서 우주 비행, 레이싱, 전투를 즐기고 싶은 게이머와, 길드 경제나 PvP 세력 다툼을 좋아하는 MMO 유저</p></div>
        <div><h4>기술 스택</h4><div class="chips"><span>Babylon.js (WebGPU)</span><span>Vite</span><span>Firebase (Auth·Firestore·Realtime DB·Storage)</span><span>Cloud Functions</span><span>Electron (Windows 관리자 위젯)</span><span>7개 언어 i18n</span></div></div>
