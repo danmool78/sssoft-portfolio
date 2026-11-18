@@ -4554,7 +4554,7 @@ window.PROJECTS=[
   ],
   "videos": [
    {
-    "src": "https://player.vimeo.com/video/1247839878?dnt=1&title=0&byline=0&portrait=0",
+    "src": "https://player.vimeo.com/video/1247842965?dnt=1&title=0&byline=0&portrait=0",
     "label": "가지 소개 영상"
    },
    {
