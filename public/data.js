@@ -4554,10 +4554,8 @@ window.PROJECTS=[
   ],
   "videos": [
    {
-    "src": "gaji-intro.mp4?v=20261118",
-    "poster": "gaji-intro-poster.jpg",
-    "label": "가지 소개 영상",
-    "wide": true
+    "src": "https://player.vimeo.com/video/1247839878?dnt=1&title=0&byline=0&portrait=0",
+    "label": "가지 소개 영상"
    },
    {
     "src": "gaji-shorts.mp4?v=20261118",
